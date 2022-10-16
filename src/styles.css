@@ -1,3 +1,105 @@
+* {
+
+}
+
 body {
-  background-color: blueviolet;
+  background-color: #A7D2CB;
+}
+
+main {
+  display: flex;
+  justify-content: flex start;
+}
+
+.recipe-display-and-search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 20%;
+}
+
+/* --------Banner--------- */
+.banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: solid black 1px;
+
+}
+
+.title {
+  margin-left: 20px;
+}
+
+.user-greeting {
+  margin-right: 20px;
+}
+
+/* --------Side Nav--------- */
+.left-nav {
+  border-radius: 10px;
+  width: 20%;
+  height: 100vh;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #F2D388;
+  box-shadow: 10px 5px 5px rgb(108, 108, 108);
+}
+
+/* --------Tabs--------- */
+.user-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.user-tabs input[type='radio'] {
+  display: none;
+}
+
+.user-tabs label {
+  padding: 10px;
+  background: #eee2c7;
+  cursor: pointer;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.user-tabs .tab {
+  width: 100%;
+  padding: 20px;
+  background: #F2D388;
+  border-radius: 0px 10px 10px 10px;
+  order: 1;
+  display: none;
+  
+}
+
+.user-tabs input[type='radio']:checked + label + .tab {
+  display:block
+}
+
+.user-tabs [type='radio']:checked + label {
+  background: #F2D388;
+}
+
+.search-bar {
+  width: 80%;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+}
+
+/* --------Recipe Cards--------- */
+
+.card-box {
+  border: solid black 1px;
+  width: 200%;
+  height: 80%;
+  margin-top: 20px;
+  background: #874C62;
+  border-radius: 10px;
 }

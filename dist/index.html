@@ -7,38 +7,42 @@
   <body>
     <section class="banner">
       <h1 class="title">What's Cookin?</h1>
-      <p>Hello, user!</p>
+      <p class="user-greeting">Hello, user!</p>
     </section>
+    <main>
+      <section class="left-nav">
+        <h2 class="tags-title">filter by tags</h2>
+        <p class="tags"><!--we will need to do innerHTML for this-->
+          <ul>
+            <li>#vegetables</li>
+            <li>#chicken</li>
+          </ul>
+        </p>
+      </section>
+      <section class="recipe-display-and-search">
+        <section class="search-box">
+          <div class = "user-tabs">
+            <input type="radio" id="tabAllRecipes" name="user-tabs" checked="checked">
+            <label for="tabAllRecipes">All Recipes</label>
+            <div class="tab">
+              <p class="tab-instructions">Find a recipe!</p>
+              <input class="search-bar" type="text" placeholder="Search all recipes by name">
+            </div>
+            <input type="radio" id="tabCookbook" name="user-tabs">
+            <label for="tabCookbook">Cookbook</label>
+            <div class="tab">
+              <p class="tab-instructions">Search your favorite recipes!</p>
+              <input class="search-bar" type="text" placeholder="Search your cookbook by name">
+            </div>
+          </div>
+        </section>
 
-    <section class="left-nav">
-      <h2 class="tags-title">filter by tags</h2>
-      <p class="tags"><!--we will need to do innerHTML for this-->
-        <ul>
-          <li>#vegetables</li>
-          <li>#chicken</li>
-        </ul>
-      </p>
-    </section>
-
-    <section class="search-box">
-      <div class = "user-tabs">
-        <input type="radio" id="tabAllRecipes" name="user-tabs" checked="checked">
-        <label for="tabAllRecipes">All Recipes</label>
-        <div class="tab">
-          <input class="search-bar" type="text" placeholder="Search all recipes by name">
-        </div>
-        <input type="radio" id="tabCookbook" name="user-tabs">
-        <label for="tabCookbook">Cookbook</label>
-        <div class="tab">
-          <input class="search-bar" type="text" placeholder="Search your cookbook by name">
-        </div>
-      </div>
-    </section>
-
-    <section class="card-box">
-      <div><!-- recipe cards will need .innerHTML for the div but we can hard code one for now -->
-      </div>
-    </section>
+        <section class="card-box">
+          <div>THIS IS WHERE OUR CARDS WILL BE<!-- recipe cards will need .innerHTML for the div but we can hard code one for now -->
+          </div>
+        </section>
+      </section>
+    </main>
   </body>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
