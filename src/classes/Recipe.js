@@ -31,7 +31,7 @@ class Recipe {
     })
   }
 
-  findIngredeintNames() {
+  findIngredientNames() {
     return this.ingredients.map((ingredient) => ingredient.name)
   }
 
