@@ -40,6 +40,10 @@ class Recipe {
       return accumulator += value.estimatedCostInCents * value.amount
     }, 0)
   }
+
+  getInstructions() {
+    return this.instructions
+  }
 }
 
 export default Recipe
