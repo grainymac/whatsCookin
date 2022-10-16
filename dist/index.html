@@ -21,9 +21,18 @@
     </section>
 
     <section class="search-box">
-      <div class="all-recipes-tab" id="allRecipesTab">All Recipies</div>
-      <div class="cookbook-tab" id="cookBookTab">Cookbook</div>
-      <input class="search-bar" type="text" placeholder="Search recipes by name">
+      <div class = "user-tabs">
+        <input type="radio" id="tabAllRecipes" name="user-tabs" checked="checked">
+        <label for="tabAllRecipes">All Recipes</label>
+        <div class="tab">
+          <input class="search-bar" type="text" placeholder="Search all recipes by name">
+        </div>
+        <input type="radio" id="tabCookbook" name="user-tabs">
+        <label for="tabCookbook">Cookbook</label>
+        <div class="tab">
+          <input class="search-bar" type="text" placeholder="Search your cookbook by name">
+        </div>
+      </div>
     </section>
 
     <section class="card-box">
