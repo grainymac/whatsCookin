@@ -130,16 +130,16 @@ describe('Recipe', () => {
     ]);
   })
 
-  it('should have a method that returns an ingredient name', () => {
-    expect(recipe.findName(recipe.ingredients)).to.deep.equal(["wheat flour", "bicarbonate of soda", "eggs"])
+  it.only('should have a method that returns ingredient names', () => {
+    expect(recipe.findIngredeintNames()).to.deep.equal(["wheat flour", "bicarbonate of soda", "eggs"])
   })
 
   it('should have a method that returns the total cost of ingredients in cents', () => {
-    expect(recipe.totalCost(recipe.ingredients)).to.equal(976)
+    expect(recipe.totalCost()).to.equal(976)
   })
 
   it('should return the instructions', () => {
-    expect(recipe.getInstructions(recipe.instructions)).to.deep.equal([{
+    expect(recipe.getInstructions()).to.deep.equal([{
       "instruction": "In a large mixing bowl, whisk together the dry ingredients (flour, pudding mix, soda and salt). Set aside.In a large mixing bowl of a stand mixer, cream butter for 30 seconds. Gradually add granulated sugar and brown sugar and cream until light and fluffy.",
       "number": 1
     },

@@ -1,3 +1,5 @@
+import ingredientsData from '../data/ingredients';
+
 class Recipe {
   constructor(recipeData) {
     this.id = recipeData.id;
@@ -7,6 +9,14 @@ class Recipe {
     this.name = recipeData.name;
     this.tags = recipeData.tags;
   }
+
+  findIngredeintNames() {
+    const ids = this.ingredients.map(ingredient => ingredient.id)
+
+    const matchedIngredients = ingredientsData.filter(ingredient => ids.includes(ingredient.id))
+
+     return matchedIngredients.map(ingredient => ingredient.name)
+  }
 }
 
-module.exports = Recipe;
+export default Recipe;
