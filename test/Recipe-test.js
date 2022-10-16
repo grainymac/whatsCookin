@@ -73,7 +73,7 @@ describe('Recipe', () => {
   })
 
   it('should store ingredients array', () => {
-    expect(recipe.ingredients).to.deep.equal([
+    expect(recipe.recipeIngredients).to.deep.equal([
       {
         "id": 20081,
         "quantity": {
@@ -130,7 +130,7 @@ describe('Recipe', () => {
     ]);
   })
 
-  it.only('should have a method that returns ingredient names', () => {
+  it('should have a method that returns ingredient names', () => {
     expect(recipe.findIngredeintNames()).to.deep.equal(["wheat flour", "bicarbonate of soda", "eggs"])
   })
 
