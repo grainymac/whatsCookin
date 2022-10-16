@@ -13,10 +13,6 @@ class Recipe {
   }
 
   getAllIngredientsData() {
-    // For each ingredient contained in this.ingredients, we want to:
-    // 1. Store the ID, amount, and units data of that ingredient in this.ingredientsRepo
-    // 2. Find the object with a matching ID in the ingredientsData array
-    // 3. Store the name and estimated cost in ingredientsRepo
     return this.recipeIngredients.map((ingredient) => {
       const id = ingredient.id
       const amount = ingredient.quantity.amount
@@ -33,25 +29,16 @@ class Recipe {
         amount
       )
     })
-
-    // const ids = this.ingredients.map((ingredient) => ingredient.id)
-    // return ingredientsData.filter((ingredient) => ids.includes(ingredient.id))
   }
 
   findIngredeintNames() {
-    const matchedIngredients = this.getAllIngredientsData()
-    return matchedIngredients.map((ingredient) => ingredient.name)
+    return this.ingredients.map((ingredient) => ingredient.name)
   }
 
   totalCost() {
-    const matchedIngredients = this.getAllIngredientsData()
-    const costs = matchedIngredients.map(
-      (ingredient) => ingredient.estimatedCostInCents
-    )
-    // this.ingredients.reduce((accumulator, value) => {
-
-    // })
-    // amounts.find(ingredient => ingredient.id)
+    return this.ingredients.reduce((accumulator, value) => {
+      return accumulator += value.estimatedCostInCents * value.amount
+    }, 0)
   }
 }
 
