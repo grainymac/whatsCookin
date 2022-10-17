@@ -17,7 +17,12 @@ class RecipeRepository {
     });
   }
 
-  
+  searchByName(userSearch) {
+    this.displayedRecipes = this.allRecipes.filter((recipe) => {
+     return recipe.name.includes(userSearch);
+    })
+  }
+
 }
 
 export default RecipeRepository;
