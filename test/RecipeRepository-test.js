@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import RecipeRepository from '../src/classes/RecipeRepository';
+import Recipe from '../src/classes/Recipe';
 
 describe('RecipeRepository', () => {
   let recipes, newRecipeRepo;
@@ -340,12 +341,19 @@ describe('RecipeRepository', () => {
     expect(RecipeRepository).to.be.a('function');
   });
 
-  it('Should accept all the recipe data and store it as a property', () => {
-    expect(newRecipeRepo.recipes).to.deep.equal(recipes);
+  it('Should have a method that replaces a recipes object with a recipe class instance', () => {
+
+    expect(newRecipeRepo.allRecipes[0]).to.be.an.instanceOf(Recipe);
   })
 
   it('Should have a property that stores the user selected tag', () => {
 
     expect(newRecipeRepo.userSelectedTag).exists;
   })
+
+  
+
+//   it('Should have a method that filters the recipes by tag', () => {
+//     const 
+//   })
 })
