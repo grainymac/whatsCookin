@@ -1,6 +1,7 @@
 class RecipeRepository {
-  constructor() {
-
+  constructor(allRecipesData) {
+    this.recipes = allRecipesData;
+    this.userSelectedTag = '';
     // One class to get you started!
   }
 }

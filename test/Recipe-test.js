@@ -131,7 +131,7 @@ describe('Recipe', () => {
   })
 
   it('should have a method that returns ingredient names', () => {
-    expect(recipe.findIngredeintNames()).to.deep.equal(["wheat flour", "bicarbonate of soda", "eggs"])
+    expect(recipe.findIngredientNames()).to.deep.equal(["wheat flour", "bicarbonate of soda", "eggs"])
   })
 
   it('should have a method that returns the total cost of ingredients in cents', () => {
