@@ -346,14 +346,12 @@ describe('RecipeRepository', () => {
     expect(newRecipeRepo.allRecipes[0]).to.be.an.instanceOf(Recipe);
   })
 
-  it('Should have a property that stores the user selected tag', () => {
+  it('Should have a method that stores the filtered recipes in a property', () => {
 
-    expect(newRecipeRepo.userSelectedTag).exists;
+    newRecipeRepo.filterByTag('sauce');
+
+    expect(newRecipeRepo.displayedRecipes).to.deep.equal([newRecipeRepo.allRecipes[2]]);
   })
 
   
-
-//   it('Should have a method that filters the recipes by tag', () => {
-//     const 
-//   })
 })
