@@ -93,17 +93,51 @@ main {
   align-items: center;
 }
 
-/* --------Recipe Cards--------- */
+/* -----------------------------------------------Recipe Cards--------- */
 .card-box {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 10px;
   border: solid black 1px;
   width: 200%;
   height: 80%;
   margin-top: 20px;
   background: #874C62;
   border-radius: 10px;
+  padding: 10px;
 }
 
- 
+.small-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  /* gap: 10px; */
+  border: solid #000000 3px;
+  border-style: solid;
+  border-radius: 5%;
+  box-shadow: 8px 3px 3px rgba(0, 0, 0, 0.439);
+  width: 30%;
+  height: 25%;
+}
+
+.small-img {
+  border: solid #000000 3px;
+  height: 25%;
+  width: 15%;
+  margin: 10px 0px 0px 10px;
+}
+.small-card-title {
+  border: solid #000000 3px;
+  height: 30px;
+};
+
+.small-card-text {
+  border: solid #000000 3px;
+  height: 20px;
+}
 
 /* --------Modal--------- */
 .modal {
@@ -124,8 +158,16 @@ main {
   background-color: #874C62;
   margin: auto;
   padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+  border: 8px solid #C98474;
+  border-style: double;
+  height: 50%;
+  width: 20%;
+}
+
+.modal-title {
+  display: flex;
+  justify-content: center;
+
 }
 
 .close {
@@ -142,3 +184,10 @@ main {
   cursor: pointer;
 }
 
+.save-btn {
+
+}
+
+.remove-btn {
+  
+}

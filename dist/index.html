@@ -38,15 +38,43 @@
         </section>
 
         <section class="card-box">
-          <button id="modalBtn" class="modal-btn">Open Modal</button>
-          THIS IS WHERE OUR CARDS WILL BE<!-- recipe cards will need .innerHTML for the div but we can hard code one for now -->
+          <!-- <button id="modalBtn" class="modal-btn">Open Modal</button> -->
+          <!-- THIS IS WHERE OUR CARDS WILL BErecipe cards will need .innerHTML for the div but we can hard code one for now -->
+          <div class="small-cards">
+            <img class="small-img" src="https://spoonacular.com/recipeImages/741603-556x370.jpeg">
+            <h3 class="small-card-title">Peanut Butter Pancake</h3>
+            <p class="small-card-text">magically delicious!!</p>
+          </div>
+          <div class="small-cards">
+            <img>
+            <h3 class="small-card-title">Chicken</h3>
+            <p class="small-card-text"></p>
+          </div>
+          <div class="small-cards">
+            <img>
+            <h3 class="small-card-title">BBQ</h3>
+            <p class="small-card-text"></p>
+          </div>
+          <div class="small-cards">
+            <img>
+            <h3 class="small-card-title">Cheese Noodles</h3>
+            <p class="small-card-text"></p>
+          </div>
+
         </section>
 
         <section class="modal-box">
           <div class="modal" id="modal">
             <div class="modal-content">
               <span class="close" id="close">&times;</span>
-              <p>Recipie Card</p>
+              <h3 class="modal-title">Chocolate Chip Cookies</h3>
+              <h4 class="modal-subtitle">Ingredients:</h4>
+              <p class="modal-text"></p>
+              <h4 class="modal-subtitle">Instructions:</h4>
+              <p class="modal-text"></p>
+              <h4 class="modal-subtitle">Total Cost:</h4>
+              <p class="modal-text"></p>
+              <button class="save-btn">Save</button><button class="remove-btn">Remove</button>  <!--these will be icons and when they click them a prompt can pop up to let user know they have either removed this recipe from the cookbook or they have added it -->
             </div>
           </div>
         </section>
