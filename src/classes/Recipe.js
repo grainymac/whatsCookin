@@ -16,7 +16,7 @@ class Recipe {
     return this.recipeIngredients.map((ingredient) => {
       const id = ingredient.id
       const amount = ingredient.quantity.amount
-      const units = ingredient.quantity.unit
+      const unit = ingredient.quantity.unit
       const matchedIngredient = ingredientsData.find(
         (ingredient) => ingredient.id === id
       )
@@ -25,8 +25,8 @@ class Recipe {
         id,
         matchedIngredient.name,
         matchedIngredient.estimatedCostInCents,
-        units,
-        amount
+        amount,
+        unit
       )
     })
   }
@@ -42,7 +42,7 @@ class Recipe {
   }
 
   getInstructions() {
-    return this.instructions
+    return this.instructions.map(recipeStep => recipeStep.instruction)
   }
 }
 
