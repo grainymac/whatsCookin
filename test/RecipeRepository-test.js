@@ -346,9 +346,16 @@ describe('RecipeRepository', () => {
     expect(newRecipeRepo.allRecipes[0]).to.be.an.instanceOf(Recipe);
   })
 
-  it('Should have a method that stores the filtered recipes in a property', () => {
+  it('Should have a method that filters by tag and stores the filtered recipes in a property', () => {
 
     newRecipeRepo.filterByTag('sauce');
+
+    expect(newRecipeRepo.displayedRecipes).to.deep.equal([newRecipeRepo.allRecipes[2]]);
+  })
+
+  it('Should have a method that searches by name and stores the filtered recipes in a property', () => {
+    
+    newRecipeRepo.searchByName('Dirty Steve\'s');
 
     expect(newRecipeRepo.displayedRecipes).to.deep.equal([newRecipeRepo.allRecipes[2]]);
   })
