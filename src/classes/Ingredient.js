@@ -1,10 +1,10 @@
 class Ingredient {
-  constructor(id, name, cost, units, amount) {
+  constructor(id, name, cost, amount, unit) {
     this.id = id
     this.name = name
     this.estimatedCostInCents = cost
-    this.units = units
     this.amount = amount
+    this.unit = unit
   }
 }
 

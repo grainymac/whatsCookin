@@ -5,7 +5,7 @@ describe('Ingredient', () => {
   let ingredient
 
   beforeEach(() => {
-    ingredient = new Ingredient(456, 'cheese', 550, 'lbs', 5)
+    ingredient = new Ingredient(456, 'cheese', 550, 5, 'lbs')
   })
 
   it('should be a function', () => {
@@ -28,8 +28,8 @@ describe('Ingredient', () => {
     expect(ingredient.estimatedCostInCents).to.equal(550)
   })
 
-  it('should have units', () => {
-    expect(ingredient.units).to.equal('lbs')
+  it('should have a unit', () => {
+    expect(ingredient.unit).to.equal('lbs')
   })
 
   it('should have an amount', () => {
