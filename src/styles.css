@@ -1,21 +1,19 @@
-* {
-
-}
-
-body {
-  background-color: #A7D2CB;
+html {
+  margin: 0px;
+  position: relative;
+  height: 100vh;
+  width: 100vw;
 }
 
 main {
   display: flex;
-  justify-content: flex start;
+  justify-content: space-between;
 }
 
-.recipe-display-and-search {
+.main-recipe-container {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  margin-left: 20%;
+  flex-direction: column;
 }
 
 /* --------Banner--------- */
@@ -23,8 +21,9 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: solid black 1px;
-
+  background-color: #81F5FF;
+  border-radius: 16px;
+  margin-bottom: 20px;
 }
 
 .title {
@@ -38,21 +37,41 @@ main {
 /* --------Side Nav--------- */
 .left-nav {
   border-radius: 10px;
-  width: 20%;
-  height: 100vh;
+  width: 10%;
+  height: 80vh;
   margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #F2D388;
-  box-shadow: 10px 5px 5px rgb(108, 108, 108);
+  background: #FFFFDD;
+  box-shadow: 1px 3px 3px rgb(0 0 0 / 20%), -1px -1px 4px rgb(0 0 0 / 20%);
 }
 
-/* --------Tabs--------- */
+.tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.recipe-tag:hover {
+  cursor: pointer;
+  background-color: hotpink;
+}
+
+/* --------Recipe Search--------- */
+
+.search-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .user-tabs {
   display: flex;
   flex-wrap: wrap;
   margin-top: 20px;
+  margin-bottom: 16px;
+  width: 400px;
 }
 
 .user-tabs input[type='radio'] {
@@ -61,7 +80,7 @@ main {
 
 .user-tabs label {
   padding: 10px;
-  background: #eee2c7;
+  background: #bfe4dbea;
   cursor: pointer;
   border-radius: 10px 10px 0px 0px;
 }
@@ -69,19 +88,18 @@ main {
 .user-tabs .tab {
   width: 100%;
   padding: 20px;
-  background: #F2D388;
+  background: #A0FFE6;
   border-radius: 0px 10px 10px 10px;
   order: 1;
   display: none;
-  
 }
 
 .user-tabs input[type='radio']:checked + label + .tab {
-  display:block
+  display: block;
 }
 
 .user-tabs [type='radio']:checked + label {
-  background: #F2D388;
+  background: #A0FFE6;
 }
 
 .search-bar {
@@ -93,17 +111,82 @@ main {
   align-items: center;
 }
 
-/* --------Recipe Cards--------- */
-.card-box {
-  border: solid black 1px;
-  width: 200%;
-  height: 80%;
-  margin-top: 20px;
-  background: #874C62;
-  border-radius: 10px;
+/* -----------------------------------------------Recipes--------- */
+.recipes-section {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 1200px;
+  min-height: 500px;
+  border-radius: 16px;
+  background-color: #FFD5E5;
 }
 
- 
+.recipe-card {
+  width: 352px;
+  line-height: 1.5;
+  border-radius: 16px;
+  margin: 24px 8px;
+  box-shadow: 1px 3px 3px rgb(0 0 0 / 20%), -1px -1px 4px rgb(0 0 0 / 20%);
+  transition: box-shadow 120ms ease-in-out;
+  background-color: #fff;
+}
+
+.recipe-card:hover {
+  box-shadow: 
+    2px 6px 6px rgba(0,0,0,0.2),
+    -1px -1px 7px rgba(0,0,0,0.2);
+}
+
+.recipe-figure {
+  height: 224px;
+  width: 100%;
+  border-radius: 16px 16px 0 0;
+  overflow: hidden;
+  margin: 0;
+  margin-bottom: 32px;
+}
+
+.recipe-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.recipe-details-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 16px 8px;
+}
+
+.recipe-title {
+  font-size: 20px;
+  margin: 0 24px 32px 16px;
+}
+
+.recipe-favorite-icon {
+  height: 30px;
+}
+
+.recipe-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  box-sizing: border-box;
+}
+
+.recipe-tag {
+  margin: 3px;
+  background-color: cornflowerblue;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: -0.25px;
+  border-radius: 100px;
+  margin-bottom: 10px;
+  padding: 4px 16px;
+  transition: background-color 120m ease-in-out;
+}
 
 /* --------Modal--------- */
 .modal {
@@ -116,16 +199,23 @@ main {
   width: 100%; /* Full width */
   height: 100%; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
 }
 
 .modal-content {
-  background-color: #874C62;
+  background-color: #874c62;
   margin: auto;
   padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+  border: 8px solid #c98474;
+  border-style: double;
+  height: 50%;
+  width: 20%;
+}
+
+.modal-title {
+  display: flex;
+  justify-content: center;
 }
 
 .close {
@@ -142,3 +232,8 @@ main {
   cursor: pointer;
 }
 
+/* .save-btn {
+}
+
+.remove-btn {
+} */
