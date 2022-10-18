@@ -101,7 +101,7 @@ main {
   justify-content: space-around;
   gap: 10px;
   border: solid black 1px;
-  width: 200%;
+  width: 110%;
   height: 80%;
   margin-top: 20px;
   background: #874C62;
@@ -111,7 +111,7 @@ main {
 
 .small-cards {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-start;
   /* gap: 10px; */
@@ -119,19 +119,21 @@ main {
   border-style: solid;
   border-radius: 5%;
   box-shadow: 8px 3px 3px rgba(0, 0, 0, 0.439);
-  width: 30%;
+  min-width: none;
+  max-width: fit-content;
   height: 25%;
 }
 
 .small-img {
   border: solid #000000 3px;
-  height: 25%;
-  width: 15%;
+  height: 100px;
+  width: 100px;
   margin: 10px 0px 0px 10px;
 }
 .small-card-title {
-  border: solid #000000 3px;
-  height: 30px;
+  margin-left: 5px;
+  margin-top: 10px;
+  font-size: 20px;
 };
 
 .small-card-text {
