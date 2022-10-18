@@ -18,8 +18,9 @@ class RecipeRepository {
   }
 
   searchByName(userSearch) {
+    let lowerCaseSearch = userSearch.toLowerCase();
     this.displayedRecipes = this.allRecipes.filter((recipe) => {
-     return recipe.name.includes(userSearch);
+     return recipe.searchableName.includes(lowerCaseSearch);
     })
   }
 

@@ -358,6 +358,7 @@ describe('RecipeRepository', () => {
     newRecipeRepo.searchByName('Dirty Steve\'s');
 
     expect(newRecipeRepo.displayedRecipes).to.deep.equal([newRecipeRepo.allRecipes[2]]);
+    expect(newRecipeRepo.allRecipes[2].searchableName).to.equal('dirty steve\'s original wing sauce')
   })
 
   
