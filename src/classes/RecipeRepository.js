@@ -3,28 +3,27 @@ import Recipe from './Recipe';
 class RecipeRepository {
   constructor(allRecipesData) {
     this.allRecipes = this.makeRecipeInstances(allRecipesData);
-    this.userSelectedTag = '';
-    // One class to get you started!
   }
 
   makeRecipeInstances(recipeList) {
     return recipeList.map((currentRecipe) => {
-      const id = currentRecipe.id;
-      const image = currentRecipe.image;
-      const recipeIngredients = currentRecipe.recipeIngredients
-      const instructions = currentRecipe.instructions;
-      const name = currentRecipe.name;
-      const tags = currentRecipe.tags;
-      return new Recipe(
-        id,
-        image,
-        recipeIngredients,
-        instructions,
-        name,
-        tags
-      )
+      return new Recipe(currentRecipe)
     })
   }
+
+  filterByTag(tag) {
+    this.displayedRecipes = this.allRecipes.filter((recipe) => {
+      return recipe.tags.includes(tag);
+    });
+  }
+
+  searchByName(userSearch) {
+    let lowerCaseSearch = userSearch.toLowerCase();
+    this.displayedRecipes = this.allRecipes.filter((recipe) => {
+     return recipe.searchableName.includes(lowerCaseSearch);
+    })
+  }
+
 }
 
 export default RecipeRepository;
