@@ -58,10 +58,14 @@ function updateAllRecipeDisplay() {
       </div>
     `
 
-    // TO DO: Put modal event handler in line 63
     recipeCard.onclick = () => {
-      console.log(`hi! ${recipe.name}`)
+      modal.style.display = 'block'
+      document.querySelector('.modal-title').innerText = `${recipe.name}`
+      document.getElementById('modalIngredients').innerText = `Ingredients: ${recipe.ingredients.map(ingredient => ingredient.name).join(', ')}`
+      document.getElementById('modalInstructions').innerText = `Instructions go here!`
+      document.getElementById('modalTotalCost').innerText = `$${recipe.totalCost()/100}`
     }
+
     recipeSection.appendChild(recipeCard)
   })
 }
