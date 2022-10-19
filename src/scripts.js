@@ -36,9 +36,13 @@ let recipeRepo = new RecipeRepository(recipeData);
 
 // --------------------------------------------- FUNCTIONS
 function updateAllRecipeDisplay() {
-  // console.log('what is this?', recipeRepo)
-  console.log(recipeData.)
   recipeRepo.newAllRecipes.forEach(recipe => {
+    let tagsHTML = recipe.tags
+      .map(tag => {
+      return `<p class="recipe-tag">${tag}</p>`
+    })
+      .join(' ');
+    
     recipeSection.innerHTML += `<section class="recipe-card">
       <figure class="recipe-figure">
         <img class="recipe-img" src="${recipe.image}" alt="this is a picture of ${recipe.name}"/>
@@ -48,17 +52,8 @@ function updateAllRecipeDisplay() {
         <img class="recipe-favorite-icon" src="star.png" alt="star icon"/>
       </section>
       <div class="recipe-tags-container">
-        <p class="recipe-tag">morning meal</p>
-        <p class="recipe-tag">brunch</p>
-        <p class="recipe-tag">breakfast</p>
-        <p class="recipe-tag">snack</p>
-        <p class="recipe-tag">smoothies</p>
+        ${tagsHTML.toString()}
       </div>
     </section>`
   });
 };
-
-
-
-
-console.log('Hello world');
