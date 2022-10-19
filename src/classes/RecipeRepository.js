@@ -23,7 +23,16 @@ class RecipeRepository {
       return recipe.name.toLowerCase().includes(userSearch.toLowerCase())
     })
   }
+
+  retrieveAllTags() {
+    const allTags = this.allRecipes.flatMap((recipe) => {
+      return recipe.tags
+    })
+    return Array.from(new Set(allTags))
+  }
 }
+
+
 
 
 
