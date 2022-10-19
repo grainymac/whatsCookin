@@ -342,6 +342,7 @@ describe('RecipeRepository', () => {
   });
 
   it('Should have a method that replaces a recipes object with a recipe class instance', () => {
+
     expect(newRecipeRepo.allRecipes[0]).to.be.an.instanceOf(Recipe);
   })
 
@@ -349,15 +350,15 @@ describe('RecipeRepository', () => {
 
     newRecipeRepo.filterByTag('sauce');
 
-    expect(newRecipeRepo.displayedRecipes).to.deep.equal([newRecipeRepo.allRecipes[2]]);
+    expect(newRecipeRepo.filterByTag('sauce')).to.deep.equal([newRecipeRepo.allRecipes[2]]);
   })
 
   it('Should have a method that searches by name and stores the filtered recipes in a property', () => {
     
     newRecipeRepo.searchByName('Dirty Steve\'s');
 
-    expect(newRecipeRepo.displayedRecipes).to.deep.equal([newRecipeRepo.allRecipes[2]]);
-    expect(newRecipeRepo.allRecipes[2].searchableName).to.equal('dirty steve\'s original wing sauce')
+    expect(newRecipeRepo.searchByName('Dirty Steve\'s')).to.deep.equal([newRecipeRepo.allRecipes[2]]);
+    
   })
 
   
