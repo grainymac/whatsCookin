@@ -11,6 +11,7 @@ import recipeData from './data/recipes'
 const modal = document.querySelector('#modal')
 const close = document.querySelector('#close')
 const recipeSection = document.querySelector('#recipeSection')
+const tags = document.querySelector('#tags')
 
 // --------------------------------------------- EVENT LISTENERS
 // modalBtn.onclick = () => {modal.style.display = "block"};
@@ -23,11 +24,13 @@ window.onclick = (event) => {
   }
 }
 window.addEventListener('load', updateAllRecipeDisplay)
+tags.addEventListener('click', getTag)
 
 //will need some event bubblin for the cards we create dynamically later
 
 // --------------------------------------------- GLOBAL VARIABLES
 const recipeRepo = new RecipeRepository(recipeData)
+let tag;
 
 // --------------------------------------------- FETCH
 
@@ -64,4 +67,21 @@ function updateAllRecipeDisplay() {
     }
     recipeSection.appendChild(recipeCard)
   })
+}
+
+function getTag(event) {
+  if(event.target.className === 'recipe-tag') {
+    tag = event.target.id
+    getFilteredList(tag);
+  }
+
+  function getFilteredList(tag) {
+    const filteredRecipeRepo = new RecipeRepository(recipeData);
+    filteredRecipeRepo.filterByTag(tag);
+    displayFilteredRecipes()
+  }
+
+  function displayFilteredRecipes() {
+
+  }
 }
