@@ -26,8 +26,8 @@ window.onclick = (event) => {
     modal.style.display = 'none'
   }
 }
-window.addEventListener('load', function() {updateAllRecipeDisplay(recipeRepo.allRecipeInstances)})
-tags.addEventListener('click', getTag)
+window.addEventListener('load', function() {updateAllRecipeDisplay(recipeRepo.allRecipes)})
+tags.addEventListener('click', tagsToggleFilter)
 
 //will need some event bubblin for the cards we create dynamically later
 
@@ -66,24 +66,51 @@ function updateAllRecipeDisplay(recipesToDisplay) {
 
     // TO DO: Put modal event handler in line 63
     recipeCard.onclick = () => {
+      // if (event classname === star-icon) {
+        // do the function to toggleFavorites
+      // }
+
+      // if (event classname === recipe-tags) {
+    //  the function tagsToggleFilter
+      // }
+
+       // if (event classname === recipe-card) {
+    //  the function to open the recipe modal
+      // }
+
       console.log(`hi! ${recipe.name}`)
     }
     recipeSection.appendChild(recipeCard)
   })
 }
 
+function tagsToggleFilter(event) {
+  if(tag === event.target.innerText) {
+    updateAllRecipeDisplay(recipeRepo.allRecipes)
+    event.target.style.backgroundColor = "cornflowerblue";
+  } else {
+    let userTag = getTag(event);
+    console.log(userTag)
+    getFilteredRecipes(userTag);
+  }
+ }
+
 function getTag(event) {
   if(event.target.className === 'recipe-tag') {
-    tag = event.target.id
-    getFilteredList(tag);
+    tag = event.target.innerText
+    event.target.style.backgroundColor = "hotpink"
+    return tag
   }
-
-  function getFilteredList(tag) {
-    const filteredRecipeRepo = new RecipeRepository(recipeData);
-    filteredRecipeRepo.filterByTag(tag);
-    updateAllRecipeDisplay(filteredRecipeRepo.displayedRecipes)
-    console.log(filteredRecipeRepo.displayedRecipes)
-    console.log(recipeRepo.allRecipeInstances)
-  }
-
 }
+
+function getFilteredRecipes(tag) {
+    updateAllRecipeDisplay(recipeRepo.filterByTag(tag));
+  }
+
+
+
+//create tags element and dynamically create the event listener on each tag
+
+
+  
+
