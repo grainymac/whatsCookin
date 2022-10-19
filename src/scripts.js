@@ -26,7 +26,7 @@ window.onclick = (event) => {
     modal.style.display = 'none'
   }
 }
-window.addEventListener('load', function() {updateAllRecipeDisplay(recipeRepo)})
+window.addEventListener('load', function() {updateAllRecipeDisplay(recipeRepo.allRecipeInstances)})
 tags.addEventListener('click', getTag)
 
 //will need some event bubblin for the cards we create dynamically later
@@ -35,19 +35,21 @@ tags.addEventListener('click', getTag)
 
 // --------------------------------------------- FETCH
 
+
+
 // --------------------------------------------- FUNCTIONS
 function updateAllRecipeDisplay(recipesToDisplay) {
-  recipesToDisplay.newAllRecipes.forEach((recipe) => {
+      recipeSection.innerHTML = '';
+  recipesToDisplay.forEach((recipe) => {
     const tagsHTML = recipe.tags
       .map((tag) => {
         return `<p class="recipe-tag">${tag}</p>`
       })
       .join(' ')
-
     const recipeCard = document.createElement('section')
     recipeCard.classList.add('recipe-card')
     recipeCard.dataset.recipeId = `${recipe.id}`
-    recipeCard.innerHTML = `
+    recipeCard.innerHTML += `
       <figure class="recipe-figure">
         <img class="recipe-img" src="${
           recipe.image
@@ -79,10 +81,9 @@ function getTag(event) {
   function getFilteredList(tag) {
     const filteredRecipeRepo = new RecipeRepository(recipeData);
     filteredRecipeRepo.filterByTag(tag);
-    displayFilteredRecipes()
+    updateAllRecipeDisplay(filteredRecipeRepo.displayedRecipes)
+    console.log(filteredRecipeRepo.displayedRecipes)
+    console.log(recipeRepo.allRecipeInstances)
   }
 
-  function displayFilteredRecipes() {
-
-  }
 }
