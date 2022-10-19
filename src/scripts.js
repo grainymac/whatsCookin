@@ -5,15 +5,18 @@ import './images/turing-logo.png'
 import Recipe from './classes/Recipe'
 import RecipeRepository from './classes/RecipeRepository'
 import recipeData from './data/recipes'
+// ------------------- GLOBAL VARIABLES
+const recipeRepo = new RecipeRepository(recipeData)
+let tag;
 
-// --------------------------------------------- QUERY SELECTORS
+// --------------------QUERY SELECTORS
 // const modalBtn = document.querySelector('#modalBtn');
 const modal = document.querySelector('#modal')
 const close = document.querySelector('#close')
 const recipeSection = document.querySelector('#recipeSection')
 const tags = document.querySelector('#tags')
 
-// --------------------------------------------- EVENT LISTENERS
+// --------------------EVENT LISTENERS
 // modalBtn.onclick = () => {modal.style.display = "block"};
 close.onclick = () => {
   modal.style.display = 'none'
@@ -23,20 +26,18 @@ window.onclick = (event) => {
     modal.style.display = 'none'
   }
 }
-window.addEventListener('load', updateAllRecipeDisplay)
+window.addEventListener('load', function() {updateAllRecipeDisplay(recipeRepo)})
 tags.addEventListener('click', getTag)
 
 //will need some event bubblin for the cards we create dynamically later
 
-// --------------------------------------------- GLOBAL VARIABLES
-const recipeRepo = new RecipeRepository(recipeData)
-let tag;
+
 
 // --------------------------------------------- FETCH
 
 // --------------------------------------------- FUNCTIONS
-function updateAllRecipeDisplay() {
-  recipeRepo.newAllRecipes.forEach((recipe) => {
+function updateAllRecipeDisplay(recipesToDisplay) {
+  recipesToDisplay.newAllRecipes.forEach((recipe) => {
     const tagsHTML = recipe.tags
       .map((tag) => {
         return `<p class="recipe-tag">${tag}</p>`
