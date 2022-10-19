@@ -7,7 +7,7 @@ import RecipeRepository from './classes/RecipeRepository'
 import recipeData from './data/recipes'
 // ------------------- GLOBAL VARIABLES
 const recipeRepo = new RecipeRepository(recipeData)
-let tag;
+let tag
 
 // --------------------QUERY SELECTORS
 // const modalBtn = document.querySelector('#modalBtn');
@@ -26,20 +26,18 @@ window.onclick = (event) => {
     modal.style.display = 'none'
   }
 }
-window.addEventListener('load', function() {updateAllRecipeDisplay(recipeRepo.allRecipes)})
+window.addEventListener('load', function () {
+  updateAllRecipeDisplay(recipeRepo.allRecipes)
+})
 tags.addEventListener('click', tagsToggleFilter)
 
 //will need some event bubblin for the cards we create dynamically later
 
-
-
 // --------------------------------------------- FETCH
-
-
 
 // --------------------------------------------- FUNCTIONS
 function updateAllRecipeDisplay(recipesToDisplay) {
-      recipeSection.innerHTML = '';
+  recipeSection.innerHTML = ''
   recipesToDisplay.forEach((recipe) => {
     const tagsHTML = recipe.tags
       .map((tag) => {
@@ -67,15 +65,15 @@ function updateAllRecipeDisplay(recipesToDisplay) {
     // TO DO: Put modal event handler in line 63
     recipeCard.onclick = () => {
       // if (event classname === star-icon) {
-        // do the function to toggleFavorites
+      // do the function to toggleFavorites
       // }
 
       // if (event classname === recipe-tags) {
-    //  the function tagsToggleFilter
+      //  the function tagsToggleFilter
       // }
 
-       // if (event classname === recipe-card) {
-    //  the function to open the recipe modal
+      // if (event classname === recipe-card) {
+      //  the function to open the recipe modal
       // }
 
       console.log(`hi! ${recipe.name}`)
@@ -85,32 +83,23 @@ function updateAllRecipeDisplay(recipesToDisplay) {
 }
 
 function tagsToggleFilter(event) {
-  if(tag === event.target.innerText) {
+  if (tag === event.target.innerText) {
     updateAllRecipeDisplay(recipeRepo.allRecipes)
-    event.target.style.backgroundColor = "cornflowerblue";
+    event.target.style.backgroundColor = 'cornflowerblue'
+    tag = ''
   } else {
-    let userTag = getTag(event);
-    console.log(userTag)
-    getFilteredRecipes(userTag);
+    let userTag = getTag(event)
+    const filteredRecipes = recipeRepo.filterByTag(userTag)
+    updateAllRecipeDisplay(filteredRecipes)
   }
- }
+}
 
 function getTag(event) {
-  if(event.target.className === 'recipe-tag') {
+  if (event.target.className === 'recipe-tag') {
     tag = event.target.innerText
-    event.target.style.backgroundColor = "hotpink"
+    event.target.style.backgroundColor = 'hotpink'
     return tag
   }
 }
 
-function getFilteredRecipes(tag) {
-    updateAllRecipeDisplay(recipeRepo.filterByTag(tag));
-  }
-
-
-
 //create tags element and dynamically create the event listener on each tag
-
-
-  
-
