@@ -8,7 +8,6 @@ class Recipe {
     this.recipeIngredients = recipeData.ingredients
     this.instructions = recipeData.instructions
     this.name = recipeData.name
-    this.searchableName = recipeData.name.toLowerCase()
     this.tags = recipeData.tags
     this.ingredients = this.getAllIngredientsData()
   }
