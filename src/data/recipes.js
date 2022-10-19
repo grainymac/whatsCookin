@@ -324,7 +324,8 @@ const recipeData = [
       ],
       "name": "Dirty Steve's Original Wing Sauce",
       "tags": [
-        "sauce"
+        "sauce",
+        "dirty"
       ]
     },
     {
@@ -5381,3 +5382,5 @@ const recipeData = [
       ]
     }
   ]
+
+  export default recipeData;

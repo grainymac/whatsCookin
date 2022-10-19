@@ -342,7 +342,6 @@ describe('RecipeRepository', () => {
   });
 
   it('Should have a method that replaces a recipes object with a recipe class instance', () => {
-
     expect(newRecipeRepo.allRecipes[0]).to.be.an.instanceOf(Recipe);
   })
 

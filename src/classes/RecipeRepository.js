@@ -2,11 +2,12 @@ import Recipe from './Recipe';
 
 class RecipeRepository {
   constructor(allRecipesData) {
-    this.allRecipes = this.makeRecipeInstances(allRecipesData);
+    this.allRecipes = allRecipesData;
+    this.newAllRecipes = this.makeRecipeInstances(allRecipesData);
   }
 
-  makeRecipeInstances(recipeList) {
-    return recipeList.map((currentRecipe) => {
+  makeRecipeInstances() {
+    return this.allRecipes.map((currentRecipe) => {
       return new Recipe(currentRecipe)
     })
   }
