@@ -62,8 +62,10 @@ function updateAllRecipeDisplay() {
       modal.style.display = 'block'
       document.querySelector('.modal-title').innerText = `${recipe.name}`
       document.getElementById('modalIngredients').innerText = `Ingredients: ${recipe.ingredients.map(ingredient => ingredient.name).join(', ')}`
-      document.getElementById('modalInstructions').innerText = `Instructions go here!`
-      document.getElementById('modalTotalCost').innerText = `$${recipe.totalCost()/100}`
+      document.getElementById('modalInstructions').innerText = `${recipe.getInstructions().join(`
+      
+      `)}`
+      document.getElementById('modalTotalCost').innerText = `$${recipe.totalCost()}`
     }
 
     recipeSection.appendChild(recipeCard)
