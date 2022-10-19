@@ -47,7 +47,7 @@ main {
   box-shadow: 1px 3px 3px rgb(0 0 0 / 20%), -1px -1px 4px rgb(0 0 0 / 20%);
 }
 
-.tags {
+.tags-container {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;

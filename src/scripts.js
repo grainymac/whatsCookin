@@ -14,7 +14,7 @@ let tag
 const modal = document.querySelector('#modal')
 const close = document.querySelector('#close')
 const recipeSection = document.querySelector('#recipeSection')
-const tags = document.querySelector('#tags')
+const tagsContainer = document.querySelector('#tagsContainer')
 
 // --------------------EVENT LISTENERS
 // modalBtn.onclick = () => {modal.style.display = "block"};
@@ -29,7 +29,10 @@ window.onclick = (event) => {
 window.addEventListener('load', function () {
   updateAllRecipeDisplay(recipeRepo.allRecipes)
 })
-tags.addEventListener('click', tagsToggleFilter)
+
+window.addEventListener('load', displayAllTags)
+
+tagsContainer.addEventListener('click', tagsToggleFilter)
 
 //will need some event bubblin for the cards we create dynamically later
 
@@ -81,6 +84,21 @@ function updateAllRecipeDisplay(recipesToDisplay) {
     recipeSection.appendChild(recipeCard)
   })
 }
+
+function displayAllTags() {
+  const allTags = recipeRepo.retrieveAllTags();
+  allTags.forEach((tag) => {
+    const tagElement = document.createElement('p')
+    tagElement.classList.add('recipe-tag')
+    tagElement.innerText = tag
+
+    tagElement.onclick = () => {
+      tagsToggleFilter()
+    }
+    tagsContainer.appendChild(tagElement)
+  })
+}
+
 
 function tagsToggleFilter(event) {
   if (tag === event.target.innerText) {
