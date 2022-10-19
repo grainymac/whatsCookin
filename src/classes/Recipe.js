@@ -39,7 +39,7 @@ class Recipe {
   totalCost() {
     return this.ingredients.reduce((accumulator, value) => {
       return accumulator += value.estimatedCostInCents * value.amount
-    }, 0)
+    }, 0).toFixed(2)
   }
 
   getInstructions() {
