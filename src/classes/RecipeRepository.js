@@ -2,29 +2,29 @@ import Recipe from './Recipe';
 
 class RecipeRepository {
   constructor(allRecipesData) {
-    this.allRecipes = allRecipesData;
-    this.newAllRecipes = this.makeRecipeInstances(allRecipesData);
+    this.recipesData = allRecipesData;
+    this.allRecipes = this.makeRecipeInstances(allRecipesData);
   }
 
   makeRecipeInstances() {
-    return this.allRecipes.map((currentRecipe) => {
+    return this.recipesData.map((currentRecipe) => {
       return new Recipe(currentRecipe)
     })
   }
 
   filterByTag(tag) {
-    this.displayedRecipes = this.allRecipes.filter((recipe) => {
+    return this.allRecipes.filter((recipe) => {
       return recipe.tags.includes(tag);
     });
   }
 
   searchByName(userSearch) {
-    let lowerCaseSearch = userSearch.toLowerCase();
-    this.displayedRecipes = this.allRecipes.filter((recipe) => {
-     return recipe.searchableName.includes(lowerCaseSearch);
+    return this.allRecipes.filter((recipe) => {
+      return recipe.name.toLowerCase().includes(userSearch.toLowerCase())
     })
   }
-
 }
+
+
 
 export default RecipeRepository;

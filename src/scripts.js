@@ -5,14 +5,18 @@ import './images/turing-logo.png'
 import Recipe from './classes/Recipe'
 import RecipeRepository from './classes/RecipeRepository'
 import recipeData from './data/recipes'
+// ------------------- GLOBAL VARIABLES
+const recipeRepo = new RecipeRepository(recipeData)
+let tag
 
-// --------------------------------------------- QUERY SELECTORS
+// --------------------QUERY SELECTORS
 // const modalBtn = document.querySelector('#modalBtn');
 const modal = document.querySelector('#modal')
 const close = document.querySelector('#close')
 const recipeSection = document.querySelector('#recipeSection')
+const tags = document.querySelector('#tags')
 
-// --------------------------------------------- EVENT LISTENERS
+// --------------------EVENT LISTENERS
 // modalBtn.onclick = () => {modal.style.display = "block"};
 close.onclick = () => {
   modal.style.display = 'none'
@@ -22,28 +26,28 @@ window.onclick = (event) => {
     modal.style.display = 'none'
   }
 }
-window.addEventListener('load', updateAllRecipeDisplay)
+window.addEventListener('load', function () {
+  updateAllRecipeDisplay(recipeRepo.allRecipes)
+})
+tags.addEventListener('click', tagsToggleFilter)
 
 //will need some event bubblin for the cards we create dynamically later
-
-// --------------------------------------------- GLOBAL VARIABLES
-const recipeRepo = new RecipeRepository(recipeData)
 
 // --------------------------------------------- FETCH
 
 // --------------------------------------------- FUNCTIONS
-function updateAllRecipeDisplay() {
-  recipeRepo.newAllRecipes.forEach((recipe) => {
+function updateAllRecipeDisplay(recipesToDisplay) {
+  recipeSection.innerHTML = ''
+  recipesToDisplay.forEach((recipe) => {
     const tagsHTML = recipe.tags
       .map((tag) => {
         return `<p class="recipe-tag">${tag}</p>`
       })
       .join(' ')
-
     const recipeCard = document.createElement('section')
     recipeCard.classList.add('recipe-card')
     recipeCard.dataset.recipeId = `${recipe.id}`
-    recipeCard.innerHTML = `
+    recipeCard.innerHTML += `
       <figure class="recipe-figure">
         <img class="recipe-img" src="${
           recipe.image
@@ -60,8 +64,42 @@ function updateAllRecipeDisplay() {
 
     // TO DO: Put modal event handler in line 63
     recipeCard.onclick = () => {
+      // if (event classname === star-icon) {
+      // do the function to toggleFavorites
+      // }
+
+      // if (event classname === recipe-tags) {
+      //  the function tagsToggleFilter
+      // }
+
+      // if (event classname === recipe-card) {
+      //  the function to open the recipe modal
+      // }
+
       console.log(`hi! ${recipe.name}`)
     }
     recipeSection.appendChild(recipeCard)
   })
 }
+
+function tagsToggleFilter(event) {
+  if (tag === event.target.innerText) {
+    updateAllRecipeDisplay(recipeRepo.allRecipes)
+    event.target.style.backgroundColor = 'cornflowerblue'
+    tag = ''
+  } else {
+    let userTag = getTag(event)
+    const filteredRecipes = recipeRepo.filterByTag(userTag)
+    updateAllRecipeDisplay(filteredRecipes)
+  }
+}
+
+function getTag(event) {
+  if (event.target.className === 'recipe-tag') {
+    tag = event.target.innerText
+    event.target.style.backgroundColor = 'hotpink'
+    return tag
+  }
+}
+
+//create tags element and dynamically create the event listener on each tag
