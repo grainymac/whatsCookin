@@ -37,6 +37,7 @@ tags.addEventListener('click', tagsToggleFilter)
 // --------------------------------------------- FUNCTIONS
 
 function updateAllRecipeDisplay(recipesToDisplay) {
+  recipeSection.innerHTML = ''
     recipesToDisplay.forEach((recipe) => {
     const tagsHTML = buildTags(recipe)
     const recipeCard = document.createElement('section')
