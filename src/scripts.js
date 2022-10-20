@@ -144,7 +144,21 @@ function tagsToggleFilter(event) {
 }
 
 function searchRecipesByName(search) {
- const nameFilteredRecipes = recipeRepo.searchByName(search);
- updateAllRecipeDisplay(nameFilteredRecipes)
+  if(searchAllRecipesButton.innerText === 'Search') {
+    const nameFilteredRecipes = recipeRepo.searchByName(search);
+    updateAllRecipeDisplay(nameFilteredRecipes)
+    changeSearchButton();
+  } else {
+    updateAllRecipeDisplay(recipeRepo.allRecipes)
+    changeSearchButton()
+  }
 }
-//create tags element and dynamically create the event listener on each tag
+
+function changeSearchButton() {
+  if(searchAllRecipesButton.innerText === 'Search') {
+    searchAllRecipesButton.innerText = 'Clear';
+  } else {
+    searchAllRecipesButton.innerText = 'Search';
+    allRecipesSearchBar.value = '';
+  }
+}
