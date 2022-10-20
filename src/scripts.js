@@ -1,71 +1,71 @@
-import './styles.css'
-import apiCalls from './apiCalls'
+import './styles.css';
+import apiCalls from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png'
-import Recipe from './classes/Recipe'
-import RecipeRepository from './classes/RecipeRepository'
-import recipeData from './data/recipes'
+import './images/turing-logo.png';
+import Recipe from './classes/Recipe';
+import RecipeRepository from './classes/RecipeRepository';
+import recipeData from './data/recipes';
 // ------------------- GLOBAL VARIABLES
-const recipeRepo = new RecipeRepository(recipeData)
-let tag
-let tagList = []
+const recipeRepo = new RecipeRepository(recipeData);
+let tag;
+let tagList = [];
 
 // --------------------QUERY SELECTORS
 // const modalBtn = document.querySelector('#modalBtn');
-const modal = document.querySelector('#modal')
-const close = document.querySelector('#close')
-const recipeSection = document.querySelector('#recipeSection')
-const tagsContainer = document.querySelector('#tagsContainer')
+const modal = document.querySelector('#modal');
+const close = document.querySelector('#close');
+const recipeSection = document.querySelector('#recipeSection');
+const tagsContainer = document.querySelector('#tagsContainer');
 
 // --------------------EVENT LISTENERS
 // modalBtn.onclick = () => {modal.style.display = "block"};
 close.onclick = () => {
-  modal.style.display = 'none'
-}
+  modal.style.display = 'none';
+};
 window.onclick = (event) => {
   if (event.target == modal) {
-    modal.style.display = 'none'
+    modal.style.display = 'none';
   }
-}
+};
 window.addEventListener('load', function () {
-  updateAllRecipeDisplay(recipeRepo.allRecipes)
-})
+  updateAllRecipeDisplay(recipeRepo.allRecipes);
+});
 
-window.addEventListener('load', displayAllTags)
+window.addEventListener('load', displayAllTags);
 
 // --------------------------------------------- FETCH
 
 // --------------------------------------------- FUNCTIONS
 
 function updateAllRecipeDisplay(recipesToDisplay) {
-  recipeSection.innerHTML = ''
+  recipeSection.innerHTML = '';
   recipesToDisplay.forEach((recipe) => {
-    const tagsHTML = buildTags(recipe)
-    const recipeCard = document.createElement('section')
+    const tagsHTML = buildTags(recipe);
+    const recipeCard = document.createElement('section');
 
-    buildRecipeCard(recipe, recipeCard, tagsHTML)
-    buildModal(recipe, recipeCard)
-    recipeSection.appendChild(recipeCard)
-  })
+    buildRecipeCard(recipe, recipeCard, tagsHTML);
+    buildModal(recipe, recipeCard);
+    recipeSection.appendChild(recipeCard);
+  });
 }
 
 function displayAllTags() {
-  const allTags = recipeRepo.retrieveAllTags()
+  const allTags = recipeRepo.retrieveAllTags();
   allTags.forEach((tag) => {
-    const tagElement = document.createElement('p')
-    tagElement.classList.add('recipe-tag')
-    tagElement.innerText = tag
+    const tagElement = document.createElement('p');
+    tagElement.classList.add('recipe-tag');
+    tagElement.innerText = tag;
 
-    tagElement.onclick = tagsToggleFilter
+    tagElement.onclick = tagsToggleFilter;
 
-    tagsContainer.appendChild(tagElement)
-    tagList.push(tagElement)
-  })
+    tagsContainer.appendChild(tagElement);
+    tagList.push(tagElement);
+  });
 }
 
 function buildRecipeCard(recipe, recipeCard, tags) {
-  recipeCard.classList.add('recipe-card')
-  recipeCard.dataset.recipeId = `${recipe.id}`
+  recipeCard.classList.add('recipe-card');
+  recipeCard.dataset.recipeId = `${recipe.id}`;
   recipeCard.innerHTML = `
     <figure class="recipe-figure">
       <img class="recipe-img" src="${recipe.image}" alt="this is a picture of ${
@@ -79,57 +79,60 @@ function buildRecipeCard(recipe, recipeCard, tags) {
     <div class="recipe-tags-container">
       ${tags.toString()}
     </div>
-  `
+  `;
 }
 
 function buildModal(recipe, recipeCard) {
   recipeCard.onclick = () => {
-    modal.style.display = 'block'
-    document.querySelector('.modal-title').innerText = `${recipe.name}`
+    modal.style.display = 'block';
+    document.querySelector('.modal-title').innerText = `${recipe.name}`;
     document.getElementById(
       'modalIngredients'
     ).innerText = `Ingredients: ${recipe.ingredients
       .map((ingredient) => ingredient.name)
-      .join(', ')}`
+      .join(', ')}`;
     document.getElementById(
       'modalInstructions'
     ).innerText = `${recipe.getInstructions().join(`
     
-    `)}`
+    `)}`;
     document.getElementById(
       'modalTotalCost'
-    ).innerText = `$${recipe.totalCost()}`
-  }
+    ).innerText = `$${recipe.totalCost()}`;
+  };
 }
 
 function buildTags(recipe) {
   return recipe.tags
     .map((tag) => {
-      return `<p class="recipe-tag">${tag}</p>`
+      return `<p class="recipe-tag">${tag}</p>`;
     })
-    .join(' ')
+    .join(' ');
 }
 
 function tagsToggleFilter(event) {
   if (tag === event.target.innerText) {
-    updateAllRecipeDisplay(recipeRepo.allRecipes)
-    event.target.classList.remove('recipe-tag-selected')
-    tag = ''
+    updateAllRecipeDisplay(recipeRepo.allRecipes);
+    event.target.classList.remove('recipe-tag-selected');
+    tag = '';
   } else {
-    const filteredTag = tagList.filter((tag) =>
+    const filterSelectedTags = tagList.filter((tag) =>
       tag.classList.contains('recipe-tag-selected')
-    )
-    filteredTag.forEach((tag) => tag.classList.remove('recipe-tag-selected'))
-    let userTag = getTag(event)
-    const filteredRecipes = recipeRepo.filterByTag(userTag)
-    updateAllRecipeDisplay(filteredRecipes)
+    );
+    filterSelectedTags.forEach((tag) =>
+      tag.classList.remove('recipe-tag-selected')
+    );
+
+    let userTag = getTag(event);
+    const filteredRecipes = recipeRepo.filterByTag(userTag);
+    updateAllRecipeDisplay(filteredRecipes);
   }
 
   function getTag(event) {
     if (event.target.className === 'recipe-tag') {
-      tag = event.target.innerText
-      event.target.classList.add('recipe-tag-selected')
-      return tag
+      tag = event.target.innerText;
+      event.target.classList.add('recipe-tag-selected');
+      return tag;
     }
   }
 }
