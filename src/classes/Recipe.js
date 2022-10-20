@@ -36,13 +36,14 @@ class Recipe {
   }
 
   totalCost() {
-    return this.ingredients.reduce((accumulator, value) => {
+    const cost = this.ingredients.reduce((accumulator, value) => {
       return accumulator += value.estimatedCostInCents * value.amount
-    }, 0)
+    }, 0) / 100
+    return cost.toFixed(2)
   }
 
   getInstructions() {
-    return this.instructions.map(recipeStep => recipeStep.instruction)
+    return this.instructions.map(recipeStep => `${recipeStep.number}: ${recipeStep.instruction}`)
   }
 }
 

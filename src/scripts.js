@@ -31,55 +31,58 @@ window.addEventListener('load', function () {
 })
 tags.addEventListener('click', tagsToggleFilter)
 
-//will need some event bubblin for the cards we create dynamically later
 
 // --------------------------------------------- FETCH
 
 // --------------------------------------------- FUNCTIONS
-function updateAllRecipeDisplay(recipesToDisplay) {
-  recipeSection.innerHTML = ''
-  recipesToDisplay.forEach((recipe) => {
-    const tagsHTML = recipe.tags
-      .map((tag) => {
-        return `<p class="recipe-tag">${tag}</p>`
-      })
-      .join(' ')
+
+function updateAllRecipeDisplay() {
+  recipeRepo.newAllRecipes.forEach((recipe) => {
+    const tagsHTML = buildTags(recipe)
     const recipeCard = document.createElement('section')
-    recipeCard.classList.add('recipe-card')
-    recipeCard.dataset.recipeId = `${recipe.id}`
-    recipeCard.innerHTML += `
-      <figure class="recipe-figure">
-        <img class="recipe-img" src="${
-          recipe.image
-        }" alt="this is a picture of ${recipe.name}"/>
-      </figure>
-      <section class="recipe-details-container">
-        <h1 class="recipe-title">${recipe.name}</h1>
-        <img class="recipe-favorite-icon" src="star.png" alt="star icon"/>
-      </section>
-      <div class="recipe-tags-container">
-        ${tagsHTML.toString()}
-      </div>
-    `
 
-    // TO DO: Put modal event handler in line 63
-    recipeCard.onclick = () => {
-      // if (event classname === star-icon) {
-      // do the function to toggleFavorites
-      // }
-
-      // if (event classname === recipe-tags) {
-      //  the function tagsToggleFilter
-      // }
-
-      // if (event classname === recipe-card) {
-      //  the function to open the recipe modal
-      // }
-
-      console.log(`hi! ${recipe.name}`)
-    }
+    buildRecipeCard(recipe, recipeCard, tagsHTML)
+    buildModal(recipe, recipeCard)
     recipeSection.appendChild(recipeCard)
   })
+}
+
+
+function buildRecipeCard(recipe, recipeCard, tags) {
+  recipeCard.classList.add('recipe-card')
+  recipeCard.dataset.recipeId = `${recipe.id}`
+  recipeCard.innerHTML = `
+    <figure class="recipe-figure">
+      <img class="recipe-img" src="${
+        recipe.image
+      }" alt="this is a picture of ${recipe.name}"/>
+    </figure>
+    <section class="recipe-details-container">
+      <h1 class="recipe-title">${recipe.name}</h1>
+      <img class="recipe-favorite-icon" src="star.png" alt="star icon"/>
+    </section>
+    <div class="recipe-tags-container">
+      ${tags.toString()}
+    </div>
+  `
+}
+
+function buildModal(recipe, recipeCard) {
+  recipeCard.onclick = () => {
+    modal.style.display = 'block'
+    document.querySelector('.modal-title').innerText = `${recipe.name}`
+    document.getElementById('modalIngredients').innerText = `Ingredients: ${recipe.ingredients.map(ingredient => ingredient.name).join(', ')}`
+    document.getElementById('modalInstructions').innerText = `${recipe.getInstructions().join(`
+    
+    `)}`
+    document.getElementById('modalTotalCost').innerText = `$${recipe.totalCost()}`
+  }
+}
+
+function buildTags(recipe) {
+  return recipe.tags.map((tag) => {
+    return `<p class="recipe-tag">${tag}</p>`
+  }).join(' ')
 }
 
 function tagsToggleFilter(event) {
