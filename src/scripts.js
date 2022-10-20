@@ -72,7 +72,19 @@ function buildModal(recipe, recipeCard) {
   recipeCard.onclick = () => {
     modal.style.display = 'block'
     document.querySelector('.modal-title').innerText = `${recipe.name}`
-    document.getElementById('modalIngredients').innerText = `Ingredients: ${recipe.ingredients.map(ingredient => ingredient.name).join(', ')}`
+    let modalIngredients = document.getElementById('modalIngredients');
+    console.log(modalIngredients)
+    recipe.ingredients.forEach((ingredient) => {
+      let oneIngredient = document.createElement('section')
+      modalIngredients.appendChild(oneIngredient)
+      oneIngredient.innerHTML = `
+       <li class="ingredient">${ingredient.name}: ${ingredient.amount} ${ingredient.unit}</li>
+     `
+  })
+    
+    // .innerText = `Ingredients: ${recipe.ingredients.map(ingredient => ingredient.name).join(`
+    
+    // -`)}`
     document.getElementById('modalInstructions').innerText = `${recipe.getInstructions().join(`
     
     `)}`
