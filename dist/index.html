@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <!-- <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href='https://fonts.googleapis.com/css2?family=Comfortaa>' -->
     <title>Whats Cookin</title>
   </head>
   <body>
@@ -12,18 +14,8 @@
     <main>
       <section class="left-nav">
         <h2 class="tags-title">filter by tags</h2>
-        <section class="tags" id="tags">
-          <!--we will need to do innerHTML for this-->
-          <p class="recipe-tag">antipasti</p>
-          <p class="recipe-tag">starter</p>
-          <p class="recipe-tag">snack</p>
-          <p class="recipe-tag">appetizer</p>
-          <p class="recipe-tag">antipasto</p>
-          <p class="recipe-tag">hor d'oeuvre</p>
-          <p class="recipe-tag">brunch</p>
-          <p class="recipe-tag">breakfast</p>
-          <p class="recipe-tag">smoothies</p>
-          <p class="recipe-tag">lunch</p>
+        <section class="tags-container" id="tagsContainer">
+          <!--adding tags here-->
         </section>
       </section>
       <div class="main-recipe-container">
@@ -283,10 +275,14 @@
           <div class="modal-content">
             <span class="close" id="close">&times;</span>
             <h3 class="modal-title">Chocolate Chip Cookies</h3>
-            <h4 class="modal-subtitle" id="modalIngredients">Ingredients:</h4>
-            <p class="modal-text"></p>
-            <h4 class="modal-subtitle" id="modalInstructions">Instructions:</h4>
-            <p class="modal-text"></p>
+            <section>
+              <h4 class="modal-subtitle" id="modalIngredients">Ingredients:</h4>
+                <section class="ingredient-section" id="ingredientSection"></p>
+            </section>
+            <section>
+              <h4 class="modal-subtitle" id="modalInstructions">Instructions:</h4>
+              <section class="instruction-section" id="instructionSection"></section>
+            </section>
             <h4 class="modal-subtitle" id="modalTotalCost">Total Cost:</h4>
             <p class="modal-text"></p>
             <button class="save-btn">Save</button>
