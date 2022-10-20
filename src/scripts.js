@@ -15,6 +15,10 @@ const modal = document.querySelector('#modal');
 const close = document.querySelector('#close');
 const recipeSection = document.querySelector('#recipeSection');
 const tagsContainer = document.querySelector('#tagsContainer');
+const searchAllRecipesButton = document.querySelector('#searchAllRecipesButton')
+const searchCookbookButton = document.querySelector('#searchCookbookButton')
+const allRecipesSearchBar = document.querySelector('#allRecipeSearch')
+const cookbookSearchBar= document.querySelector('#cookbookSearch')
 
 // --------------------EVENT LISTENERS
 close.onclick = () => {
@@ -30,6 +34,8 @@ window.addEventListener('load', function () {
 });
 
 window.addEventListener('load', displayAllTags);
+
+searchAllRecipesButton.addEventListener('click', function() {searchRecipesByName(allRecipesSearchBar.value)})
 
 // --------------------------------------------- FETCH
 
@@ -135,5 +141,10 @@ function tagsToggleFilter(event) {
       return tag;
     }
   }
+}
+
+function searchRecipesByName(search) {
+ const nameFilteredRecipes = recipeRepo.searchByName(search);
+ updateAllRecipeDisplay(nameFilteredRecipes)
 }
 //create tags element and dynamically create the event listener on each tag
