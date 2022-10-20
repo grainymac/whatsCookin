@@ -103,7 +103,7 @@ function buildTags(recipe) {
 function tagsToggleFilter(event) {
   if (tag === event.target.innerText) {
     updateAllRecipeDisplay(recipeRepo.allRecipes)
-    event.target.style.backgroundColor = 'cornflowerblue'
+    event.target.classList.remove('recipe-tag-selected')
     tag = ''
   } else {
     let userTag = getTag(event)
@@ -115,7 +115,7 @@ function tagsToggleFilter(event) {
 function getTag(event) {
   if (event.target.className === 'recipe-tag') {
     tag = event.target.innerText
-    event.target.style.backgroundColor = 'hotpink'
+    event.target.classList.add('recipe-tag-selected')
     return tag
   }
 }
