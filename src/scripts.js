@@ -11,14 +11,12 @@ let tag;
 let tagList = [];
 
 // --------------------QUERY SELECTORS
-// const modalBtn = document.querySelector('#modalBtn');
 const modal = document.querySelector('#modal');
 const close = document.querySelector('#close');
 const recipeSection = document.querySelector('#recipeSection');
 const tagsContainer = document.querySelector('#tagsContainer');
 
 // --------------------EVENT LISTENERS
-// modalBtn.onclick = () => {modal.style.display = "block"};
 close.onclick = () => {
   modal.style.display = 'none';
 };
@@ -84,22 +82,24 @@ function buildRecipeCard(recipe, recipeCard, tags) {
 
 function buildModal(recipe, recipeCard) {
   recipeCard.onclick = () => {
-    modal.style.display = 'block';
-    document.querySelector('.modal-title').innerText = `${recipe.name}`;
-    document.getElementById(
-      'modalIngredients'
-    ).innerText = `Ingredients: ${recipe.ingredients
-      .map((ingredient) => ingredient.name)
-      .join(', ')}`;
-    document.getElementById(
-      'modalInstructions'
-    ).innerText = `${recipe.getInstructions().join(`
-    
-    `)}`;
-    document.getElementById(
-      'modalTotalCost'
-    ).innerText = `$${recipe.totalCost()}`;
-  };
+    modal.style.display = 'block'
+    document.querySelector('.modal-title').innerText = `${recipe.name}`
+    const modalIngredientsSection = document.getElementById('ingredientSection');
+    modalIngredientsSection.innerHTML = '';
+    recipe.ingredients.forEach((ingredient) => {
+      modalIngredientsSection.innerHTML += `
+        <li class="ingredient">${ingredient.name}: ${ingredient.amount} ${ingredient.unit}</li>
+      `
+    })
+    const modalInstructionSection = document.getElementById('instructionSection')
+    modalInstructionSection.innerHTML = ''
+    recipe.getInstructions().forEach((instruction) => {
+      modalInstructionSection.innerHTML += `
+        <p class="instruction">${instruction}</p>
+      `
+    })
+    document.getElementById('modalTotalCost').innerText = `$${recipe.totalCost()}`
+  }
 }
 
 function buildTags(recipe) {
