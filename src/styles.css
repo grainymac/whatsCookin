@@ -188,6 +188,10 @@ main {
   transition: background-color 120m ease-in-out;
 }
 
+.recipe-tag-selected {
+  background-color: hotpink;
+}
+
 /* --------Modal--------- */
 .modal {
   display: none; /* Hidden by default */
