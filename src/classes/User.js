@@ -10,15 +10,11 @@ class User {
     }
 
     addFavoriteRecipe = (recipe) => {
-        if (!this.favoriteRecipes.includes(recipe)) {
-            this.favoriteRecipes.push(recipe)
-        }
+        return this.favoriteRecipeRepo.addRecipe(recipe)
     }
 
     removeFavoriteRecipe = (recipe) => {
-        if (this.favoriteRecipes.includes(recipe)) {
-            this.favoriteRecipes.splice(this.favoriteRecipes.indexOf(recipe), 1)
-        }
+        return this.favoriteRecipeRepo.removeRecipe(recipe)
     }
 
     filterFavoriteRecipesByTag(tag) {
