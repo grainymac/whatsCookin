@@ -6,7 +6,7 @@ describe('RecipeRepository', () => {
   let recipes, newRecipeRepo;
 
   beforeEach(() => {
-    recipes = [ {
+    recipes = [{
       "id": 595736,
       "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
       "ingredients": [
@@ -342,24 +342,16 @@ describe('RecipeRepository', () => {
   });
 
   it('Should have a method that replaces a recipes object with a recipe class instance', () => {
-
     expect(newRecipeRepo.allRecipes[0]).to.be.an.instanceOf(Recipe);
   })
 
   it('Should have a method that filters by tag and stores the filtered recipes in a property', () => {
-
     newRecipeRepo.filterByTag('sauce');
-
     expect(newRecipeRepo.filterByTag('sauce')).to.deep.equal([newRecipeRepo.allRecipes[2]]);
   })
 
   it('Should have a method that searches by name and stores the filtered recipes in a property', () => {
-    
     newRecipeRepo.searchByName('Dirty Steve\'s');
-
     expect(newRecipeRepo.searchByName('Dirty Steve\'s')).to.deep.equal([newRecipeRepo.allRecipes[2]]);
-    
   })
-
-  
 })

@@ -1,9 +1,14 @@
+import Recipe from './Recipe';
+import RecipeRepository from './Recipe';
+
+
 class User {
     constructor(userData) {
         this.id = userData.id
         this.name = userData.name
         this.favoriteRecipes = []
         this.recipesToCook = []
+        this.recipes = RecipeRepository.allRecipes
     }
 
     addFavoriteRecipe = (recipe) => {
@@ -20,6 +25,18 @@ class User {
         } else if (this.recipesToCook.includes(recipe)) {
             this.recipesToCook.splice(this.recipesToCook.indexOf(recipe), 1)
         }
+    }
+
+    filterByTag(tag) {
+        return this.recipes.filter((recipe) => {
+            return recipe.tags.includes(tag);
+        });
+    }
+    
+    searchByName(userSearch) {
+        return this.recipes.filter((recipe) => {
+            return recipe.name.toLowerCase().includes(userSearch.toLowerCase())
+        })
     }
 }
 export default User
