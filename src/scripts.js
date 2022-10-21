@@ -111,7 +111,7 @@ function buildModal(recipe, recipeCard) {
 function buildTags(recipe) {
   return recipe.tags
     .map((tag) => {
-      return `<p class="recipe-tag">${tag}</p>`;
+      return `<p class="recipe-section-tag">${tag}</p>`;
     })
     .join(' ');
 }
