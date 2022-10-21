@@ -12,9 +12,12 @@ class User {
     addFavoriteRecipe = (recipe) => {
         if (!this.favoriteRecipes.includes(recipe)) {
             this.favoriteRecipes.push(recipe)
-        } else if (this.favoriteRecipes.includes(recipe)) {
-            this.favoriteRecipes.splice(this.favoriteRecipes.indexOf(recipe), 1)
         }
+    }
+
+    removeFavoriteRecipe = (recipe) => {
+        if (this.favoriteRecipes.includes(recipe)) {
+            this.favoriteRecipes.splice(this.favoriteRecipes.indexOf(recipe), 1)
     }
 
     addRecipesToCook = (recipe) => {
