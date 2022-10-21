@@ -15,10 +15,12 @@ const modal = document.querySelector('#modal');
 const close = document.querySelector('#close');
 const recipeSection = document.querySelector('#recipeSection');
 const tagsContainer = document.querySelector('#tagsContainer');
-const searchAllRecipesButton = document.querySelector('#searchAllRecipesButton')
-const searchCookbookButton = document.querySelector('#searchCookbookButton')
-const allRecipesSearchBar = document.querySelector('#allRecipeSearch')
-const cookbookSearchBar= document.querySelector('#cookbookSearch')
+const searchAllRecipesButton = document.querySelector(
+  '#searchAllRecipesButton'
+);
+const searchCookbookButton = document.querySelector('#searchCookbookButton');
+const allRecipesSearchBar = document.querySelector('#allRecipeSearch');
+const cookbookSearchBar = document.querySelector('#cookbookSearch');
 
 // --------------------EVENT LISTENERS
 close.onclick = () => {
@@ -35,7 +37,9 @@ window.addEventListener('load', function () {
 
 window.addEventListener('load', displayAllTags);
 
-searchAllRecipesButton.addEventListener('click', function() {searchRecipesByName(allRecipesSearchBar.value)})
+searchAllRecipesButton.addEventListener('click', function () {
+  searchRecipesByName(allRecipesSearchBar.value);
+});
 
 // --------------------------------------------- FETCH
 
@@ -48,7 +52,6 @@ function updateAllRecipeDisplay(recipesToDisplay) {
     const recipeCard = document.createElement('section');
 
     buildRecipeCard(recipe, recipeCard, tagsHTML);
-    buildModal(recipe, recipeCard);
     recipeSection.appendChild(recipeCard);
   });
 }
@@ -84,28 +87,42 @@ function buildRecipeCard(recipe, recipeCard, tags) {
       ${tags.toString()}
     </div>
   `;
+
+  recipeCard.onclick = (event) => {
+    if (event.target.className === 'recipe-favorite-icon') {
+      alert(
+        `RECIPE ID - ${event.target.parentNode.parentNode.dataset.recipeId}` // placeholder function for the add & remove recipes to cookbook
+      );
+    } else if (event.target.className === 'recipe-section-tag') {
+      alert(
+        `TAG - ${event.target.innerText}` // placeholder function in case we end up adding event handling for the recipe cars' tags
+      );
+    } else {
+      buildModal(recipe);
+    }
+  };
 }
 
-function buildModal(recipe, recipeCard) {
-  recipeCard.onclick = () => {
-    modal.style.display = 'block'
-    document.querySelector('.modal-title').innerText = `${recipe.name}`
-    const modalIngredientsSection = document.getElementById('ingredientSection');
-    modalIngredientsSection.innerHTML = '';
-    recipe.ingredients.forEach((ingredient) => {
-      modalIngredientsSection.innerHTML += `
+function buildModal(recipe) {
+  modal.style.display = 'block';
+  document.querySelector('.modal-title').innerText = `${recipe.name}`;
+  const modalIngredientsSection = document.getElementById('ingredientSection');
+  modalIngredientsSection.innerHTML = '';
+  recipe.ingredients.forEach((ingredient) => {
+    modalIngredientsSection.innerHTML += `
         <li class="ingredient">${ingredient.name}: ${ingredient.amount} ${ingredient.unit}</li>
-      `
-    })
-    const modalInstructionSection = document.getElementById('instructionSection')
-    modalInstructionSection.innerHTML = ''
-    recipe.getInstructions().forEach((instruction) => {
-      modalInstructionSection.innerHTML += `
+      `;
+  });
+  const modalInstructionSection = document.getElementById('instructionSection');
+  modalInstructionSection.innerHTML = '';
+  recipe.getInstructions().forEach((instruction) => {
+    modalInstructionSection.innerHTML += `
         <p class="instruction">${instruction}</p>
-      `
-    })
-    document.getElementById('modalTotalCost').innerText = `$${recipe.totalCost()}`
-  }
+      `;
+  });
+  document.getElementById(
+    'modalTotalCost'
+  ).innerText = `$${recipe.totalCost()}`;
 }
 
 function buildTags(recipe) {
@@ -144,18 +161,18 @@ function tagsToggleFilter(event) {
 }
 
 function searchRecipesByName(search) {
-  if(searchAllRecipesButton.innerText === 'Search') {
+  if (searchAllRecipesButton.innerText === 'Search') {
     const nameFilteredRecipes = recipeRepo.searchByName(search);
-    updateAllRecipeDisplay(nameFilteredRecipes)
+    updateAllRecipeDisplay(nameFilteredRecipes);
     changeSearchButton();
   } else {
-    updateAllRecipeDisplay(recipeRepo.allRecipes)
-    changeSearchButton()
+    updateAllRecipeDisplay(recipeRepo.allRecipes);
+    changeSearchButton();
   }
 }
 
 function changeSearchButton() {
-  if(searchAllRecipesButton.innerText === 'Search') {
+  if (searchAllRecipesButton.innerText === 'Search') {
     searchAllRecipesButton.innerText = 'Clear';
   } else {
     searchAllRecipesButton.innerText = 'Search';
