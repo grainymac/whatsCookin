@@ -7,10 +7,10 @@ import RecipeRepository from './classes/RecipeRepository';
 import recipeData from './data/recipes';
 import User from './classes/User';
 import usersData from './data/users';
+
 // ------------------- GLOBAL VARIABLES
-const recipeRepo = new RecipeRepository(recipeData);
+const recipeRepo = RecipeRepository.fromRecipeData(recipeData);
 const userData = usersData[Math.floor(Math.random() * usersData.length)]
-console.log(userData)
 const user = new User(userData)
 let tag;
 let tagList = [];
