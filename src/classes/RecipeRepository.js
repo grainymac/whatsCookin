@@ -3,7 +3,7 @@ import Recipe from './Recipe';
 class RecipeRepository {
   constructor(allRecipesData) {
     this.recipesData = allRecipesData;
-    this.allRecipes = this.makeRecipeInstances(allRecipesData);
+    this.allRecipes = this.makeRecipeInstances();
   }
 
   makeRecipeInstances() {
@@ -29,6 +29,18 @@ class RecipeRepository {
       return recipe.tags
     })
     return Array.from(new Set(allTags))
+  }
+
+  addRecipe(recipe) {
+    if (!this.allRecipes.includes(recipe)) {
+      this.allRecipes.push(recipe)
+    }
+  }
+
+  removeRecipe(recipe) {
+    if (this.allRecipes.includes(recipe)) {
+      this.allRecipes.splice(this.allRecipes.indexOf(recipe), 1)
+    }
   }
 }
 
