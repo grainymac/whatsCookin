@@ -2,6 +2,7 @@ const chai = require('chai');
 const expect = chai.expect;
 
 import User from '../src/classes/User.js'
+import RecipeRepository from '../src/classes/RecipeRepository';
 
 describe('User', () => {
     let user, recipe
@@ -168,7 +169,15 @@ describe('User', () => {
         expect(user.recipesToCook).to.deep.equal([recipe]);
       });
   
-      it.skip('should be able to search for recipe by name', () => {
-      });
+      it('Should have a method that filters by tag and stores the filtered recipes in a property', () => {
+        newRecipeRepo.filterByTag('sauce');
+        expect(newRecipeRepo.filterByTag('sauce')).to.deep.equal([newRecipeRepo.allRecipes[2]]);
+      })
+
+      it('Should have a method that searches by name and stores the filtered recipes in a property', () => {
+        newRecipeRepo.searchByName('Dirty Steve\'s');
+        expect(newRecipeRepo.searchByName('Dirty Steve\'s')).to.deep.equal([newRecipeRepo.allRecipes[2]]);
+        
+      })
     });
     
