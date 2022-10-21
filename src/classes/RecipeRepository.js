@@ -1,15 +1,15 @@
 import Recipe from './Recipe';
 
 class RecipeRepository {
-  constructor(allRecipesData) {
-    this.recipesData = allRecipesData;
-    this.allRecipes = this.makeRecipeInstances();
+  constructor(recipes) {
+    this.allRecipes = recipes || [];
   }
 
-  makeRecipeInstances() {
-    return this.recipesData.map((currentRecipe) => {
+  static fromRecipeData(recipeData) {
+    const recipes = recipeData.map((currentRecipe) => {
       return new Recipe(currentRecipe)
     })
+    return new RecipeRepository(recipes)
   }
 
   filterByTag(tag) {
