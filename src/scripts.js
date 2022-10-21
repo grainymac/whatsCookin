@@ -15,6 +15,10 @@ const modal = document.querySelector('#modal');
 const close = document.querySelector('#close');
 const recipeSection = document.querySelector('#recipeSection');
 const tagsContainer = document.querySelector('#tagsContainer');
+const searchAllRecipesButton = document.querySelector('#searchAllRecipesButton')
+const searchCookbookButton = document.querySelector('#searchCookbookButton')
+const allRecipesSearchBar = document.querySelector('#allRecipeSearch')
+const cookbookSearchBar= document.querySelector('#cookbookSearch')
 
 // --------------------EVENT LISTENERS
 close.onclick = () => {
@@ -30,6 +34,8 @@ window.addEventListener('load', function () {
 });
 
 window.addEventListener('load', displayAllTags);
+
+searchAllRecipesButton.addEventListener('click', function() {searchRecipesByName(allRecipesSearchBar.value)})
 
 // --------------------------------------------- FETCH
 
@@ -105,7 +111,7 @@ function buildModal(recipe, recipeCard) {
 function buildTags(recipe) {
   return recipe.tags
     .map((tag) => {
-      return `<p class="recipe-tag">${tag}</p>`;
+      return `<p class="recipe-section-tag">${tag}</p>`;
     })
     .join(' ');
 }
@@ -136,4 +142,23 @@ function tagsToggleFilter(event) {
     }
   }
 }
-//create tags element and dynamically create the event listener on each tag
+
+function searchRecipesByName(search) {
+  if(searchAllRecipesButton.innerText === 'Search') {
+    const nameFilteredRecipes = recipeRepo.searchByName(search);
+    updateAllRecipeDisplay(nameFilteredRecipes)
+    changeSearchButton();
+  } else {
+    updateAllRecipeDisplay(recipeRepo.allRecipes)
+    changeSearchButton()
+  }
+}
+
+function changeSearchButton() {
+  if(searchAllRecipesButton.innerText === 'Search') {
+    searchAllRecipesButton.innerText = 'Clear';
+  } else {
+    searchAllRecipesButton.innerText = 'Search';
+    allRecipesSearchBar.value = '';
+  }
+}
