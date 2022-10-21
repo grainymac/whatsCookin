@@ -52,21 +52,6 @@ function updateAllRecipeDisplay(recipesToDisplay) {
     const recipeCard = document.createElement('section');
 
     buildRecipeCard(recipe, recipeCard, tagsHTML);
-
-    recipeCard.onclick = (event) => {
-      if (event.target.className === 'recipe-favorite-icon') {
-        alert(
-          `RECIPE ID - ${event.target.parentNode.parentNode.dataset.recipeId}` // placeholder function for the add & remove recipes to cookbook
-        );
-      } else if (event.target.className === 'recipe-section-tag') {
-        alert(
-          `TAG - ${event.target.innerText}` // placeholder function in case we end up adding event handling for the recipe cars' tags
-        );
-      } else {
-        buildModal(recipe);
-      }
-    };
-
     recipeSection.appendChild(recipeCard);
   });
 }
@@ -102,6 +87,20 @@ function buildRecipeCard(recipe, recipeCard, tags) {
       ${tags.toString()}
     </div>
   `;
+
+  recipeCard.onclick = (event) => {
+    if (event.target.className === 'recipe-favorite-icon') {
+      alert(
+        `RECIPE ID - ${event.target.parentNode.parentNode.dataset.recipeId}` // placeholder function for the add & remove recipes to cookbook
+      );
+    } else if (event.target.className === 'recipe-section-tag') {
+      alert(
+        `TAG - ${event.target.innerText}` // placeholder function in case we end up adding event handling for the recipe cars' tags
+      );
+    } else {
+      buildModal(recipe);
+    }
+  };
 }
 
 function buildModal(recipe) {
