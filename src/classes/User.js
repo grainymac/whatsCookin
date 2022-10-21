@@ -18,26 +18,15 @@ class User {
     removeFavoriteRecipe = (recipe) => {
         if (this.favoriteRecipes.includes(recipe)) {
             this.favoriteRecipes.splice(this.favoriteRecipes.indexOf(recipe), 1)
-    }
-
-    addRecipesToCook = (recipe) => {
-        if (!this.recipesToCook.includes(recipe)) {
-            this.recipesToCook.push(recipe)
-        } else if (this.recipesToCook.includes(recipe)) {
-            this.recipesToCook.splice(this.recipesToCook.indexOf(recipe), 1)
         }
     }
 
-    filterByTag(tag) {
-        return this.recipes.filter((recipe) => {
-            return recipe.tags.includes(tag);
-        });
+    filterFavoriteRecipesByTag(tag) {
+        return this.favoriteRecipeRepo.filterByTag(tag)
     }
     
-    searchByName(userSearch) {
-        return this.recipes.filter((recipe) => {
-            return recipe.name.toLowerCase().includes(userSearch.toLowerCase())
-        })
+    searchFavoriteRecipesByName(userSearch) {
+        return this.favoriteRecipeRepo.searchByName(userSearch)
     }
 }
 export default User
