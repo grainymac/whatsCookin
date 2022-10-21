@@ -12,6 +12,8 @@ class RecipeRepository {
     })
   }
 
+// move these over to USER class along with the tests  
+//-------------------------------------------------------------  
   filterByTag(tag) {
     return this.allRecipes.filter((recipe) => {
       return recipe.tags.includes(tag);
@@ -23,8 +25,9 @@ class RecipeRepository {
       return recipe.name.toLowerCase().includes(userSearch.toLowerCase())
     })
   }
+//-------------------------------------------------------------  
 
-  retrieveAllTags() {
+retrieveAllTags() {
     const allTags = this.allRecipes.flatMap((recipe) => {
       return recipe.tags
     })
