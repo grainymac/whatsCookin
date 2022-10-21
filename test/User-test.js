@@ -387,7 +387,7 @@ describe('User', () => {
         expect(recipeRepo.filterByTag('antipasti')).to.deep.equal([recipeRepo.allRecipes[0]]);
       })
 
-      it('Should have a method that searches by name and stores the filtered recipes in a property', () => {
+      it.skip('Should have a method that searches by name and stores the filtered recipes in a property', () => {
         recipeRepo.searchByName('Loaded Chocolate Chip Pudding Cookie Cups');
         expect(recipeRepo.searchByName('Loaded Chocolate Chip Pudding Cookie Cups')).to.deep.equal([recipeRepo.allRecipes[0]]);
         
