@@ -10,15 +10,9 @@ main {
   justify-content: space-between;
 }
 
-p {
-  margin: 3px;
-  font-weight: 600;
-  letter-spacing: -0.25px;
-  border-radius: 100px;
-  margin-bottom: 10px;
-  padding: 4px 16px;
-  transition: background-color 120m ease-in-out;
-}
+/* p {
+
+} */
 
 .main-recipe-container {
   display: flex;
@@ -66,6 +60,13 @@ p {
 .recipe-tag {
   background-color: cornflowerblue;
   color: #fff;
+  margin: 3px;
+  font-weight: 600;
+  letter-spacing: -0.25px;
+  border-radius: 100px;
+  margin-bottom: 10px;
+  padding: 4px 16px;
+  transition: background-color 120m ease-in-out;
 }
 
 .recipe-tag:hover {
@@ -197,6 +198,13 @@ p {
   background-color: #af83d8;
   color: #fff;
   user-select: none;
+  margin: 3px;
+  font-weight: 600;
+  letter-spacing: -0.25px;
+  border-radius: 100px;
+  margin-bottom: 10px;
+  padding: 4px 16px;
+  transition: background-color 120m ease-in-out;
 }
 
 /* --------Modal--------- */
