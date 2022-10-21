@@ -90,9 +90,14 @@ function buildRecipeCard(recipe, recipeCard, tags) {
 
   recipeCard.onclick = (event) => {
     if (event.target.className === 'recipe-favorite-icon') {
-      alert(
-        `RECIPE ID - ${event.target.parentNode.parentNode.dataset.recipeId}` // placeholder function for the add & remove recipes to cookbook
-      );
+      console.log(event.target.src)
+
+      if (event.target.src === 'http://localhost:8080/star.png') {
+        event.target.src = 'star-yellow.png';
+      }
+      else if (event.target.src === 'http://localhost:8080/star-yellow.png') {
+        event.target.src = 'star.png';
+      }
     } else if (event.target.className === 'recipe-section-tag') {
       alert(
         `TAG - ${event.target.innerText}` // placeholder function in case we end up adding event handling for the recipe cars' tags

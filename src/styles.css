@@ -228,8 +228,8 @@ main {
   padding: 20px;
   border: 8px solid #c98474;
   border-style: double;
-  height: 50%;
-  width: 20%;
+  height: 70%;
+  width: 30%;
   overflow-y: scroll;
 }
 
