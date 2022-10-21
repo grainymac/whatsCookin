@@ -55,12 +55,13 @@ function updateAllRecipeDisplay(recipesToDisplay) {
 
     recipeCard.onclick = (event) => {
       if (event.target.className === 'recipe-favorite-icon') {
-        console.log(
-          'PLACEHOLDER',
-          event.target.parentNode.parentNode.dataset.recipeId
+        alert(
+          `RECIPE ID - ${event.target.parentNode.parentNode.dataset.recipeId}` // placeholder function for the add & remove recipes to cookbook
         );
       } else if (event.target.className === 'recipe-section-tag') {
-        console.log('PLACEHOLDER', event.target.innerText);
+        alert(
+          `TAG - ${event.target.innerText}` // placeholder function in case we end up adding event handling for the recipe cars' tags
+        );
       } else {
         buildModal(recipe);
       }
