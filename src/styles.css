@@ -10,6 +10,16 @@ main {
   justify-content: space-between;
 }
 
+p {
+  margin: 3px;
+  font-weight: 600;
+  letter-spacing: -0.25px;
+  border-radius: 100px;
+  margin-bottom: 10px;
+  padding: 4px 16px;
+  transition: background-color 120m ease-in-out;
+}
+
 .main-recipe-container {
   display: flex;
   align-items: center;
@@ -21,7 +31,7 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #81F5FF;
+  background-color: #81f5ff;
   border-radius: 16px;
   margin-bottom: 20px;
 }
@@ -43,7 +53,7 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #FFFFDD;
+  background: #ffffdd;
   box-shadow: 1px 3px 3px rgb(0 0 0 / 20%), -1px -1px 4px rgb(0 0 0 / 20%);
 }
 
@@ -53,8 +63,17 @@ main {
   flex-wrap: wrap;
 }
 
+.recipe-tag {
+  background-color: cornflowerblue;
+  color: #fff;
+}
+
 .recipe-tag:hover {
   cursor: pointer;
+  background-color: hotpink;
+}
+
+.recipe-tag-selected {
   background-color: hotpink;
 }
 
@@ -88,7 +107,7 @@ main {
 .user-tabs .tab {
   width: 100%;
   padding: 20px;
-  background: #A0FFE6;
+  background: #a0ffe6;
   border-radius: 0px 10px 10px 10px;
   order: 1;
   display: none;
@@ -99,7 +118,7 @@ main {
 }
 
 .user-tabs [type='radio']:checked + label {
-  background: #A0FFE6;
+  background: #a0ffe6;
 }
 
 .search-bar {
@@ -120,7 +139,7 @@ main {
   width: 1200px;
   min-height: 500px;
   border-radius: 16px;
-  background-color: #FFD5E5;
+  background-color: #ffd5e5;
 }
 
 .recipe-card {
@@ -134,9 +153,7 @@ main {
 }
 
 .recipe-card:hover {
-  box-shadow: 
-    2px 6px 6px rgba(0,0,0,0.2),
-    -1px -1px 7px rgba(0,0,0,0.2);
+  box-shadow: 2px 6px 6px rgba(0, 0, 0, 0.2), -1px -1px 7px rgba(0, 0, 0, 0.2);
 }
 
 .recipe-figure {
@@ -176,20 +193,10 @@ main {
   box-sizing: border-box;
 }
 
-.recipe-tag {
-  margin: 3px;
-  background-color: cornflowerblue;
+.recipe-section-tag {
+  background-color: #af83d8;
   color: #fff;
-  font-weight: 600;
-  letter-spacing: -0.25px;
-  border-radius: 100px;
-  margin-bottom: 10px;
-  padding: 4px 16px;
-  transition: background-color 120m ease-in-out;
-}
-
-.recipe-tag-selected {
-  background-color: hotpink;
+  user-select: none;
 }
 
 /* --------Modal--------- */
