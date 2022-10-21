@@ -6,9 +6,7 @@ class User {
     constructor(userData) {
         this.id = userData.id
         this.name = userData.name
-        this.favoriteRecipes = []
-        this.recipesToCook = []
-        this.recipes = RecipeRepository.allRecipes
+        this.favoriteRecipeRepo = new RecipeRepository()
     }
 
     addFavoriteRecipe = (recipe) => {
