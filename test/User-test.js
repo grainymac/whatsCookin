@@ -5,14 +5,15 @@ import User from '../src/classes/User.js'
 import RecipeRepository from '../src/classes/RecipeRepository';
 
 describe('User', () => {
-    let user, recipe, recipeRepo
+    let user, recipes, recipeRepo
 
     beforeEach(() => {
       user = new User({
         "name": "Saige O'Kon",
         "id": 1
       })
-      recipe = {
+
+      recipes = [{
         "id": 595736,
         "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
         "ingredients": [
@@ -129,8 +130,219 @@ describe('User', () => {
           "antipasto",
           "hor d'oeuvre"
         ]
-      }
-      recipeRepo = new RecipeRepository(recipe);
+      },
+      {
+        "id": 678353,
+        "image": "https://spoonacular.com/recipeImages/678353-556x370.jpg",
+        "ingredients": [
+          {
+            "id": 1009016,
+            "quantity": {
+              "amount": 1.5,
+              "unit": "cups"
+            }
+          },
+          {
+            "id": 9003,
+            "quantity": {
+              "amount": 2,
+              "unit": ""
+            }
+          },
+          {
+            "id": 20027,
+            "quantity": {
+              "amount": 1,
+              "unit": "tablespoon"
+            }
+          },
+          {
+            "id": 1002046,
+            "quantity": {
+              "amount": 1,
+              "unit": "tablespoon"
+            }
+          },
+          {
+            "id": 11215,
+            "quantity": {
+              "amount": 1,
+              "unit": "clove"
+            }
+          },
+          {
+            "id": 1012046,
+            "quantity": {
+              "amount": 1,
+              "unit": "tablespoon"
+            }
+          },
+          {
+            "id": 19911,
+            "quantity": {
+              "amount": 0.25,
+              "unit": "cup"
+            }
+          },
+          {
+            "id": 16112,
+            "quantity": {
+              "amount": 1,
+              "unit": "tablespoon"
+            }
+          },
+          {
+            "id": 10010062,
+            "quantity": {
+              "amount": 24,
+              "unit": "ounce"
+            }
+          },
+          {
+            "id": 1102047,
+            "quantity": {
+              "amount": 4,
+              "unit": "servings"
+            }
+          },
+          {
+            "id": 16124,
+            "quantity": {
+              "amount": 1,
+              "unit": "tablespoon"
+            }
+          },
+          {
+            "id": 1016168,
+            "quantity": {
+              "amount": 1,
+              "unit": "tablespoon"
+            }
+          }
+        ],
+        "instructions": [
+          {
+            "instruction": "Season the pork chops with salt and pepper and grill or pan fry over medium high heat until cooked, about 3-5 minutes per side. (If grilling, baste the chops in the maple dijon apple cider sauce as you grill.)Meanwhile, mix the remaining ingredients except the apple slices, bring to a simmer and cook until the sauce thickens, about 2-5 minutes.Grill or saute the apple slices until just tender but still crisp.Toss the pork chops and apple slices in the maple dijon apple cider sauce and enjoy!",
+            "number": 1
+          }
+        ],
+        "name": "Maple Dijon Apple Cider Grilled Pork Chops",
+        "tags": [
+          "lunch",
+          "main course",
+          "main dish",
+          "dinner"
+        ]
+      },
+      {
+        "id": 412309,
+        "image": "https://spoonacular.com/recipeImages/412309-556x370.jpeg",
+        "ingredients": [
+          {
+            "id": 1002030,
+            "quantity": {
+              "amount": 4,
+              "unit": "teaspoons"
+            }
+          },
+          {
+            "id": 19334,
+            "quantity": {
+              "amount": 8,
+              "unit": "tablespoons"
+            }
+          },
+          {
+            "id": 1001,
+            "quantity": {
+              "amount": 2,
+              "unit": "cups"
+            }
+          },
+          {
+            "id": 4582,
+            "quantity": {
+              "amount": 4,
+              "unit": "servings"
+            }
+          },
+          {
+            "id": 2031,
+            "quantity": {
+              "amount": 4,
+              "unit": "teaspoons"
+            }
+          },
+          {
+            "id": 5100,
+            "quantity": {
+              "amount": 1,
+              "unit": "pound"
+            }
+          },
+          {
+            "id": 2009,
+            "quantity": {
+              "amount": 4,
+              "unit": "teaspoons"
+            }
+          },
+          {
+            "id": 1022020,
+            "quantity": {
+              "amount": 4,
+              "unit": "teaspoons"
+            }
+          },
+          {
+            "id": 6168,
+            "quantity": {
+              "amount": 8,
+              "unit": "cups"
+            }
+          },
+          {
+            "id": 9176,
+            "quantity": {
+              "amount": 0.5,
+              "unit": "cup"
+            }
+          },
+          {
+            "id": 2026,
+            "quantity": {
+              "amount": 4,
+              "unit": "teaspoons"
+            }
+          },
+          {
+            "id": 1042047,
+            "quantity": {
+              "amount": 1.5,
+              "unit": "tablespoons"
+            }
+          },
+          {
+            "id": 1042047,
+            "quantity": {
+              "amount": 4,
+              "unit": "teaspoons"
+            }
+          }
+        ],
+        "instructions": [
+          {
+            "instruction": "Mix the hot sauce, butter, mango habanero sauce, brown sugar, chili powder, garlic powder, onion powder, black pepper, cayenne pepper and seasoning salt in a bowl. Stir vigorously until completely combined.",
+            "number": 1
+          }
+        ],
+        "name": "Dirty Steve's Original Wing Sauce",
+        "tags": [
+          "sauce"
+        ]
+      } ];
+
+      recipeRepo = new RecipeRepository(recipes);
       });
 
       it('should create a new instance of User', () => {
@@ -156,8 +368,8 @@ describe('User', () => {
       });
 
       it('should be able to add a favourite recipe', () => {
-        user.addFavoriteRecipe(recipe);
-        expect(user.favoriteRecipes).to.deep.equal([recipe]);
+        user.addFavoriteRecipe(recipes);
+        expect(user.favoriteRecipes).to.deep.equal([recipes]);
       });
 
       
@@ -166,16 +378,16 @@ describe('User', () => {
       });
       
       it('should add a recipe user wants to cook', () => {
-        user.addRecipesToCook(recipe);
-        expect(user.recipesToCook).to.deep.equal([recipe]);
+        user.addRecipesToCook(recipes);
+        expect(user.recipesToCook).to.deep.equal([recipes]);
       });
   
-      it.skip('Should have a method that filters by tag and stores the filtered recipes in a property', () => {
+      it('Should have a method that filters by tag and stores the filtered recipes in a property', () => {
         recipeRepo.filterByTag('antipasti');
         expect(recipeRepo.filterByTag('antipasti')).to.deep.equal([recipeRepo.allRecipes[0]]);
       })
 
-      it.skip('Should have a method that searches by name and stores the filtered recipes in a property', () => {
+      it('Should have a method that searches by name and stores the filtered recipes in a property', () => {
         recipeRepo.searchByName('Loaded Chocolate Chip Pudding Cookie Cups');
         expect(recipeRepo.searchByName('Loaded Chocolate Chip Pudding Cookie Cups')).to.deep.equal([recipeRepo.allRecipes[0]]);
         

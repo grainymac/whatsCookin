@@ -7,7 +7,6 @@ class RecipeRepository {
   }
 
   makeRecipeInstances() {
-    console.log(this.recipesData)//this.recipesData is an object so a map isn't going to work
     return this.recipesData.map((currentRecipe) => {
       return new Recipe(currentRecipe)
     })
