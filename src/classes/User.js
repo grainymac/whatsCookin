@@ -1,5 +1,5 @@
 import Recipe from './Recipe';
-import RecipeRepository from './Recipe';
+import RecipeRepository from './RecipeRepository';
 
 
 class User {
