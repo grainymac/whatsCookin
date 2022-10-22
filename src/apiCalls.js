@@ -1,7 +1,6 @@
 let fetchData = (url) => {
     return fetch(url)
     .then(response => {
-        console.log(response)
         if (!response.ok) {
             throw new Error(`status ${response.status} at endpoint ${response.url}`)
         }

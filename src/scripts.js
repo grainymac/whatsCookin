@@ -4,16 +4,32 @@ import { apiCalls } from './apiCalls';
 import './images/turing-logo.png';
 import Recipe from './classes/Recipe';
 import RecipeRepository from './classes/RecipeRepository';
-import recipeData from './data/recipes';
+// import recipeData from './data/recipes';
 import User from './classes/User';
-import usersData from './data/users';
+// import usersData from './data/users';
+
 
 // ------------------- GLOBAL VARIABLES
-const recipeRepo = RecipeRepository.fromRecipeData(recipeData);
+let allUserData
+let allIngredientsData
+let recipeData
+let recipeRepo = RecipeRepository.fromRecipeData(recipeData);
 const user = changeUser(usersData)
 let tag;
 let tagList = [];
 
+
+// --------------------------------------------- FETCH
+Promise.all([apiCalls.getUserData(), apiCalls.getIngredientsData(), apiCalls.getRecipeData()])
+  .then((data) => {
+    allUserData = data[0].usersData
+    allIngredientsData = data[1].ingredientsData
+    recipeData = data[2].recipeData
+
+    updateRecipeDisplay(recipeData)
+  })
+
+  console.log(recipeData)
 // --------------------QUERY SELECTORS
 const modal = document.querySelector('#modal');
 const close = document.querySelector('#close');
@@ -57,8 +73,7 @@ cookbookTab.onchange = () => {
   updateTags(user.favoriteRecipeRepo.allRecipes)
 }
 
-// --------------------------------------------- FETCH
-Promise.all
+
 // --------------------------------------------- FUNCTIONS
 
 // ----- Recipe Display -----
