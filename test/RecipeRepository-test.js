@@ -405,8 +405,15 @@ describe('RecipeRepository', () => {
     ]);
   });
 
-  it.only('Should have a method that adds a recipe to the recipe list', () => {
+  it('Should have a method that adds a recipe to the recipe list', () => {
     newRecipeRepo.addRecipe(recipe);
     expect(newRecipeRepo.allRecipes[3]).to.deep.equal(recipe);
+  });
+
+  it('Should have a method that adds removes a recipe from the recipe list', () => {
+    newRecipeRepo.addRecipe(recipe);
+    newRecipeRepo.removeRecipe(newRecipeRepo.allRecipes[0]);
+
+    expect(newRecipeRepo.allRecipes[2]).to.deep.equal(recipe);
   });
 });
