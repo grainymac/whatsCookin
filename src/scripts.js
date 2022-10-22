@@ -1,5 +1,5 @@
 import './styles.css';
-import apiCalls from './apiCalls';
+import { apiCalls } from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png';
 import Recipe from './classes/Recipe';
@@ -58,7 +58,7 @@ cookbookTab.onchange = () => {
 }
 
 // --------------------------------------------- FETCH
-
+Promise.all
 // --------------------------------------------- FUNCTIONS
 
 // ----- Recipe Display -----
