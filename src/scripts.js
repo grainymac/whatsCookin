@@ -10,8 +10,7 @@ import usersData from './data/users';
 
 // ------------------- GLOBAL VARIABLES
 const recipeRepo = RecipeRepository.fromRecipeData(recipeData);
-const userData = usersData[Math.floor(Math.random() * usersData.length)]
-const user = User.updateUserGreeting(userData);
+const user = changeUser(usersData)
 let tag;
 let tagList = [];
 
@@ -188,4 +187,10 @@ function changeSearchButton() {
     searchAllRecipesButton.innerText = 'Search';
     allRecipesSearchBar.value = '';
   }
+}
+
+function changeUser(usersData) {
+  const userData = usersData[Math.floor(Math.random() * usersData.length)]
+  document.querySelector('.user-greeting').innerText = `Hello, ${userData.name}!`
+  return new User(userData);
 }
