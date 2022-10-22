@@ -45,6 +45,16 @@ searchAllRecipesButton.addEventListener('click', function () {
   searchRecipesByName(allRecipesSearchBar.value);
 });
 
+allRecipesTab.onchange = () => {
+  updateRecipeDisplay(recipeRepo.allRecipes)
+  displayAllTags()
+}
+
+cookbookTab.onchange = () => {
+  updateRecipeDisplay(user.favoriteRecipeRepo.allRecipes)
+  displayAllTags()
+}
+
 // --------------------------------------------- FETCH
 
 // --------------------------------------------- FUNCTIONS
@@ -61,7 +71,15 @@ function updateRecipeDisplay(recipesToDisplay) {
 }
 
 function displayAllTags() {
-  const allTags = recipeRepo.retrieveAllTags();
+  let allTags;
+
+  if (allRecipesTab.checked) {
+    allTags = recipeRepo.retrieveAllTags();
+  }
+  else if (!allRecipesTab.checked) {
+    allTags = user.favoriteRecipeRepo.retrieveAllTags();
+  }
+
   allTags.forEach((tag) => {
     const tagElement = document.createElement('p');
     tagElement.classList.add('recipe-tag');
