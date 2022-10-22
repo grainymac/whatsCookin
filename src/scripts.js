@@ -169,6 +169,16 @@ function tagsToggleFilter(event) {
   }
 }
 
+function checkRecipeWindow(isAllRecipes) {
+  if (isAllRecipes) {
+    filterAllRecipeTags()
+  }
+  else {
+    filterFavoriteRecipeTags()
+  }
+}
+
+
 function searchRecipesByName(search) {
   if (searchAllRecipesButton.innerText === 'Search') {
     const nameFilteredRecipes = recipeRepo.searchByName(search);
