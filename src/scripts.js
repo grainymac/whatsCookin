@@ -11,7 +11,7 @@ import usersData from './data/users';
 // ------------------- GLOBAL VARIABLES
 const recipeRepo = RecipeRepository.fromRecipeData(recipeData);
 const userData = usersData[Math.floor(Math.random() * usersData.length)]
-const user = new User(userData)
+const user = User.updateUserGreeting(userData);
 let tag;
 let tagList = [];
 
