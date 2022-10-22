@@ -166,6 +166,7 @@ function buildTags(recipe) {
 }
 
 function displayAllTags() {
+  tagsContainer.innerHTML = ''
   let allTags;
 
   if (allRecipesTab.checked) {
