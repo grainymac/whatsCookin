@@ -13,20 +13,18 @@ const recipeRepo = RecipeRepository.fromRecipeData(recipeData);
 const user = changeUser(usersData)
 let tag;
 let tagList = [];
-let allRecipesView = true
-let favoriteRecipesView = false
 
 // --------------------QUERY SELECTORS
 const modal = document.querySelector('#modal');
 const close = document.querySelector('#close');
 const recipeSection = document.querySelector('#recipeSection');
 const tagsContainer = document.querySelector('#tagsContainer');
-const searchAllRecipesButton = document.querySelector(
-  '#searchAllRecipesButton'
-);
+const searchAllRecipesButton = document.querySelector('#searchAllRecipesButton');
 const searchCookbookButton = document.querySelector('#searchCookbookButton');
 const allRecipesSearchBar = document.querySelector('#allRecipeSearch');
 const cookbookSearchBar = document.querySelector('#cookbookSearch');
+const allRecipesTab = document.getElementById('tabAllRecipes')
+const cookbookTab = document.getElementById('tabCookbook')
 
 // --------------------EVENT LISTENERS
 close.onclick = () => {
@@ -137,6 +135,7 @@ function buildModal(recipe) {
 }
 
 // ----- Tags functions -----
+
 function buildTags(recipe) {
   return recipe.tags
     .map((tag) => {
@@ -154,10 +153,10 @@ function tagsToggleFilter(event) {
 }
 
 function removeTagFilter(event) {
-  if (allRecipesView) {
+  if (allRecipesTab.checked) {
     updateRecipeDisplay(recipeRepo.allRecipes);
   }
-  else if (favoriteRecipesView) {
+  else if (!allRecipesTab.checked) {
     updateRecipeDisplay(user.favoriteRecipeRepo.allRecipes);
   }
 
@@ -176,11 +175,11 @@ function addTagFilter(event) {
 
   let userTag = getTag(event);
 
-  if (allRecipesView) {
+  if (allRecipesTab.checked) {
     const filteredRecipes = recipeRepo.filterByTag(userTag);
     updateRecipeDisplay(filteredRecipes);
   }
-  else if (favoriteRecipesView) {
+  else if (!allRecipesTab.checked) {
     const filteredRecipes = user.favoriteRecipeRepo.filterByTag(userTag);
     updateRecipeDisplay(filteredRecipes);
   }
