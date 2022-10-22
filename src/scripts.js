@@ -113,13 +113,11 @@ function buildRecipeCard(recipe, recipeCard, tags) {
 }
 
 function addRecipeToCookbook(recipeId) {
-  console.log(recipeRepo.allRecipes[0].id)
-  console.log(recipeId)
   const foundRecipe = recipeRepo.allRecipes.find((recipe) => {
-    return recipe.id === recipeId
+    return recipe.id.toString() === recipeId
   })
   user.addFavoriteRecipe(foundRecipe)
-  console.log(user.addFavoriteRecipeRepo)
+  console.log(user.favoriteRecipeRepo)
 }
 
 
