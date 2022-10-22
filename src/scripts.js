@@ -70,6 +70,16 @@ function updateRecipeDisplay(recipesToDisplay) {
   });
 }
 
+function flagFavoritedRecipes(recipe) {
+  const isRecipeFavorited = user.favoriteRecipeRepo.allRecipes.includes(recipe)
+  if (isRecipeFavorited) {
+    return 'star-yellow.png'
+  }
+  else {
+    return 'star.png'
+  }
+}
+
 function buildRecipeCard(recipe, recipeCard, tags) {
   recipeCard.classList.add('recipe-card');
   recipeCard.dataset.recipeId = `${recipe.id}`;
@@ -81,7 +91,7 @@ function buildRecipeCard(recipe, recipeCard, tags) {
     </figure>
     <section class="recipe-details-container">
       <h1 class="recipe-title">${recipe.name}</h1>
-      <img class="recipe-favorite-icon" id="${recipe.id}" src="star.png" alt="star icon"/>
+      <img class="recipe-favorite-icon" id="${recipe.id}" src="${flagFavoritedRecipes(recipe)}" alt="star icon"/>
     </section>
     <div class="recipe-tags-container">
       ${tags.toString()}
@@ -122,7 +132,6 @@ function removeRecipeFromCookbook(recipeId) {
   })
   user.removeFavoriteRecipe(foundRecipe)
 }
-
 
 function buildModal(recipe) {
   modal.style.display = 'block';
