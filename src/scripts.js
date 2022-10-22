@@ -46,13 +46,11 @@ searchAllRecipesButton.addEventListener('click', function () {
 });
 
 allRecipesTab.onchange = () => {
-  updateRecipeDisplay(recipeRepo.allRecipes)
-  displayAllTags()
+  updateTags(recipeRepo.allRecipes)
 }
 
 cookbookTab.onchange = () => {
-  updateRecipeDisplay(user.favoriteRecipeRepo.allRecipes)
-  displayAllTags()
+  updateTags(user.favoriteRecipeRepo.allRecipes)
 }
 
 // --------------------------------------------- FETCH
@@ -174,12 +172,11 @@ function removeTagFilter(event) {
   if (allRecipesTab.checked) {
     updateRecipeDisplay(recipeRepo.allRecipes);
   }
-  else if (!allRecipesTab.checked) {
+  else if (cookbookTab.checked) {
     updateRecipeDisplay(user.favoriteRecipeRepo.allRecipes);
   }
 
-  event.target.classList.remove('recipe-tag-selected');
-  tag = '';
+  deselectTag()
 }
 
 function addTagFilter(event) {
@@ -197,7 +194,7 @@ function addTagFilter(event) {
     const filteredRecipes = recipeRepo.filterByTag(userTag);
     updateRecipeDisplay(filteredRecipes);
   }
-  else if (!allRecipesTab.checked) {
+  else if (cookbookTab.checked) {
     const filteredRecipes = user.favoriteRecipeRepo.filterByTag(userTag);
     updateRecipeDisplay(filteredRecipes);
   }
@@ -235,4 +232,17 @@ function changeUser(usersData) {
   const userData = usersData[Math.floor(Math.random() * usersData.length)]
   document.querySelector('.user-greeting').innerText = `Hello, ${userData.name}!`
   return new User(userData);
+}
+
+function updateTags(repo) {
+  updateRecipeDisplay(repo)
+  displayAllTags()
+  deselectTag()
+}
+
+function deselectTag() {
+  if (document.querySelector('.recipe-tag-selected')) {
+    document.querySelector('.recipe-tag-selected').classList.remove('recipe-tag-selected')
+  }
+  tag = ''
 }
