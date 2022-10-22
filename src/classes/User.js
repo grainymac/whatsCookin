@@ -9,6 +9,11 @@ class User {
         this.favoriteRecipeRepo = new RecipeRepository()
     }
 
+    static updateUserGreeting(userData) {
+        document.querySelector('.user-greeting').innerText = `Hello, ${userData.name}!`
+        return new User(userData)
+    }
+
     addFavoriteRecipe = (recipe) => {
         return this.favoriteRecipeRepo.addRecipe(recipe)
     }
