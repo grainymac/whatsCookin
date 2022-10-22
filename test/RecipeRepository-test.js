@@ -3,10 +3,10 @@ import RecipeRepository from '../src/classes/RecipeRepository';
 import Recipe from '../src/classes/Recipe';
 
 describe('RecipeRepository', () => {
-  let recipes, newRecipeRepo;
+  let recipeData, newRecipeRepo;
 
   beforeEach(() => {
-    recipes = [{
+    recipeData = [{
       "id": 595736,
       "image": "https://spoonacular.com/recipeImages/595736-556x370.jpg",
       "ingredients": [
@@ -334,14 +334,14 @@ describe('RecipeRepository', () => {
         "sauce"
       ]
     } ];
-    newRecipeRepo = new RecipeRepository(recipes);
+    newRecipeRepo = RecipeRepository.fromRecipeData(recipeData)
   })
 
-  it.skip('Should be a function', () => {
+  it('Should be a function', () => {
     expect(RecipeRepository).to.be.a('function');
   });
 
-  it('Should have a method that replaces a recipes object with a recipe class instance', () => {
+  it('Should have a method that replaces a recipe data object with a recipe class instance', () => {
     expect(newRecipeRepo.allRecipes[0]).to.be.an.instanceOf(Recipe);
   })
 
