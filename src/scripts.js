@@ -57,6 +57,8 @@ cookbookTab.onchange = () => {
 
 // --------------------------------------------- FUNCTIONS
 
+// ----- Recipe Display -----
+
 function updateRecipeDisplay(recipesToDisplay) {
   recipeSection.innerHTML = '';
   recipesToDisplay.forEach((recipe) => {
@@ -65,28 +67,6 @@ function updateRecipeDisplay(recipesToDisplay) {
 
     buildRecipeCard(recipe, recipeCard, tagsHTML);
     recipeSection.appendChild(recipeCard);
-  });
-}
-
-function displayAllTags() {
-  let allTags;
-
-  if (allRecipesTab.checked) {
-    allTags = recipeRepo.retrieveAllTags();
-  }
-  else if (!allRecipesTab.checked) {
-    allTags = user.favoriteRecipeRepo.retrieveAllTags();
-  }
-
-  allTags.forEach((tag) => {
-    const tagElement = document.createElement('p');
-    tagElement.classList.add('recipe-tag');
-    tagElement.innerText = tag;
-
-    tagElement.onclick = tagsToggleFilter;
-
-    tagsContainer.appendChild(tagElement);
-    tagList.push(tagElement);
   });
 }
 
@@ -150,7 +130,7 @@ function buildModal(recipe) {
   ).innerText = `$${recipe.totalCost()}`;
 }
 
-// ----- Tags functions -----
+// ----- Tags -----
 
 function buildTags(recipe) {
   return recipe.tags
@@ -160,26 +140,37 @@ function buildTags(recipe) {
     .join(' ');
 }
 
+function displayAllTags() {
+  let allTags;
+
+  if (allRecipesTab.checked) {
+    allTags = recipeRepo.retrieveAllTags();
+  }
+  else if (!allRecipesTab.checked) {
+    allTags = user.favoriteRecipeRepo.retrieveAllTags();
+  }
+
+  allTags.forEach((tag) => {
+    const tagElement = document.createElement('p');
+    tagElement.classList.add('recipe-tag');
+    tagElement.innerText = tag;
+
+    tagElement.onclick = tagsToggleFilter;
+
+    tagsContainer.appendChild(tagElement);
+    tagList.push(tagElement);
+  });
+}
+
 function tagsToggleFilter(event) {
   if (tag === event.target.innerText) {
-    removeTagFilter(event)
+    removeTag(event)
   } else {
-    addTagFilter(event)
+    addTag(event)
   }
 }
 
-function removeTagFilter(event) {
-  if (allRecipesTab.checked) {
-    updateRecipeDisplay(recipeRepo.allRecipes);
-  }
-  else if (cookbookTab.checked) {
-    updateRecipeDisplay(user.favoriteRecipeRepo.allRecipes);
-  }
-
-  deselectTag()
-}
-
-function addTagFilter(event) {
+function addTag(event) {
   const filterSelectedTags = tagList.filter((tag) =>
     tag.classList.contains('recipe-tag-selected')
   );
@@ -200,6 +191,17 @@ function addTagFilter(event) {
   }
 }
 
+function removeTag() {
+  deselectTag()
+
+  if (allRecipesTab.checked) {
+    updateRecipeDisplay(recipeRepo.allRecipes);
+  }
+  else if (cookbookTab.checked) {
+    updateRecipeDisplay(user.favoriteRecipeRepo.allRecipes);
+  }
+}
+
 function getTag(event) {
   if (event.target.className === 'recipe-tag') {
     tag = event.target.innerText;
@@ -207,6 +209,21 @@ function getTag(event) {
     return tag;
   }
 }
+
+function updateTags(repo) {
+  updateRecipeDisplay(repo)
+  displayAllTags()
+  deselectTag()
+}
+
+function deselectTag() {
+  if (document.querySelector('.recipe-tag-selected')) {
+    document.querySelector('.recipe-tag-selected').classList.remove('recipe-tag-selected')
+  }
+  tag = ''
+}
+
+// ----- Searching -----
 
 function searchRecipesByName(search) {
   if (searchAllRecipesButton.innerText === 'Search') {
@@ -228,21 +245,10 @@ function changeSearchButton() {
   }
 }
 
+// ----- Users -----
+
 function changeUser(usersData) {
   const userData = usersData[Math.floor(Math.random() * usersData.length)]
   document.querySelector('.user-greeting').innerText = `Hello, ${userData.name}!`
   return new User(userData);
-}
-
-function updateTags(repo) {
-  updateRecipeDisplay(repo)
-  displayAllTags()
-  deselectTag()
-}
-
-function deselectTag() {
-  if (document.querySelector('.recipe-tag-selected')) {
-    document.querySelector('.recipe-tag-selected').classList.remove('recipe-tag-selected')
-  }
-  tag = ''
 }
