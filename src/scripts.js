@@ -13,7 +13,8 @@ const recipeRepo = RecipeRepository.fromRecipeData(recipeData);
 const user = changeUser(usersData)
 let tag;
 let tagList = [];
-let isAllRecipesView = true /* True if viewing all recipes, false if viewing favorited recipes */
+let allRecipesView = true
+let favoriteRecipesView = false
 
 // --------------------QUERY SELECTORS
 const modal = document.querySelector('#modal');
@@ -37,7 +38,7 @@ window.onclick = (event) => {
   }
 };
 window.addEventListener('load', function () {
-  updateAllRecipeDisplay(recipeRepo.allRecipes);
+  updateRecipeDisplay(recipeRepo.allRecipes);
 });
 
 window.addEventListener('load', displayAllTags);
@@ -50,7 +51,7 @@ searchAllRecipesButton.addEventListener('click', function () {
 
 // --------------------------------------------- FUNCTIONS
 
-function updateAllRecipeDisplay(recipesToDisplay) {
+function updateRecipeDisplay(recipesToDisplay) {
   recipeSection.innerHTML = '';
   recipesToDisplay.forEach((recipe) => {
     const tagsHTML = buildTags(recipe);
@@ -135,6 +136,7 @@ function buildModal(recipe) {
   ).innerText = `$${recipe.totalCost()}`;
 }
 
+// ----- Tags functions -----
 function buildTags(recipe) {
   return recipe.tags
     .map((tag) => {
@@ -151,16 +153,14 @@ function tagsToggleFilter(event) {
   }
 }
 
-function getTag(event) {
-  if (event.target.className === 'recipe-tag') {
-    tag = event.target.innerText;
-    event.target.classList.add('recipe-tag-selected');
-    return tag;
-  }
-}
-
 function removeTagFilter(event) {
-  updateAllRecipeDisplay(recipeRepo.allRecipes);
+  if (allRecipesView) {
+    updateRecipeDisplay(recipeRepo.allRecipes);
+  }
+  else if (favoriteRecipesView) {
+    updateRecipeDisplay(user.favoriteRecipeRepo.allRecipes);
+  }
+
   event.target.classList.remove('recipe-tag-selected');
   tag = '';
 }
@@ -169,22 +169,38 @@ function addTagFilter(event) {
   const filterSelectedTags = tagList.filter((tag) =>
     tag.classList.contains('recipe-tag-selected')
   );
+
   filterSelectedTags.forEach((tag) =>
     tag.classList.remove('recipe-tag-selected')
   );
 
   let userTag = getTag(event);
-  const filteredRecipes = recipeRepo.filterByTag(userTag);
-  updateAllRecipeDisplay(filteredRecipes);
+
+  if (allRecipesView) {
+    const filteredRecipes = recipeRepo.filterByTag(userTag);
+    updateRecipeDisplay(filteredRecipes);
+  }
+  else if (favoriteRecipesView) {
+    const filteredRecipes = user.favoriteRecipeRepo.filterByTag(userTag);
+    updateRecipeDisplay(filteredRecipes);
+  }
+}
+
+function getTag(event) {
+  if (event.target.className === 'recipe-tag') {
+    tag = event.target.innerText;
+    event.target.classList.add('recipe-tag-selected');
+    return tag;
+  }
 }
 
 function searchRecipesByName(search) {
   if (searchAllRecipesButton.innerText === 'Search') {
     const nameFilteredRecipes = recipeRepo.searchByName(search);
-    updateAllRecipeDisplay(nameFilteredRecipes);
+    updateRecipeDisplay(nameFilteredRecipes);
     changeSearchButton();
   } else {
-    updateAllRecipeDisplay(recipeRepo.allRecipes);
+    updateRecipeDisplay(recipeRepo.allRecipes);
     changeSearchButton();
   }
 }
