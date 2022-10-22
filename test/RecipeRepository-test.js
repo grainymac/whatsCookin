@@ -3,7 +3,7 @@ import RecipeRepository from '../src/classes/RecipeRepository';
 import Recipe from '../src/classes/Recipe';
 
 describe('RecipeRepository', () => {
-  let recipeData, newRecipeRepo;
+  let recipeData, newRecipeRepo, recipe;
 
   beforeEach(() => {
     recipeData = [
@@ -337,13 +337,42 @@ describe('RecipeRepository', () => {
       },
     ];
     newRecipeRepo = RecipeRepository.fromRecipeData(recipeData);
+    recipe = new Recipe({
+      id: 231951,
+      image: 'https://spoonacular.com/recipeImages/231951-556x370.jpg',
+      ingredients: [
+        {
+          id: 20027,
+          quantity: {
+            amount: 2,
+            unit: 'tablespoons',
+          },
+        },
+        {
+          id: 10019334,
+          quantity: {
+            amount: 0.5,
+            unit: 'cup',
+          },
+        },
+      ],
+      instructions: [
+        {
+          instruction:
+            'Whisk together brown sugar, cornstarch, and 1/4 teaspoon salt in a heavy medium saucepan, then whisk in milk and cream. Bring to a boil over medium heat, whisking frequently, then boil, whisking, 1 minute.',
+          number: 1,
+        },
+      ],
+      name: 'Butterscotch Pudding',
+      tags: ['side dish'],
+    });
   });
 
   it('Should be a function', () => {
     expect(RecipeRepository).to.be.a('function');
   });
 
-  it('Should have a static method method that uses recipe object data to create an instance of Recipe Repoistory with a list of recipes as a property.', () => {
+  it('Should have a static method that uses recipes data to create an instance of Recipe Repoistory with a list of recipes.', () => {
     expect(newRecipeRepo.allRecipes[0]).to.be.an.instanceOf(Recipe);
   });
 
@@ -374,5 +403,10 @@ describe('RecipeRepository', () => {
       'dinner',
       'sauce',
     ]);
+  });
+
+  it.only('Should have a method that adds a recipe to the recipe list', () => {
+    newRecipeRepo.addRecipe(recipe);
+    expect(newRecipeRepo.allRecipes[3]).to.deep.equal(recipe);
   });
 });
