@@ -101,6 +101,7 @@ function buildRecipeCard(recipe, recipeCard, tags) {
       }
       else if (event.target.src === 'http://localhost:8080/star-yellow.png') {
         event.target.src = 'star.png';
+        removeRecipeFromCookbook(event.target.parentNode.parentNode.dataset.recipeId)
       }
     } else if (event.target.className === 'recipe-section-tag') {
       alert(
@@ -120,6 +121,12 @@ function addRecipeToCookbook(recipeId) {
   console.log(user.favoriteRecipeRepo)
 }
 
+function removeRecipeFromCookbook(recipeId) {
+  const foundRecipe = user.favoriteRecipeRepo.allRecipes.find((recipe) => {
+    return recipe.id.toString() === recipeId;
+  })
+  user.removeFavoriteRecipe(foundRecipe)
+}
 
 
 function buildModal(recipe) {
