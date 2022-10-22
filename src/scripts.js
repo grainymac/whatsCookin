@@ -5,6 +5,7 @@ import './images/turing-logo.png';
 import Recipe from './classes/Recipe';
 import RecipeRepository from './classes/RecipeRepository';
 import recipeData from './data/recipes';
+
 // ------------------- GLOBAL VARIABLES
 const recipeRepo = new RecipeRepository(recipeData);
 let tag;
@@ -81,7 +82,7 @@ function buildRecipeCard(recipe, recipeCard, tags) {
     </figure>
     <section class="recipe-details-container">
       <h1 class="recipe-title">${recipe.name}</h1>
-      <img class="recipe-favorite-icon" src="star.png" alt="star icon"/>
+      <img class="recipe-favorite-icon" id="${recipe.id}" src="star.png" alt="star icon"/>
     </section>
     <div class="recipe-tags-container">
       ${tags.toString()}
@@ -90,10 +91,9 @@ function buildRecipeCard(recipe, recipeCard, tags) {
 
   recipeCard.onclick = (event) => {
     if (event.target.className === 'recipe-favorite-icon') {
-      console.log(event.target.src)
-
       if (event.target.src === 'http://localhost:8080/star.png') {
         event.target.src = 'star-yellow.png';
+        addRecipeToCookbook(event.target.parentNode.parentNode.dataset.recipeId);
       }
       else if (event.target.src === 'http://localhost:8080/star-yellow.png') {
         event.target.src = 'star.png';
@@ -107,6 +107,18 @@ function buildRecipeCard(recipe, recipeCard, tags) {
     }
   };
 }
+
+function addRecipeToCookbook(recipeId) {
+  console.log(recipeRepo.allRecipes[0].id)
+  console.log(recipeId)
+  const foundRecipe = recipeRepo.allRecipes.find((recipe) => {
+    return recipe.id === recipeId
+  })
+  user.addFavoriteRecipe(foundRecipe)
+  console.log(user.addFavoriteRecipeRepo)
+}
+
+
 
 function buildModal(recipe) {
   modal.style.display = 'block';
