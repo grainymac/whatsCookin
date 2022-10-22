@@ -13,6 +13,7 @@ const recipeRepo = RecipeRepository.fromRecipeData(recipeData);
 const user = changeUser(usersData)
 let tag;
 let tagList = [];
+let isAllRecipesView = true /* True if viewing all recipes, false if viewing favorited recipes */
 
 // --------------------QUERY SELECTORS
 const modal = document.querySelector('#modal');
@@ -144,40 +145,38 @@ function buildTags(recipe) {
 
 function tagsToggleFilter(event) {
   if (tag === event.target.innerText) {
-    updateAllRecipeDisplay(recipeRepo.allRecipes);
-    event.target.classList.remove('recipe-tag-selected');
-    tag = '';
+    removeTagFilter(event)
   } else {
-    const filterSelectedTags = tagList.filter((tag) =>
-      tag.classList.contains('recipe-tag-selected')
-    );
-    filterSelectedTags.forEach((tag) =>
-      tag.classList.remove('recipe-tag-selected')
-    );
-
-    let userTag = getTag(event);
-    const filteredRecipes = recipeRepo.filterByTag(userTag);
-    updateAllRecipeDisplay(filteredRecipes);
-  }
-
-  function getTag(event) {
-    if (event.target.className === 'recipe-tag') {
-      tag = event.target.innerText;
-      event.target.classList.add('recipe-tag-selected');
-      return tag;
-    }
+    addTagFilter(event)
   }
 }
 
-function checkRecipeWindow(isAllRecipes) {
-  if (isAllRecipes) {
-    filterAllRecipeTags()
-  }
-  else {
-    filterFavoriteRecipeTags()
+function getTag(event) {
+  if (event.target.className === 'recipe-tag') {
+    tag = event.target.innerText;
+    event.target.classList.add('recipe-tag-selected');
+    return tag;
   }
 }
 
+function removeTagFilter(event) {
+  updateAllRecipeDisplay(recipeRepo.allRecipes);
+  event.target.classList.remove('recipe-tag-selected');
+  tag = '';
+}
+
+function addTagFilter(event) {
+  const filterSelectedTags = tagList.filter((tag) =>
+    tag.classList.contains('recipe-tag-selected')
+  );
+  filterSelectedTags.forEach((tag) =>
+    tag.classList.remove('recipe-tag-selected')
+  );
+
+  let userTag = getTag(event);
+  const filteredRecipes = recipeRepo.filterByTag(userTag);
+  updateAllRecipeDisplay(filteredRecipes);
+}
 
 function searchRecipesByName(search) {
   if (searchAllRecipesButton.innerText === 'Search') {
