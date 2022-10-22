@@ -45,6 +45,10 @@ searchAllRecipesButton.addEventListener('click', function () {
   searchRecipesByName(allRecipesSearchBar.value);
 });
 
+searchCookbookButton.addEventListener('click', function () {
+  searchRecipesByName(cookbookSearchBar.value);
+})
+
 allRecipesTab.onchange = () => {
   updateTags(recipeRepo.allRecipes)
 }
@@ -252,23 +256,16 @@ function deselectTag() {
 // ----- Searching -----
 
 function searchRecipesByName(search) {
-  if (searchAllRecipesButton.innerText === 'Search') {
-    const nameFilteredRecipes = recipeRepo.searchByName(search);
+  const nameFilteredRecipes = recipeRepo.searchByName(search);
+  if (nameFilteredRecipes.length > 0) {
     updateRecipeDisplay(nameFilteredRecipes);
-    changeSearchButton();
-  } else {
-    updateRecipeDisplay(recipeRepo.allRecipes);
     changeSearchButton();
   }
 }
 
 function changeSearchButton() {
-  if (searchAllRecipesButton.innerText === 'Search') {
-    searchAllRecipesButton.innerText = 'Clear';
-  } else {
-    searchAllRecipesButton.innerText = 'Search';
-    allRecipesSearchBar.value = '';
-  }
+  cookbookSearchBar.value = '';
+  allRecipesSearchBar.value = '';
 }
 
 // ----- Users -----
