@@ -70,7 +70,16 @@ window.onclick = (event) => {
 
 clearAllRecipeSearchButton.addEventListener('click', function () {updateRecipeDisplay(store.recipeRepo.allRecipes)})
 
+clearAllRecipeSearchButton.addEventListener('click', function () {
+  clearSearchBar(allRecipesSearchBar)})
+
 clearCookbookSearchButton.addEventListener('click', function () {updateRecipeDisplay(store.user.favoriteRecipeRepo.allRecipes)})
+
+clearCookbookSearchButton.addEventListener('click', function () {
+  clearSearchBar(cookbookSearchBar)})
+
+
+
 
 const defineEventListeners = () => {
   searchAllRecipesButton.addEventListener('click', function () {
@@ -310,10 +319,13 @@ function searchRecipesByName(search) {
 }
 
 function changeSearchButton(clearButton, searchButton) {
-  cookbookSearchBar.value = '';
-  allRecipesSearchBar.value = '';
   show(clearButton)
   hide(searchButton)
+}
+
+function clearSearchBar() {
+  cookbookSearchBar.value = '';
+  allRecipesSearchBar.value = '';
 }
 
 // ----- Users -----
