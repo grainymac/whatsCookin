@@ -96,6 +96,10 @@ const defineEventListeners = () => {
 
 function updateRecipeDisplay(recipesToDisplay) {
   recipeSection.innerHTML = '';
+  hide(clearAllRecipeSearchButton)
+  hide(clearCookbookSearchButton)
+  show(searchCookbookButton)
+  show(searchAllRecipesButton)
   recipesToDisplay.forEach((recipe) => {
     const tagsHTML = buildTags(recipe);
     const recipeCard = document.createElement('section');
