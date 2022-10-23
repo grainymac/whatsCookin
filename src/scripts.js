@@ -1,48 +1,62 @@
 import './styles.css';
-import { apiCalls } from './apiCalls';
+import { fetchAll } from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png';
-import Recipe from './classes/Recipe';
 import RecipeRepository from './classes/RecipeRepository';
-// import recipeData from './data/recipes';
 import User from './classes/User';
-// import usersData from './data/users';
 
-
-// ------------------- GLOBAL VARIABLES
-let allUserData
-let allIngredientsData
-let recipeData
-let recipeRepo = RecipeRepository.fromRecipeData(recipeData);
-const user = changeUser(usersData)
-let tag;
-let tagList = [];
-
-
-// --------------------------------------------- FETCH
-Promise.all([apiCalls.getUserData(), apiCalls.getIngredientsData(), apiCalls.getRecipeData()])
-  .then((data) => {
-    allUserData = data[0].usersData
-    allIngredientsData = data[1].ingredientsData
-    recipeData = data[2].recipeData
-
-    updateRecipeDisplay(recipeData)
-  })
-
-  console.log(recipeData)
 // --------------------QUERY SELECTORS
 const modal = document.querySelector('#modal');
 const close = document.querySelector('#close');
 const recipeSection = document.querySelector('#recipeSection');
 const tagsContainer = document.querySelector('#tagsContainer');
-const searchAllRecipesButton = document.querySelector('#searchAllRecipesButton');
+const searchAllRecipesButton = document.querySelector(
+  '#searchAllRecipesButton'
+);
 const searchCookbookButton = document.querySelector('#searchCookbookButton');
 const allRecipesSearchBar = document.querySelector('#allRecipeSearch');
 const cookbookSearchBar = document.querySelector('#cookbookSearch');
-const allRecipesTab = document.getElementById('tabAllRecipes')
-const cookbookTab = document.getElementById('tabCookbook')
+const allRecipesTab = document.getElementById('tabAllRecipes');
+const cookbookTab = document.getElementById('tabCookbook');
 
-// --------------------EVENT LISTENERS
+// ------------------- GLOBAL VARIABLES
+const store = {
+  userData: [],
+  ingredientsData: [],
+  recipeData: [],
+  recipeRepo: new RecipeRepository(),
+  user: new User(),
+  tagList: [],
+  tag: '',
+};
+
+// --------------------------------------------- Initialize App
+const initializeApp = () => {
+  fetchAll()
+    .then((data) => {
+      // Set global variables
+      store.userData = data.usersData;
+      store.ingredientsData = data.ingredientsData;
+      store.recipeData = data.recipeData;
+      store.recipeRepo = RecipeRepository.fromRecipeData(
+        store.recipeData,
+        store.ingredientsData
+      );
+      store.user = changeUser(store.userData);
+
+      // Change DOM
+      displayAllTags();
+      updateRecipeDisplay(store.recipeRepo.allRecipes);
+
+      // Bind event listeners
+      defineEventListeners();
+    })
+    .catch((err) => console.error(err));
+};
+
+// ------------------- EVENT LISTENERS
+window.addEventListener('load', initializeApp);
+
 close.onclick = () => {
   modal.style.display = 'none';
 };
@@ -51,28 +65,24 @@ window.onclick = (event) => {
     modal.style.display = 'none';
   }
 };
-window.addEventListener('load', function () {
-  updateRecipeDisplay(recipeRepo.allRecipes);
-});
 
-window.addEventListener('load', displayAllTags);
+const defineEventListeners = () => {
+  searchAllRecipesButton.addEventListener('click', function () {
+    searchRecipesByName(allRecipesSearchBar.value);
+  });
 
-searchAllRecipesButton.addEventListener('click', function () {
-  searchRecipesByName(allRecipesSearchBar.value);
-});
+  searchCookbookButton.addEventListener('click', function () {
+    searchRecipesByName(cookbookSearchBar.value);
+  });
 
-searchCookbookButton.addEventListener('click', function () {
-  searchRecipesByName(cookbookSearchBar.value);
-})
+  allRecipesTab.onchange = () => {
+    updateTags(store.recipeRepo.allRecipes);
+  };
 
-allRecipesTab.onchange = () => {
-  updateTags(recipeRepo.allRecipes)
-}
-
-cookbookTab.onchange = () => {
-  updateTags(user.favoriteRecipeRepo.allRecipes)
-}
-
+  cookbookTab.onchange = () => {
+    updateTags(store.user.favoriteRecipeRepo.allRecipes);
+  };
+};
 
 // --------------------------------------------- FUNCTIONS
 
@@ -90,12 +100,12 @@ function updateRecipeDisplay(recipesToDisplay) {
 }
 
 function flagFavoritedRecipes(recipe) {
-  const isRecipeFavorited = user.favoriteRecipeRepo.allRecipes.includes(recipe)
+  const isRecipeFavorited =
+    store.user.favoriteRecipeRepo.allRecipes.includes(recipe);
   if (isRecipeFavorited) {
-    return 'star-yellow.png'
-  }
-  else {
-    return 'star.png'
+    return 'star-yellow.png';
+  } else {
+    return 'star.png';
   }
 }
 
@@ -110,7 +120,9 @@ function buildRecipeCard(recipe, recipeCard, tags) {
     </figure>
     <section class="recipe-details-container">
       <h1 class="recipe-title">${recipe.name}</h1>
-      <img class="recipe-favorite-icon" id="${recipe.id}" src="${flagFavoritedRecipes(recipe)}" alt="star icon"/>
+      <img class="recipe-favorite-icon" id="${
+        recipe.id
+      }" src="${flagFavoritedRecipes(recipe)}" alt="star icon"/>
     </section>
     <div class="recipe-tags-container">
       ${tags.toString()}
@@ -121,11 +133,14 @@ function buildRecipeCard(recipe, recipeCard, tags) {
     if (event.target.className === 'recipe-favorite-icon') {
       if (event.target.src === 'http://localhost:8080/star.png') {
         event.target.src = 'star-yellow.png';
-        addRecipeToCookbook(event.target.parentNode.parentNode.dataset.recipeId);
-      }
-      else if (event.target.src === 'http://localhost:8080/star-yellow.png') {
+        addRecipeToCookbook(
+          event.target.parentNode.parentNode.dataset.recipeId
+        );
+      } else if (event.target.src === 'http://localhost:8080/star-yellow.png') {
         event.target.src = 'star.png';
-        removeRecipeFromCookbook(event.target.parentNode.parentNode.dataset.recipeId)
+        removeRecipeFromCookbook(
+          event.target.parentNode.parentNode.dataset.recipeId
+        );
       }
     } else if (event.target.className === 'recipe-section-tag') {
       alert(
@@ -138,18 +153,20 @@ function buildRecipeCard(recipe, recipeCard, tags) {
 }
 
 function addRecipeToCookbook(recipeId) {
-  const foundRecipe = recipeRepo.allRecipes.find((recipe) => {
-    return recipe.id.toString() === recipeId
-  })
-  user.addFavoriteRecipe(foundRecipe)
-  console.log(user.favoriteRecipeRepo)
+  const foundRecipe = store.recipeRepo.allRecipes.find((recipe) => {
+    return recipe.id.toString() === recipeId;
+  });
+  store.user.addFavoriteRecipe(foundRecipe);
+  console.log(store.user.favoriteRecipeRepo);
 }
 
 function removeRecipeFromCookbook(recipeId) {
-  const foundRecipe = user.favoriteRecipeRepo.allRecipes.find((recipe) => {
-    return recipe.id.toString() === recipeId;
-  })
-  user.removeFavoriteRecipe(foundRecipe)
+  const foundRecipe = store.user.favoriteRecipeRepo.allRecipes.find(
+    (recipe) => {
+      return recipe.id.toString() === recipeId;
+    }
+  );
+  store.user.removeFavoriteRecipe(foundRecipe);
 }
 
 function buildModal(recipe) {
@@ -185,14 +202,13 @@ function buildTags(recipe) {
 }
 
 function displayAllTags() {
-  tagsContainer.innerHTML = ''
+  tagsContainer.innerHTML = '';
   let allTags;
 
   if (allRecipesTab.checked) {
-    allTags = recipeRepo.retrieveAllTags();
-  }
-  else if (!allRecipesTab.checked) {
-    allTags = user.favoriteRecipeRepo.retrieveAllTags();
+    allTags = store.recipeRepo.retrieveAllTags();
+  } else if (!allRecipesTab.checked) {
+    allTags = store.user.favoriteRecipeRepo.retrieveAllTags();
   }
 
   allTags.forEach((tag) => {
@@ -203,20 +219,20 @@ function displayAllTags() {
     tagElement.onclick = tagsToggleFilter;
 
     tagsContainer.appendChild(tagElement);
-    tagList.push(tagElement);
+    store.tagList.push(tagElement);
   });
 }
 
 function tagsToggleFilter(event) {
-  if (tag === event.target.innerText) {
-    removeTag(event)
+  if (store.tag === event.target.innerText) {
+    removeTag(event);
   } else {
-    addTag(event)
+    addTag(event);
   }
 }
 
 function addTag(event) {
-  const filterSelectedTags = tagList.filter((tag) =>
+  const filterSelectedTags = store.tagList.filter((tag) =>
     tag.classList.contains('recipe-tag-selected')
   );
 
@@ -227,51 +243,51 @@ function addTag(event) {
   let userTag = getTag(event);
 
   if (allRecipesTab.checked) {
-    const filteredRecipes = recipeRepo.filterByTag(userTag);
+    const filteredRecipes = store.recipeRepo.filterByTag(userTag);
     updateRecipeDisplay(filteredRecipes);
-  }
-  else if (cookbookTab.checked) {
-    const filteredRecipes = user.favoriteRecipeRepo.filterByTag(userTag);
+  } else if (cookbookTab.checked) {
+    const filteredRecipes = store.user.favoriteRecipeRepo.filterByTag(userTag);
     updateRecipeDisplay(filteredRecipes);
   }
 }
 
 function removeTag() {
-  deselectTag()
+  deselectTag();
 
   if (allRecipesTab.checked) {
-    updateRecipeDisplay(recipeRepo.allRecipes);
-  }
-  else if (cookbookTab.checked) {
-    updateRecipeDisplay(user.favoriteRecipeRepo.allRecipes);
+    updateRecipeDisplay(store.recipeRepo.allRecipes);
+  } else if (cookbookTab.checked) {
+    updateRecipeDisplay(store.user.favoriteRecipeRepo.allRecipes);
   }
 }
 
 function getTag(event) {
   if (event.target.className === 'recipe-tag') {
-    tag = event.target.innerText;
+    store.tag = event.target.innerText;
     event.target.classList.add('recipe-tag-selected');
-    return tag;
+    return store.tag;
   }
 }
 
 function updateTags(repo) {
-  updateRecipeDisplay(repo)
-  displayAllTags()
-  deselectTag()
+  updateRecipeDisplay(repo);
+  displayAllTags();
+  deselectTag();
 }
 
 function deselectTag() {
   if (document.querySelector('.recipe-tag-selected')) {
-    document.querySelector('.recipe-tag-selected').classList.remove('recipe-tag-selected')
+    document
+      .querySelector('.recipe-tag-selected')
+      .classList.remove('recipe-tag-selected');
   }
-  tag = ''
+  store.tag = '';
 }
 
 // ----- Searching -----
 
 function searchRecipesByName(search) {
-  const nameFilteredRecipes = recipeRepo.searchByName(search);
+  const nameFilteredRecipes = store.recipeRepo.searchByName(search);
   if (nameFilteredRecipes.length > 0) {
     updateRecipeDisplay(nameFilteredRecipes);
     changeSearchButton();
@@ -286,7 +302,14 @@ function changeSearchButton() {
 // ----- Users -----
 
 function changeUser(usersData) {
-  const userData = usersData[Math.floor(Math.random() * usersData.length)]
-  document.querySelector('.user-greeting').innerText = `Hello, ${userData.name}!`
+  const userData = getRandomArrayItem(usersData);
+  document.querySelector(
+    '.user-greeting'
+  ).innerText = `Hello, ${userData.name}!`;
   return new User(userData);
+}
+
+// ----- Utilities -----
+function getRandomArrayItem(items) {
+  return items[Math.floor(Math.random() * items.length)];
 }
