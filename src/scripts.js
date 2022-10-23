@@ -287,8 +287,12 @@ function deselectTag() {
 // ----- Searching -----
 
 function searchRecipesByName(search) {
-  const nameFilteredRecipes = store.recipeRepo.searchByName(search);
-  if (nameFilteredRecipes.length > 0) {
+  if (cookbookTab.checked && search.length > 0) {
+    let nameFilteredRecipes = store.user.favoriteRecipeRepo.searchByName(search)
+    updateRecipeDisplay(nameFilteredRecipes);
+    changeSearchButton();
+  } else if (allRecipesTab.checked && search.length > 0) {
+    let nameFilteredRecipes = store.recipeRepo.searchByName(search)
     updateRecipeDisplay(nameFilteredRecipes);
     changeSearchButton();
   }
