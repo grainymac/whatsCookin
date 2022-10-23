@@ -10,7 +10,6 @@
   - [Possible Future Extensions](#possible-future-extensions)
   - [Set Up](#set-up)
   - [Organizational Resources](#organizational-resources)
-  - [Sources](#sources)
   - [Contributors](#contributors)
   - [Project Specs](#project-specs)
 
@@ -35,7 +34,7 @@
 - 
 
 
-## Sources
+## Organizational Resources
 - [Project Trello Board](https://trello.com/invite/b/yxwzcu4N/ATTIc45ed256e332178bfc2ae4c46e0babb27D482CC7/whatscookin)
 
 
