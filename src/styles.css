@@ -10,10 +10,6 @@ main {
   justify-content: space-between;
 }
 
-/* p {
-
-} */
-
 .main-recipe-container {
   display: flex;
   align-items: center;
@@ -32,6 +28,10 @@ main {
 
 .title {
   margin-left: 20px;
+}
+
+.logo {
+
 }
 
 .user-greeting {
@@ -77,11 +77,10 @@ main {
 }
 
 .recipe-tag-selected {
-  background-color: hotpink;
+  background-color: rgb(249, 67, 158);
 }
 
 /* --------Recipe Search--------- */
-
 .search-box {
   display: flex;
   flex-direction: column;
