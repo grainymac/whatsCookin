@@ -263,3 +263,8 @@ main {
   text-decoration: none;
   cursor: pointer;
 }
+
+/* Glide */
+
+@import "node_modules/@glidejs/glide/src/assets/sass/glide.theme";
+@import "node_modules/@glidejs/glide/src/assets/sass/glide.theme";
