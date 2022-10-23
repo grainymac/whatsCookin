@@ -20,6 +20,10 @@ main {
   flex-direction: column;
 }
 
+.hidden {
+  display: none;
+}
+
 /* --------Banner--------- */
 .banner {
   display: flex;

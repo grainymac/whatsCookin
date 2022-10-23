@@ -18,6 +18,8 @@ const allRecipesSearchBar = document.querySelector('#allRecipeSearch');
 const cookbookSearchBar = document.querySelector('#cookbookSearch');
 const allRecipesTab = document.getElementById('tabAllRecipes');
 const cookbookTab = document.getElementById('tabCookbook');
+const clearCookbookSearchButton = document.querySelector('#clearCookbookButton');
+const clearAllRecipeSearchButton = document.querySelector('#clearAllRecipesButton');
 
 // ------------------- GLOBAL VARIABLES
 const store = {
@@ -65,6 +67,10 @@ window.onclick = (event) => {
     modal.style.display = 'none';
   }
 };
+
+clearAllRecipeSearchButton.addEventListener('click', function () {updateRecipeDisplay(store.recipeRepo.allRecipes)})
+
+clearCookbookSearchButton.addEventListener('click', function () {updateRecipeDisplay(store.user.favoriteRecipeRepo.allRecipes)})
 
 const defineEventListeners = () => {
   searchAllRecipesButton.addEventListener('click', function () {
@@ -287,20 +293,23 @@ function deselectTag() {
 // ----- Searching -----
 
 function searchRecipesByName(search) {
-  if (cookbookTab.checked && search.length > 0) {
-    let nameFilteredRecipes = store.user.favoriteRecipeRepo.searchByName(search)
-    updateRecipeDisplay(nameFilteredRecipes);
-    changeSearchButton();
-  } else if (allRecipesTab.checked && search.length > 0) {
+  if (allRecipesTab.checked && search.length > 0) {
     let nameFilteredRecipes = store.recipeRepo.searchByName(search)
     updateRecipeDisplay(nameFilteredRecipes);
-    changeSearchButton();
+    changeSearchButton(clearAllRecipeSearchButton, searchAllRecipesButton);
+  } 
+  else if (cookbookTab.checked && search.length > 0) {
+    let nameFilteredRecipes = store.user.favoriteRecipeRepo.searchByName(search)
+    updateRecipeDisplay(nameFilteredRecipes);
+    changeSearchButton(clearCookbookSearchButton, searchCookbookButton);
   }
 }
 
-function changeSearchButton() {
+function changeSearchButton(clearButton, searchButton) {
   cookbookSearchBar.value = '';
   allRecipesSearchBar.value = '';
+  show(clearButton)
+  hide(searchButton)
 }
 
 // ----- Users -----
@@ -316,4 +325,12 @@ function changeUser(usersData) {
 // ----- Utilities -----
 function getRandomArrayItem(items) {
   return items[Math.floor(Math.random() * items.length)];
+}
+
+function show(element) {
+  element.classList.remove('hidden')
+}
+
+function hide(element) {
+  element.classList.add('hidden')
 }
