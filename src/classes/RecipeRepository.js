@@ -5,9 +5,9 @@ class RecipeRepository {
     this.allRecipes = recipes || [];
   }
 
-  static fromRecipeData(recipeData) {
+  static fromRecipeData(recipeData, ingredientsData) {
     const recipes = recipeData.map((currentRecipe) => {
-      return new Recipe(currentRecipe)
+      return new Recipe(currentRecipe, ingredientsData)
     })
     return new RecipeRepository(recipes)
   }

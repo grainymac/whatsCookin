@@ -3,7 +3,7 @@ import RecipeRepository from './RecipeRepository';
 
 
 class User {
-    constructor(userData) {
+    constructor(userData = {}) {
         this.id = userData.id
         this.name = userData.name
         this.favoriteRecipeRepo = new RecipeRepository()
