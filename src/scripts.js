@@ -39,14 +39,6 @@ var glide = new Glide('.glide', {
   animationTimingFunc: 'ease-in-out',
   animationDuration: 800,
   perTouch: 2,
-  // breakpoints: {
-  //   800: {
-  //     perView: 1,
-  //   },
-  //   480: {
-  //     perView: 1,
-  //   },
-  // },
 });
 
 glide.mount();
@@ -65,11 +57,9 @@ const initializeApp = () => {
       );
       store.user = changeUser(store.userData);
 
-      // Change DOM
       displayAllTags();
       updateRecipeDisplay(store.recipeRepo.allRecipes);
 
-      // Bind event listeners
       defineEventListeners();
     })
     .catch((err) => console.error(err));
@@ -120,8 +110,7 @@ const defineEventListeners = () => {
   cookbookTab.onchange = () => {
     resetTabs(store.user.favoriteRecipeRepo.allRecipes);
   };
-
-}
+};
 
 // ------------------ FUNCTIONS ------------------
 
@@ -140,7 +129,7 @@ function updateRecipeDisplay(recipesToDisplay) {
     buildRecipeCard(recipe, recipeCard, tagsHTML);
     recipeSection.appendChild(recipeCard);
   });
-}
+};
 
 function flagFavoritedRecipes(recipe) {
   const isRecipeFavorited =
@@ -150,7 +139,7 @@ function flagFavoritedRecipes(recipe) {
   } else {
     return 'star.png';
   }
-}
+};
 
 function buildRecipeCard(recipe, recipeCard, tags) {
   recipeCard.classList.add('recipe-card');
@@ -185,15 +174,11 @@ function buildRecipeCard(recipe, recipeCard, tags) {
           event.target.parentNode.parentNode.dataset.recipeId);
         removeFromCookbookDisplay(event.target.parentNode.parentNode);
       }
-    } else if (event.target.className === 'recipe-section-tag') {
-      alert(
-        `TAG - ${event.target.innerText}` // placeholder function in case we end up adding event handling for the recipe cars' tags
-      );
     } else {
       buildModal(recipe);
     }
   };
-}
+};
 
 // ----- Adding/Removing Recipes from Favorites -----
 
@@ -202,7 +187,7 @@ function addRecipeToCookbook(recipeId) {
     return recipe.id.toString() === recipeId;
   });
   store.user.addFavoriteRecipe(foundRecipe);
-}
+};
 
 function removeRecipeFromCookbook(recipeId) {
   const foundRecipe = store.user.favoriteRecipeRepo.allRecipes.find(
@@ -211,13 +196,13 @@ function removeRecipeFromCookbook(recipeId) {
     }
   );
   store.user.removeFavoriteRecipe(foundRecipe);
-}
+};
 
 function removeFromCookbookDisplay(recipeToDelete) {
   if(cookbookTab.checked) {
     recipeToDelete.remove();
   }
-}
+};
 
 
 function buildModal(recipe) {
@@ -240,7 +225,7 @@ function buildModal(recipe) {
   document.getElementById(
     'modalTotalCost'
   ).innerText = `$${recipe.totalCost()}`;
-}
+};
 
 // ----- Tags -----
 
@@ -250,29 +235,25 @@ function buildTags(recipe) {
       return `<p class="recipe-section-tag">${tag}</p>`;
     })
     .join(' ');
-}
+};
 
 function displayAllTags() {
   tagsContainer.innerHTML = '';
   let allTags;
-
   if (allRecipesTab.checked) {
     allTags = store.recipeRepo.retrieveAllTags();
   } else if (!allRecipesTab.checked) {
     allTags = store.user.favoriteRecipeRepo.retrieveAllTags();
   }
-
   allTags.forEach((tag) => {
     const tagElement = document.createElement('p');
     tagElement.classList.add('recipe-tag');
     tagElement.innerText = tag;
-
     tagElement.onclick = tagsToggleFilter;
-
     tagsContainer.appendChild(tagElement);
     store.tagList.push(tagElement);
   });
-}
+};
 
 function tagsToggleFilter(event) {
   if (store.tag === event.target.innerText) {
@@ -280,7 +261,7 @@ function tagsToggleFilter(event) {
   } else {
     addTag(event);
   }
-}
+};
 
 function addTag(event) {
   const filterSelectedTags = store.tagList.filter((tag) =>
@@ -300,7 +281,7 @@ function addTag(event) {
     const filteredRecipes = store.user.favoriteRecipeRepo.filterByTag(userTag);
     updateRecipeDisplay(filteredRecipes);
   }
-}
+};
 
 function removeTag() {
   deselectTag();
@@ -310,7 +291,7 @@ function removeTag() {
   } else if (cookbookTab.checked) {
     updateRecipeDisplay(store.user.favoriteRecipeRepo.allRecipes);
   }
-}
+};
 
 function getTag(event) {
   if (event.target.className === 'recipe-tag') {
@@ -318,14 +299,14 @@ function getTag(event) {
     event.target.classList.add('recipe-tag-selected');
     return store.tag;
   }
-}
+};
 
 function resetTabs(repo) {
   updateRecipeDisplay(repo);
   displayAllTags();
   deselectTag();
   clearSearchBar();
-}
+};
 
 function deselectTag() {
   if (document.querySelector('.recipe-tag-selected')) {
@@ -334,7 +315,7 @@ function deselectTag() {
       .classList.remove('recipe-tag-selected');
   }
   store.tag = '';
-}
+};
 
 // ----- Searching -----
 
@@ -349,17 +330,17 @@ function searchRecipesByName(search) {
     updateRecipeDisplay(nameFilteredRecipes);
     changeSearchButton(clearCookbookSearchButton, searchCookbookButton);
   }
-}
+};
 
 function changeSearchButton(clearButton, searchButton) {
   show(clearButton)
   hide(searchButton)
-}
+};
 
 function clearSearchBar() {
   cookbookSearchBar.value = '';
   allRecipesSearchBar.value = '';
-}
+};
 
 // ----- Users -----
 
@@ -369,17 +350,17 @@ function changeUser(usersData) {
     '.user-greeting'
   ).innerText = `Hello, ${userData.name}!`;
   return new User(userData);
-}
+};
 
 // ----- Utilities -----
 function getRandomArrayItem(items) {
   return items[Math.floor(Math.random() * items.length)];
-}
+};
 
 function show(element) {
   element.classList.remove('hidden')
-}
+};
 
 function hide(element) {
   element.classList.add('hidden')
-}
+};
