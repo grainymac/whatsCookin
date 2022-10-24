@@ -4,23 +4,21 @@ import Glide from '@glidejs/glide';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
 
-// --------------------QUERY SELECTORS
-const modal = document.querySelector('#modal');
-const close = document.querySelector('#close');
-const recipeSection = document.querySelector('#recipeSection');
-const tagsContainer = document.querySelector('#tagsContainer');
-const searchAllRecipesButton = document.querySelector(
-  '#searchAllRecipesButton'
-);
-const searchCookbookButton = document.querySelector('#searchCookbookButton');
+// --------------------QUERY SELECTORS ------------------
 const allRecipesSearchBar = document.querySelector('#allRecipeSearch');
-const cookbookSearchBar = document.querySelector('#cookbookSearch');
 const allRecipesTab = document.getElementById('tabAllRecipes');
-const cookbookTab = document.getElementById('tabCookbook');
-const clearCookbookSearchButton = document.querySelector('#clearCookbookButton');
 const clearAllRecipeSearchButton = document.querySelector('#clearAllRecipesButton');
+const clearCookbookSearchButton = document.querySelector('#clearCookbookButton');
+const close = document.querySelector('#close');
+const cookbookSearchBar = document.querySelector('#cookbookSearch');
+const cookbookTab = document.getElementById('tabCookbook');
+const modal = document.querySelector('#modal');
+const recipeSection = document.querySelector('#recipeSection');
+const searchAllRecipesButton = document.querySelector('#searchAllRecipesButton');
+const searchCookbookButton = document.querySelector('#searchCookbookButton');
+const tagsContainer = document.querySelector('#tagsContainer');
 
-// ------------------- GLOBAL VARIABLES
+// ------------------- GLOBAL VARIABLES ------------------
 const store = {
   userData: [],
   ingredientsData: [],
@@ -53,7 +51,7 @@ var glide = new Glide('.glide', {
 
 glide.mount();
 
-// --------------------------------------------- Initialize App
+// ------------------ Initialize App ------------------
 const initializeApp = () => {
   fetchAll()
     .then((data) => {
@@ -77,30 +75,34 @@ const initializeApp = () => {
     .catch((err) => console.error(err));
 };
 
-// ------------------- EVENT LISTENERS
+// ------------------- EVENT LISTENERS ------------------
 window.addEventListener('load', initializeApp);
 
 close.onclick = () => {
   modal.style.display = 'none';
 };
+
 window.onclick = (event) => {
   if (event.target == modal) {
     modal.style.display = 'none';
   }
 };
 
-clearAllRecipeSearchButton.addEventListener('click', function () {updateRecipeDisplay(store.recipeRepo.allRecipes)})
+clearAllRecipeSearchButton.addEventListener('click', function () {
+  updateRecipeDisplay(store.recipeRepo.allRecipes)
+});
 
 clearAllRecipeSearchButton.addEventListener('click', function () {
-  clearSearchBar(allRecipesSearchBar)})
-
-clearCookbookSearchButton.addEventListener('click', function () {updateRecipeDisplay(store.user.favoriteRecipeRepo.allRecipes)})
+  clearSearchBar(allRecipesSearchBar)
+});
 
 clearCookbookSearchButton.addEventListener('click', function () {
-  clearSearchBar(cookbookSearchBar)})
+  updateRecipeDisplay(store.user.favoriteRecipeRepo.allRecipes)
+});
 
-
-
+clearCookbookSearchButton.addEventListener('click', function () {
+  clearSearchBar(cookbookSearchBar)
+});
 
 const defineEventListeners = () => {
   searchAllRecipesButton.addEventListener('click', function () {
@@ -121,7 +123,7 @@ const defineEventListeners = () => {
 
 }
 
-// --------------------------------------------- FUNCTIONS
+// ------------------ FUNCTIONS ------------------
 
 // ----- Recipe Display -----
 
@@ -192,6 +194,8 @@ function buildRecipeCard(recipe, recipeCard, tags) {
     }
   };
 }
+
+// ----- Adding/Removing Recipes from Favorites -----
 
 function addRecipeToCookbook(recipeId) {
   const foundRecipe = store.recipeRepo.allRecipes.find((recipe) => {
