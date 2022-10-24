@@ -1,8 +1,13 @@
-html {
+*{
   margin: 0px;
+  padding: 0px;
+}
+
+html {
   position: relative;
   height: 100vh;
   width: 100vw;
+  box-sizing: border-box;
 }
 
 main {
@@ -18,29 +23,43 @@ main {
 
 /* --------Banner--------- */
 .banner {
+  position: fixed;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background-color: #81f5ff;
-  border-radius: 16px;
-  margin-bottom: 20px;
+  justify-content: space-between;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  margin: 0px;
+  width: 100%;
+  height: 85px;
+  background-color: #05542a72;
 }
 
-.title {
+.logo {
+  height: 75px;
   margin-left: 20px;
 }
 
 .user-greeting {
+  color: #fff;
+  font-weight: 700;
   margin-right: 20px;
   font-size: 20px;
   font-style: italic;
 }
 
 /* --------Glide--------- */
+
+/* .glide_slide {
+
+} */
+
+
 .glide__image {
   position: relative;
   height: 100vh;
-  width: 33.33vw;
+  /* width: 33.33vw; */
   background-position: center;
   background-size: cover;
 }
