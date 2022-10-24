@@ -24,6 +24,7 @@
   - Webpack 
   - API
   - Adobe Illustrator
+  - 3rd Party Library
   
 
 ## Illustrations
