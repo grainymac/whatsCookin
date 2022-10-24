@@ -178,7 +178,6 @@ function addRecipeToCookbook(recipeId) {
     return recipe.id.toString() === recipeId;
   });
   store.user.addFavoriteRecipe(foundRecipe);
-  console.log(store.user.favoriteRecipeRepo);
 }
 
 function removeRecipeFromCookbook(recipeId) {
