@@ -1,3 +1,8 @@
+@font-face {
+  font-family: Yeseva;
+  src: url('assets/YesevaOne-Regular.ttf') format('truetype');
+}
+
 html {
   position: relative;
   margin: 0px;
@@ -8,6 +13,7 @@ html {
 body {
   margin: 0px;
   padding: 0px;
+  font-family: Yeseva;
 }
 
 main {
@@ -36,6 +42,10 @@ main {
   height: 85px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 20%);
   background-color: #0e471b72;
+}
+
+.main-logo {
+  height: 500px;
 }
 
 .logo {
@@ -74,6 +84,14 @@ main {
   align-items: center;
   justify-content: center;
   color: white;
+}
+
+.glide__title {
+font-size: 36px;
+}
+
+.glide__info {
+  font-size: 20px;
 }
 
 /* --------Side Nav--------- */
@@ -231,7 +249,6 @@ main {
   height: 30px;
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
   -webkit-transition-duration: 0.3s;
   transition-duration: 0.3s;
   -webkit-transition-property: transform;
@@ -309,8 +326,3 @@ main {
   text-decoration: none;
   cursor: pointer;
 }
-
-/* Glide
-
-@import 'node_modules/@glidejs/glide/src/assets/sass/glide.theme';
-@import 'node_modules/@glidejs/glide/src/assets/sass/glide.theme'; */
