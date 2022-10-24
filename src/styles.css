@@ -28,6 +28,10 @@ main {
   margin-bottom: 50px;
 }
 
+.hidden {
+  display: none;
+}
+
 /* --------Banner--------- */
 .banner {
   position: fixed;
