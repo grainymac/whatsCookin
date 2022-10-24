@@ -171,6 +171,7 @@ function removeRecipeFromCookbook(recipeId) {
 
 function buildModal(recipe) {
   modal.style.display = 'block';
+  document.querySelector('.modal-img').src = `${recipe.image}`
   document.querySelector('.modal-title').innerText = `${recipe.name}`;
   const modalIngredientsSection = document.getElementById('ingredientSection');
   modalIngredientsSection.innerHTML = '';

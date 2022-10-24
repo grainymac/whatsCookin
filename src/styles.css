@@ -235,6 +235,11 @@ main {
 }
 
 .modal-content {
+
+  /* display: flex;
+  flex-direction: column; */
+  /* justify-content: center; */
+  /* align-items: center; */
   background-color: rgb(255, 255, 255);
   margin: auto;
   padding: 30px;
@@ -257,24 +262,31 @@ main {
   display: none;
 }
 
-.modal-figure {
+/* .modal-figure {
   height: 50%;
   width: 100%;
   border-radius: 16px 16px 0 0;
   overflow: hidden;
   margin: 0;
   margin-bottom: 32px;
-}
+} */
 
 .modal-banner-container {
   display: flex;
   flex-direction: column;
 }
 
+.modal-img-container {
+  display:flex;
+  /* flex-direction: column; */
+  justify-content: center;
+}
+
 .modal-img {
-  align-self: center;
-  width: 100%;
-  background-size: cover;
+  width: 50%;
+  height: 50%;
+  margin: 8px;
+  /* background-size: cover; */
   border-radius: 16px;
 }
 
@@ -284,9 +296,22 @@ main {
   /* color: #fff */
 }
 
+/* .modal-ingredients-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+} */
+.modal-instructions-container,
 .modal-ingredients-container {
-  height: 50px;
+  margin-left: 36px;
 }
+
+
+/* .modal-ingredients-container {
+  margin-left: 48px; */
+/* } */
 
 .modal-cost {
   text-align: center;
