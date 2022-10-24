@@ -1,7 +1,6 @@
 import './styles.css';
 import { fetchAll } from './apiCalls';
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png';
+import Glide from '@glidejs/glide';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
 
@@ -18,6 +17,8 @@ const allRecipesSearchBar = document.querySelector('#allRecipeSearch');
 const cookbookSearchBar = document.querySelector('#cookbookSearch');
 const allRecipesTab = document.getElementById('tabAllRecipes');
 const cookbookTab = document.getElementById('tabCookbook');
+const clearCookbookSearchButton = document.querySelector('#clearCookbookButton');
+const clearAllRecipeSearchButton = document.querySelector('#clearAllRecipesButton');
 
 // ------------------- GLOBAL VARIABLES
 const store = {
@@ -29,6 +30,28 @@ const store = {
   tagList: [],
   tag: '',
 };
+
+var glide = new Glide('.glide', {
+  type: 'carousel',
+  autoplay: 5000,
+  hoverpause: false,
+  perView: 2,
+  gap: 0,
+  focusAt: 'center',
+  animationTimingFunc: 'ease-in-out',
+  animationDuration: 800,
+  perTouch: 2,
+  // breakpoints: {
+  //   800: {
+  //     perView: 1,
+  //   },
+  //   480: {
+  //     perView: 1,
+  //   },
+  // },
+});
+
+glide.mount();
 
 // --------------------------------------------- Initialize App
 const initializeApp = () => {
@@ -66,6 +89,19 @@ window.onclick = (event) => {
   }
 };
 
+clearAllRecipeSearchButton.addEventListener('click', function () {updateRecipeDisplay(store.recipeRepo.allRecipes)})
+
+clearAllRecipeSearchButton.addEventListener('click', function () {
+  clearSearchBar(allRecipesSearchBar)})
+
+clearCookbookSearchButton.addEventListener('click', function () {updateRecipeDisplay(store.user.favoriteRecipeRepo.allRecipes)})
+
+clearCookbookSearchButton.addEventListener('click', function () {
+  clearSearchBar(cookbookSearchBar)})
+
+
+
+
 const defineEventListeners = () => {
   searchAllRecipesButton.addEventListener('click', function () {
     searchRecipesByName(allRecipesSearchBar.value);
@@ -76,13 +112,14 @@ const defineEventListeners = () => {
   });
 
   allRecipesTab.onchange = () => {
-    updateTags(store.recipeRepo.allRecipes);
+    resetTabs(store.recipeRepo.allRecipes);
   };
 
   cookbookTab.onchange = () => {
-    updateTags(store.user.favoriteRecipeRepo.allRecipes);
+    resetTabs(store.user.favoriteRecipeRepo.allRecipes);
   };
-};
+
+}
 
 // --------------------------------------------- FUNCTIONS
 
@@ -90,6 +127,10 @@ const defineEventListeners = () => {
 
 function updateRecipeDisplay(recipesToDisplay) {
   recipeSection.innerHTML = '';
+  hide(clearAllRecipeSearchButton);
+  hide(clearCookbookSearchButton);
+  show(searchCookbookButton);
+  show(searchAllRecipesButton);
   recipesToDisplay.forEach((recipe) => {
     const tagsHTML = buildTags(recipe);
     const recipeCard = document.createElement('section');
@@ -139,8 +180,8 @@ function buildRecipeCard(recipe, recipeCard, tags) {
       } else if (event.target.src === 'http://localhost:8080/star-yellow.png') {
         event.target.src = 'star.png';
         removeRecipeFromCookbook(
-          event.target.parentNode.parentNode.dataset.recipeId
-        );
+          event.target.parentNode.parentNode.dataset.recipeId);
+        removeFromCookbookDisplay(event.target.parentNode.parentNode);
       }
     } else if (event.target.className === 'recipe-section-tag') {
       alert(
@@ -157,7 +198,6 @@ function addRecipeToCookbook(recipeId) {
     return recipe.id.toString() === recipeId;
   });
   store.user.addFavoriteRecipe(foundRecipe);
-  console.log(store.user.favoriteRecipeRepo);
 }
 
 function removeRecipeFromCookbook(recipeId) {
@@ -168,6 +208,13 @@ function removeRecipeFromCookbook(recipeId) {
   );
   store.user.removeFavoriteRecipe(foundRecipe);
 }
+
+function removeFromCookbookDisplay(recipeToDelete) {
+  if(cookbookTab.checked) {
+    recipeToDelete.remove();
+  }
+}
+
 
 function buildModal(recipe) {
   modal.style.display = 'block';
@@ -269,10 +316,11 @@ function getTag(event) {
   }
 }
 
-function updateTags(repo) {
+function resetTabs(repo) {
   updateRecipeDisplay(repo);
   displayAllTags();
   deselectTag();
+  clearSearchBar();
 }
 
 function deselectTag() {
@@ -287,14 +335,24 @@ function deselectTag() {
 // ----- Searching -----
 
 function searchRecipesByName(search) {
-  const nameFilteredRecipes = store.recipeRepo.searchByName(search);
-  if (nameFilteredRecipes.length > 0) {
+  if (allRecipesTab.checked && search.length > 0) {
+    let nameFilteredRecipes = store.recipeRepo.searchByName(search)
     updateRecipeDisplay(nameFilteredRecipes);
-    changeSearchButton();
+    changeSearchButton(clearAllRecipeSearchButton, searchAllRecipesButton);
+  } 
+  else if (cookbookTab.checked && search.length > 0) {
+    let nameFilteredRecipes = store.user.favoriteRecipeRepo.searchByName(search)
+    updateRecipeDisplay(nameFilteredRecipes);
+    changeSearchButton(clearCookbookSearchButton, searchCookbookButton);
   }
 }
 
-function changeSearchButton() {
+function changeSearchButton(clearButton, searchButton) {
+  show(clearButton)
+  hide(searchButton)
+}
+
+function clearSearchBar() {
   cookbookSearchBar.value = '';
   allRecipesSearchBar.value = '';
 }
@@ -312,4 +370,12 @@ function changeUser(usersData) {
 // ----- Utilities -----
 function getRandomArrayItem(items) {
   return items[Math.floor(Math.random() * items.length)];
+}
+
+function show(element) {
+  element.classList.remove('hidden')
+}
+
+function hide(element) {
+  element.classList.add('hidden')
 }
