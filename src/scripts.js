@@ -2,9 +2,9 @@ import './styles.css';
 import { fetchAll } from './apiCalls';
 // An example of how you tell webpack to use an image (also need to link to it in the index.html)
 import './images/turing-logo.png';
+import Glide from '@glidejs/glide';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
-
 
 // --------------------QUERY SELECTORS
 const modal = document.querySelector('#modal');
@@ -30,6 +30,28 @@ const store = {
   tagList: [],
   tag: '',
 };
+
+var glide = new Glide('.glide', {
+  type: 'carousel',
+  autoplay: 4000,
+  hoverpause: false,
+  perView: 2,
+  gap: 0,
+  focusAt: 'center',
+  breakpoints: {
+    1920: {
+      perView: 1,
+    },
+    800: {
+      perView: 1,
+    },
+    480: {
+      perView: 1,
+    },
+  },
+});
+
+glide.mount();
 
 // --------------------------------------------- Initialize App
 const initializeApp = () => {
