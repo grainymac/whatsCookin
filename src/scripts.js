@@ -188,7 +188,7 @@ function buildModal(recipe) {
   });
   document.getElementById(
     'modalTotalCost'
-  ).innerText = `$${recipe.totalCost()}`;
+  ).innerText = `Total Cost: $${recipe.totalCost()}`;
 }
 
 // ----- Tags -----
