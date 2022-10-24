@@ -27,13 +27,13 @@
   - CSS
   - Mocha/Chai 
   - Webpack 
+  - Glide
   - API
   - Adobe Illustrator
-  - 3rd Party Library
   
 
 ## Features
-- 
+- This project features API pulls to collect data on recipes, ingredients, and site users. Recipes can be favorited, which will save them to the user's cookbook. Recipes can be viewed in a modal, where their ingredients, instructions, and total cost will be displayed.
 
 
 ## Organizational Resources
