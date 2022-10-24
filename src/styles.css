@@ -1,8 +1,19 @@
+@font-face {
+  font-family: Yeseva;
+  src: url('assets/YesevaOne-Regular.ttf') format('truetype');
+}
+
 html {
-  margin: 0px;
   position: relative;
+  margin: 0px;
   height: 100vh;
   width: 100vw;
+}
+
+body {
+  margin: 0px;
+  padding: 0px;
+  font-family: Yeseva;
 }
 
 main {
@@ -10,14 +21,11 @@ main {
   justify-content: space-between;
 }
 
-/* p {
-
-} */
-
 .main-recipe-container {
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 50px;
 }
 
 .hidden {
@@ -26,28 +34,77 @@ main {
 
 /* --------Banner--------- */
 .banner {
+  position: fixed;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background-color: #81f5ff;
-  border-radius: 16px;
-  margin-bottom: 20px;
+  justify-content: space-between;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  margin: 0px;
+  width: 100%;
+  height: 85px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 20%);
+  background-color: #0e471b72;
 }
 
-.title {
+.main-logo {
+  height: 500px;
+}
+
+.logo {
+  height: 75px;
   margin-left: 20px;
 }
 
 .user-greeting {
+  color: #fff;
+  font-weight: 700;
   margin-right: 20px;
+  font-size: 20px;
+  font-style: italic;
+}
+
+/* --------Glide--------- */
+.glide__image {
+  position: relative;
+  height: 100vh;
+  /* width: 33.33vw; */
+  background-position: center;
+  background-size: cover;
+  margin: 0px;
+  padding: 0px;
+}
+
+.glide__content-overlay {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: rgba(0, 0, 0, 0.25);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.glide__title {
+font-size: 36px;
+}
+
+.glide__info {
+  font-size: 20px;
 }
 
 /* --------Side Nav--------- */
 .left-nav {
   border-radius: 10px;
   width: 10%;
-  height: 80vh;
+  height: fit-content;
   margin-top: 20px;
+  margin-left: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,6 +116,11 @@ main {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.tags-title {
+  margin: 10px 0 10px 0;
 }
 
 .recipe-tag {
@@ -79,11 +141,10 @@ main {
 }
 
 .recipe-tag-selected {
-  background-color: hotpink;
+  background-color: rgb(249, 67, 158);
 }
 
 /* --------Recipe Search--------- */
-
 .search-box {
   display: flex;
   flex-direction: column;
@@ -188,7 +249,21 @@ main {
 }
 
 .recipe-favorite-icon {
+  cursor: pointer;
   height: 30px;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+
+.recipe-favorite-icon:hover,
+.recipe-favorite-icon:focus,
+.recipe-favorite-icon:active {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .recipe-tags-container {
@@ -213,17 +288,17 @@ main {
 
 /* --------Modal--------- */
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal-content {
@@ -255,9 +330,3 @@ main {
   text-decoration: none;
   cursor: pointer;
 }
-
-/* .save-btn {
-}
-
-.remove-btn {
-} */

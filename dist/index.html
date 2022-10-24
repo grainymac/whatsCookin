@@ -2,15 +2,56 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- <link rel="stylesheet" href="./styles.css">
-    <link rel="stylesheet" href='https://fonts.googleapis.com/css2?family=Comfortaa>' -->
     <title>Whats Cookin</title>
+    <link rel="stylesheet" href="styles/glide.core.min.css" />
+    <link rel="stylesheet" href="styles/glide.theme.min.css" />
   </head>
   <body>
     <section class="banner">
-      <h1 class="title">What's Cookin?</h1>
+      <img class="logo" src="whatsCookin.png" alt="logo image" />
       <p class="user-greeting">Hello, user!</p>
     </section>
+    <div class="glide">
+      <div data-glide-el="track" class="glide__track">
+        <ul class="glide__slides">
+          <li
+            class="glide__slide glide__image"
+            style="background-image: url('photo2.jpg')"
+          >
+            <div class="glide__content-overlay">
+              <h2 class="glide__title">Dirty Steve's Wing Sauce</h2>
+              <p class="glide__info">Dirty Steve is an amazing chef!</p>
+            </div>
+          </li>
+          <li
+            class="glide__slide glide__image"
+            style="background-image: url('photo1.jpg')"
+          >
+            <div class="glide__content-overlay">
+              <h2 class="glide__title">Dirty Steve's Wing Sauce</h2>
+              <p class="glide__info">Dirty Steve is an amazing chef!</p>
+            </div>
+          </li>
+          <li
+            class="glide__slide glide__image"
+            style="background-image: url('photo3.jpg')"
+          >
+            <div class="glide__content-overlay">
+              <h2 class="glide__title">Dirty Steve's Wing Sauce</h2>
+              <p class="glide__info">Dirty Steve is an amazing chef!</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="glide__arrows" data-glide-el="controls">
+        <button class="glide__arrow glide__arrow--left" data-glide-dir="<">
+          <
+        </button>
+        <button class="glide__arrow glide__arrow--right" data-glide-dir=">">
+          >
+        </button>
+      </div>
+    </div>
     <main>
       <section class="left-nav">
         <h2 class="tags-title">filter by tags</h2>
@@ -56,9 +97,7 @@
           </div>
         </section>
 
-        <section id="recipeSection" class="recipes-section">
-         
-        </section>
+        <section id="recipeSection" class="recipes-section"></section>
       </div>
 
       <section class="modal-box">
@@ -68,11 +107,19 @@
             <h3 class="modal-title">Chocolate Chip Cookies</h3>
             <section>
               <h4 class="modal-subtitle" id="modalIngredients">Ingredients:</h4>
-                <section class="ingredient-section" id="ingredientSection"></p>
+              <section
+                class="ingredient-section"
+                id="ingredientSection"
+              ></section>
             </section>
             <section>
-              <h4 class="modal-subtitle" id="modalInstructions">Instructions:</h4>
-              <section class="instruction-section" id="instructionSection"></section>
+              <h4 class="modal-subtitle" id="modalInstructions">
+                Instructions:
+              </h4>
+              <section
+                class="instruction-section"
+                id="instructionSection"
+              ></section>
             </section>
             <h4 class="modal-subtitle" id="modalTotalCost">Total Cost:</h4>
             <p class="modal-text"></p>

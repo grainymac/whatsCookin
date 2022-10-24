@@ -1,7 +1,6 @@
 import './styles.css';
 import { fetchAll } from './apiCalls';
-// An example of how you tell webpack to use an image (also need to link to it in the index.html)
-import './images/turing-logo.png';
+import Glide from '@glidejs/glide';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
 
@@ -31,6 +30,28 @@ const store = {
   tagList: [],
   tag: '',
 };
+
+var glide = new Glide('.glide', {
+  type: 'carousel',
+  autoplay: 5000,
+  hoverpause: false,
+  perView: 2,
+  gap: 0,
+  focusAt: 'center',
+  animationTimingFunc: 'ease-in-out',
+  animationDuration: 800,
+  perTouch: 2,
+  // breakpoints: {
+  //   800: {
+  //     perView: 1,
+  //   },
+  //   480: {
+  //     perView: 1,
+  //   },
+  // },
+});
+
+glide.mount();
 
 // --------------------------------------------- Initialize App
 const initializeApp = () => {
@@ -159,8 +180,8 @@ function buildRecipeCard(recipe, recipeCard, tags) {
       } else if (event.target.src === 'http://localhost:8080/star-yellow.png') {
         event.target.src = 'star.png';
         removeRecipeFromCookbook(
-          event.target.parentNode.parentNode.dataset.recipeId
-        );
+          event.target.parentNode.parentNode.dataset.recipeId);
+        removeFromCookbookDisplay(event.target.parentNode.parentNode);
       }
     } else if (event.target.className === 'recipe-section-tag') {
       alert(
@@ -177,7 +198,6 @@ function addRecipeToCookbook(recipeId) {
     return recipe.id.toString() === recipeId;
   });
   store.user.addFavoriteRecipe(foundRecipe);
-  console.log(store.user.favoriteRecipeRepo);
 }
 
 function removeRecipeFromCookbook(recipeId) {
@@ -188,6 +208,13 @@ function removeRecipeFromCookbook(recipeId) {
   );
   store.user.removeFavoriteRecipe(foundRecipe);
 }
+
+function removeFromCookbookDisplay(recipeToDelete) {
+  if(cookbookTab.checked) {
+    recipeToDelete.remove();
+  }
+}
+
 
 function buildModal(recipe) {
   modal.style.display = 'block';
