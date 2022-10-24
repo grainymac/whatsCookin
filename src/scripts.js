@@ -160,8 +160,8 @@ function buildRecipeCard(recipe, recipeCard, tags) {
       } else if (event.target.src === 'http://localhost:8080/star-yellow.png') {
         event.target.src = 'star.png';
         removeRecipeFromCookbook(
-          event.target.parentNode.parentNode.dataset.recipeId
-        );
+          event.target.parentNode.parentNode.dataset.recipeId);
+        removeFromCookbookDisplay(event.target.parentNode.parentNode);
       }
     } else if (event.target.className === 'recipe-section-tag') {
       alert(
@@ -189,6 +189,13 @@ function removeRecipeFromCookbook(recipeId) {
   );
   store.user.removeFavoriteRecipe(foundRecipe);
 }
+
+function removeFromCookbookDisplay(recipeToDelete) {
+  if(cookbookTab.checked) {
+    recipeToDelete.remove();
+  }
+}
+
 
 function buildModal(recipe) {
   modal.style.display = 'block';
