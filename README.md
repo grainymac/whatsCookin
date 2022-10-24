@@ -55,9 +55,9 @@ Visit our published site! [here]()
   
 
 ## Contributors
-  - Adelle Pitsas
-  - Tricia Holmes
-  - James Wasmer
+  - [Adelle Pitsas](https://github.com/Adelle-Pitsas)
+  - [Tricia Holmes](https://github.com/tricia-holmes)
+  - [James Wasmer](https://github.com/jwasmer)
   - [Ian McIntosh](https://github.com/grainymac)
 
 
