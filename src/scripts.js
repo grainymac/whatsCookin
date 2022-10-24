@@ -33,22 +33,22 @@ const store = {
 
 var glide = new Glide('.glide', {
   type: 'carousel',
-  autoplay: 4000,
+  autoplay: 5000,
   hoverpause: false,
   perView: 2,
   gap: 0,
   focusAt: 'center',
-  breakpoints: {
-    1920: {
-      perView: 1,
-    },
-    800: {
-      perView: 1,
-    },
-    480: {
-      perView: 1,
-    },
-  },
+  animationTimingFunc: 'ease-in-out',
+  animationDuration: 800,
+  perTouch: 2,
+  // breakpoints: {
+  //   800: {
+  //     perView: 1,
+  //   },
+  //   480: {
+  //     perView: 1,
+  //   },
+  // },
 });
 
 glide.mount();
