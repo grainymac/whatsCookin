@@ -221,45 +221,6 @@ margin: 10px;
   align-items: center;
 }
 
-.search-allrecipes-button {
-  display: inline-block;
-  border-radius: 4px;
-  background-color: #E6FFFB;
-  border: none;
-  color: #000000;
-  text-align: center;
-  /* padding: 20px; */
-  width: 80px;
-  height: 30px;
-  transition: all 0.5s;
-  cursor: pointer;
-}
-
-.search-allrecipes-button span {
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-
-.search-allrecipes-button span:after {
-  content: '\00bb';
-  position: absolute;
-  opacity: 0;
-  top: 0;
-  right: -20px;
-  transition: 0.5s;
-}
-
-.search-allrecipes-button:hover span {
-  padding-right: 25px;
-}
-
-.search-allrecipes-button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-
 /* -----------------------------------------------Recipes--------- */
 .recipes-section {
   display: flex;
