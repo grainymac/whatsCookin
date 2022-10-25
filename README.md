@@ -46,6 +46,7 @@
 
 ## Features
 - This project features API fetches to collect data on recipes, ingredients, and site users. 
+- A slider to carousel food pictures and testimonials via the Glide library
 - Recipes can be favorited, which will save them to the user's cookbook. 
 - A user can search all recipes and their own cookbook by tag or by name.
 - Recipes can be viewed in a modal, where their ingredients, instructions, and total cost will be displayed.
