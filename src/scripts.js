@@ -218,6 +218,8 @@ function removeFromCookbookDisplay(recipeToDelete) {
 
 function buildModal(recipe) {
   modal.style.display = 'block';
+  document.querySelector('.modal-img').src = `${recipe.image}`
+  document.querySelector('.modal-img').alt = `this is an image of ${recipe.name}`
   document.querySelector('.modal-title').innerText = `${recipe.name}`;
   const modalIngredientsSection = document.getElementById('ingredientSection');
   modalIngredientsSection.innerHTML = '';
@@ -235,7 +237,7 @@ function buildModal(recipe) {
   });
   document.getElementById(
     'modalTotalCost'
-  ).innerText = `$${recipe.totalCost()}`;
+  ).innerText = `Total Cost: $${recipe.totalCost()}`;
 }
 
 // ----- Tags -----

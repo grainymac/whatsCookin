@@ -91,8 +91,15 @@
                 id="cookbookSearch"
                 placeholder="Search your cookbook by name"
               />
-              <button class="search-cookbook-button" id="searchCookbookButton">Search</button>
-              <button class="clear-cookbook-button hidden" id="clearCookbookButton">Clear</button>
+              <button class="search-cookbook-button" id="searchCookbookButton">
+                Search
+              </button>
+              <button
+                class="clear-cookbook-button hidden"
+                id="clearCookbookButton"
+              >
+                Clear
+              </button>
             </div>
           </div>
         </section>
@@ -105,14 +112,18 @@
           <div class="modal-content">
             <span class="close" id="close">&times;</span>
             <h3 class="modal-title">Chocolate Chip Cookies</h3>
-            <section>
+            <div class="modal-img-container">
+              <img class="modal-img" />
+            </div>
+            <h4 class="modal-cost" id="modalTotalCost">Total Cost:</h4>
+            <section class="modal-ingredients-container">
               <h4 class="modal-subtitle" id="modalIngredients">Ingredients:</h4>
               <section
-                class="ingredient-section"
-                id="ingredientSection"
+              class="ingredient-section"
+              id="ingredientSection"
               ></section>
             </section>
-            <section>
+            <section class="modal-instructions-container">
               <h4 class="modal-subtitle" id="modalInstructions">
                 Instructions:
               </h4>
@@ -121,7 +132,6 @@
                 id="instructionSection"
               ></section>
             </section>
-            <h4 class="modal-subtitle" id="modalTotalCost">Total Cost:</h4>
             <p class="modal-text"></p>
           </div>
         </div>
