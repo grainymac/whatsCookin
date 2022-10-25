@@ -92,10 +92,20 @@ main {
 
 .glide__title {
 font-size: 36px;
+text-align: center;
+margin: 10px;
 }
 
 .glide__info {
   font-size: 20px;
+  text-align: center;
+  margin: 10px;
+}
+
+.glide__textbox {
+  background-color: rgb(146, 128, 118);
+  opacity: .75;
+  width: 80%;
 }
 
 /* --------Side Nav--------- */
