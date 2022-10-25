@@ -313,9 +313,6 @@ font-size: 36px;
 }
 
 .modal-content {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center; */
   background-color: rgb(255, 255, 255);
   margin: auto;
   padding: 20px;
