@@ -3,6 +3,17 @@
   src: url('assets/YesevaOne-Regular.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: JosefinSans-Light;
+  src: url('assets/JosefinSans-Light.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: JosefinSans-Regular;
+  src: url('assets/JosefinSans-Regular.ttf') format('truetype');
+}
+
+
 html {
   position: relative;
   margin: 0px;
@@ -290,7 +301,7 @@ font-size: 36px;
 .modal {
   display: none;
   position: fixed;
-  z-index: 1;
+  z-index: 9999;
   padding-top: 100px;
   left: 0;
   top: 0;
@@ -302,15 +313,15 @@ font-size: 36px;
 }
 
 .modal-content {
-
   /* display: flex;
-  flex-direction: column; */
-  /* justify-content: center; */
-  /* align-items: center; */
+  flex-direction: column;
+  justify-content: center; */
   background-color: rgb(255, 255, 255);
   margin: auto;
   padding: 20px;
+  border: 5px solid #A7D2CB;
   border-radius: 16px;
+  border-width: 15px;
   background-repeat: no-repeat;
   background-blend-mode: multiply;
   background-size: cover;
@@ -329,15 +340,6 @@ font-size: 36px;
   display: none;
 }
 
-/* .modal-figure {
-  height: 50%;
-  width: 100%;
-  border-radius: 16px 16px 0 0;
-  overflow: hidden;
-  margin: 0;
-  margin-bottom: 32px;
-} */
-
 .modal-banner-container {
   display: flex;
   flex-direction: column;
@@ -345,49 +347,47 @@ font-size: 36px;
 
 .modal-img-container {
   display:flex;
-  /* flex-direction: column; */
   justify-content: center;
 }
 
 .modal-img {
-  width: 50%;
+  width: 65%;
   height: 50%;
   margin: 8px;
-  /* background-size: cover; */
   border-radius: 16px;
 }
 
 .modal-title {
+  font-family: JosefinSans-Regular;
   text-align: center;
   bottom: -20px;
-  /* color: #fff */
 }
 
-/* .modal-ingredients-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  
-} */
 .modal-instructions-container,
 .modal-ingredients-container {
+  font-family: JosefinSans-Light;
   margin-left: 36px;
 }
 
-
-/* .modal-ingredients-container {
-  margin-left: 48px; */
-/* } */
-
 .modal-cost {
   text-align: center;
+  font-family: JosefinSans-Light;
+  background-color: #874C62;
+  color: #fff;
+  margin: 30px;
+  font-weight: 600;
+  letter-spacing: -0.25px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 4px 16px;
+  line-height: 1.5;
+  top: 20px;
 }
 
 .close {
   color: #aaaaaa;
   float: right;
-  font-size: 28px;
+  font-size: 32px;
   font-weight: bold;
 }
 
