@@ -44,10 +44,6 @@
 Visit our published site! [here]()
 
 
-## Possible Future Extensions
-  - 
-
-
 ## Set Up
 1. Fork this repo  
 2. Clone the repo to your local machine
