@@ -60,7 +60,7 @@
     </div>
     <main>
       <section class="left-nav">
-        <h2 class="tags-title">filter by tags</h2>
+        <h3 class="tags-title">filter by tags</h3>
         <section class="tags-container" id="tagsContainer">
           <!--adding tags here-->
         </section>
@@ -84,7 +84,7 @@
                 id="allRecipeSearch"
                 placeholder="Search all recipes by name"
               />
-              <button class="search-allrecipes-button" id="searchAllRecipesButton">Search</button>
+              <button class="search-allrecipes-button" id="searchAllRecipesButton"><span>Search</span></button>
               <button class="clear-allrecipes-button hidden" id="clearAllRecipesButton">Clear</button>
             </div>
             <input type="radio" id="tabCookbook" name="user-tabs" />
@@ -97,8 +97,15 @@
                 id="cookbookSearch"
                 placeholder="Search your cookbook by name"
               />
-              <button class="search-cookbook-button" id="searchCookbookButton">Search</button>
-              <button class="clear-cookbook-button hidden" id="clearCookbookButton">Clear</button>
+              <button class="search-cookbook-button" id="searchCookbookButton">
+                Search
+              </button>
+              <button
+                class="clear-cookbook-button hidden"
+                id="clearCookbookButton"
+              >
+                Clear
+              </button>
             </div>
           </div>
         </section>
@@ -111,14 +118,18 @@
           <div class="modal-content">
             <span class="close" id="close">&times;</span>
             <h3 class="modal-title">Chocolate Chip Cookies</h3>
-            <section>
+            <div class="modal-img-container">
+              <img class="modal-img" />
+            </div>
+            <h4 class="modal-cost" id="modalTotalCost">Total Cost:</h4>
+            <section class="modal-ingredients-container">
               <h4 class="modal-subtitle" id="modalIngredients">Ingredients:</h4>
               <section
-                class="ingredient-section"
-                id="ingredientSection"
+              class="ingredient-section"
+              id="ingredientSection"
               ></section>
             </section>
-            <section>
+            <section class="modal-instructions-container">
               <h4 class="modal-subtitle" id="modalInstructions">
                 Instructions:
               </h4>
@@ -127,7 +138,6 @@
                 id="instructionSection"
               ></section>
             </section>
-            <h4 class="modal-subtitle" id="modalTotalCost">Total Cost:</h4>
             <p class="modal-text"></p>
           </div>
         </div>
