@@ -11,7 +11,7 @@
   - [Set Up](#set-up)
   - [Organizational Resources](#organizational-resources)
   - [Contributors](#contributors)
-  - [Challenges] (#challenges)
+  - [Challenges](#challenges)
 
 
 
