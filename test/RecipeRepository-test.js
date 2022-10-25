@@ -3,7 +3,7 @@ import RecipeRepository from '../src/classes/RecipeRepository';
 import Recipe from '../src/classes/Recipe';
 
 describe('RecipeRepository', () => {
-  let recipeData, newRecipeRepo, recipe;
+  let recipeData, newRecipeRepo, recipe, ingredientsData;
 
   beforeEach(() => {
     recipeData = [
@@ -108,37 +108,87 @@ describe('RecipeRepository', () => {
       },
     ];
 
-    newRecipeRepo = RecipeRepository.fromRecipeData(recipeData);
+    ingredientsData = [
+      {
+        id: 20081,
+        name: 'wheat flour',
+        estimatedCostInCents: 142,
+      },
+      {
+        id: 18372,
+        name: 'bicarbonate of soda',
+        estimatedCostInCents: 582,
+      },
+      {
+        id: 1009016,
+        name: 'apple cider',
+        estimatedCostInCents: 468,
+      },
+      {
+        id: 16112,
+        name: 'miso',
+        estimatedCostInCents: 978,
+      },
+      {
+        id: 1002030,
+        name: 'black pepper',
+        estimatedCostInCents: 441,
+      },
+      {
+        id: 19334,
+        name: 'brown sugar',
+        estimatedCostInCents: 559,
+      },
+    ];
 
-    recipe = new Recipe({
-      id: 231951,
-      image: 'https://spoonacular.com/recipeImages/231951-556x370.jpg',
-      ingredients: [
+    newRecipeRepo = RecipeRepository.fromRecipeData(
+      recipeData,
+      ingredientsData
+    );
+
+    recipe = new Recipe(
+      {
+        id: 231951,
+        image: 'https://spoonacular.com/recipeImages/231951-556x370.jpg',
+        ingredients: [
+          {
+            id: 20027,
+            quantity: {
+              amount: 2,
+              unit: 'tablespoons',
+            },
+          },
+          {
+            id: 10019334,
+            quantity: {
+              amount: 0.5,
+              unit: 'cup',
+            },
+          },
+        ],
+        instructions: [
+          {
+            instruction:
+              'Whisk together brown sugar, cornstarch, and 1/4 teaspoon salt in a heavy medium saucepan, then whisk in milk and cream. Bring to a boil over medium heat, whisking frequently, then boil, whisking, 1 minute.',
+            number: 1,
+          },
+        ],
+        name: 'Butterscotch Pudding',
+        tags: ['side dish'],
+      },
+      [
         {
           id: 20027,
-          quantity: {
-            amount: 2,
-            unit: 'tablespoons',
-          },
+          name: 'corn starch',
+          estimatedCostInCents: 236,
         },
         {
           id: 10019334,
-          quantity: {
-            amount: 0.5,
-            unit: 'cup',
-          },
+          name: 'dark brown sugar',
+          estimatedCostInCents: 501,
         },
-      ],
-      instructions: [
-        {
-          instruction:
-            'Whisk together brown sugar, cornstarch, and 1/4 teaspoon salt in a heavy medium saucepan, then whisk in milk and cream. Bring to a boil over medium heat, whisking frequently, then boil, whisking, 1 minute.',
-          number: 1,
-        },
-      ],
-      name: 'Butterscotch Pudding',
-      tags: ['side dish'],
-    });
+      ]
+    );
   });
 
   it('Should be a function', () => {
