@@ -25,6 +25,7 @@ body {
   margin: 0px;
   padding: 0px;
   font-family: Yeseva;
+  background-color: rgb(249, 233, 214);
 }
 
 main {
@@ -119,7 +120,7 @@ font-size: 36px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #ffffdd;
+  background: #F2D388;
   box-shadow: 1px 3px 3px rgb(0 0 0 / 20%), -1px -1px 4px rgb(0 0 0 / 20%);
 }
 
@@ -135,8 +136,8 @@ font-size: 36px;
 }
 
 .recipe-tag {
-  background-color: cornflowerblue;
-  color: #fff;
+  background-color: #A7D2CB;
+  color: #000000;
   margin: 3px;
   font-weight: 600;
   letter-spacing: -0.25px;
@@ -148,11 +149,12 @@ font-size: 36px;
 
 .recipe-tag:hover {
   cursor: pointer;
-  background-color: hotpink;
+  background-color: teal;
+  color: #ffffff;
 }
 
 .recipe-tag-selected {
-  background-color: rgb(249, 67, 158);
+  background-color: #C98474;
 }
 
 /* --------Recipe Search--------- */
@@ -167,7 +169,7 @@ font-size: 36px;
   flex-wrap: wrap;
   margin-top: 20px;
   margin-bottom: 16px;
-  width: 400px;
+  width: 510px;
 }
 
 .user-tabs input[type='radio'] {
@@ -184,7 +186,7 @@ font-size: 36px;
 .user-tabs .tab {
   width: 100%;
   padding: 20px;
-  background: #a0ffe6;
+  background: #A7D2CB;
   border-radius: 0px 10px 10px 10px;
   order: 1;
   display: none;
@@ -195,7 +197,7 @@ font-size: 36px;
 }
 
 .user-tabs [type='radio']:checked + label {
-  background: #a0ffe6;
+  background: #97d2c9;
 }
 
 .search-bar {
@@ -207,6 +209,45 @@ font-size: 36px;
   align-items: center;
 }
 
+.search-allrecipes-button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #E6FFFB;
+  border: none;
+  color: #000000;
+  text-align: center;
+  /* padding: 20px; */
+  width: 80px;
+  height: 30px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.search-allrecipes-button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.search-allrecipes-button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.search-allrecipes-button:hover span {
+  padding-right: 25px;
+}
+
+.search-allrecipes-button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
 /* -----------------------------------------------Recipes--------- */
 .recipes-section {
   display: flex;
@@ -216,7 +257,7 @@ font-size: 36px;
   width: 1200px;
   min-height: 500px;
   border-radius: 16px;
-  background-color: #ffd5e5;
+  background-color: #c9847487;
 }
 
 .recipe-card {
@@ -285,8 +326,8 @@ font-size: 36px;
 }
 
 .recipe-section-tag {
-  background-color: #af83d8;
-  color: #fff;
+  background-color: #874C62;
+  color: #ffffff;
   user-select: none;
   margin: 3px;
   font-weight: 600;
