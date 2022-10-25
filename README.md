@@ -47,11 +47,12 @@
 
 
 ## Deployed Page
-Visit our published site! [here]()
+- This project is currently not deployed, please see Set Up instructions below for directions on running this project locally!
 
 
 ## Possible Future Extensions
   - Ability to create reviews for their favorite (or not-so-favorite recipes)
+  - GitHub Pages integration
 
 
 ## Set Up
