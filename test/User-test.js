@@ -12,68 +12,10 @@ describe('User', () => {
 
   beforeEach(() => {
     user = new User(usersSampleData);
-
-    recipe = new Recipe()
+    recipe = new Recipe(recipeSampleData)
 
   anotherRecipe = new Recipe(
-    {
-      id: 999044,
-      image: 'https://spoonacular.com/recipeImages/999044-556x370.jpg',
-      ingredients: [
-        {
-          id: 9037,
-          quantity: {
-            amount: 1,
-            unit: '',
-          },
-        },
-        {
-          id: 16057,
-          quantity: {
-            amount: 1.5,
-            unit: 'cups',
-          },
-        },
-        {
-          id: 11297,
-          quantity: {
-            amount: 2,
-            unit: 'tablespoons',
-          },
-        },
-      ],
-      instructions: [
-        {
-          instruction:
-            'Working in a couple of batches, roughly chop the chickpeas and place in a bowl.',
-          number: 1,
-        },
-        {
-          instruction:
-            'Add the minced herbs and scallions to the chickpeas and give a quick toss.',
-          number: 2,
-        },
-      ],
-      name: 'Avocado Chickpea Salad',
-      tags: ['salad'],
-    },
-    [
-      {
-        id: 9037,
-        name: 'haas avocados',
-        estimatedCostInCents: 275,
-      },
-      {
-        id: 16057,
-        name: 'garbanzos',
-        estimatedCostInCents: 85,
-      },
-      {
-        id: 11297,
-        name: 'flat leaf parsley leaves',
-        estimatedCostInCents: 1030,
-      },
-    ]
+    
   );
 
   it('should be a function', () => {
