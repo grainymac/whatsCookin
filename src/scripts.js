@@ -161,7 +161,11 @@ function buildRecipeCard(recipe, recipeCard, tags) {
     </div>
   `;
 
-  recipeCard.onclick = (event) => {
+  buildCardEventListener(recipe, recipeCard)
+};
+
+function buildCardEventListener(recipe, recipeCard) {
+  recipeCard.addEventListener('click', (event) => {
     if (event.target.className === 'recipe-favorite-icon') {
       if (event.target.src === 'http://localhost:8080/star.png') {
         event.target.src = 'star-yellow.png';
@@ -177,8 +181,8 @@ function buildRecipeCard(recipe, recipeCard, tags) {
     } else {
       buildModal(recipe);
     }
-  };
-};
+  })
+}
 
 // ----- Adding/Removing Recipes from Favorites -----
 
