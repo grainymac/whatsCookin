@@ -25,5 +25,28 @@ class User {
     searchFavoriteRecipesByName(userSearch) {
         return this.favoriteRecipeRepo.searchByName(userSearch)
     }
-}
+
+    findIngredientInPantry(recipe) {
+        let inPantry;
+        const pantryIDs = this.pantry.map((pantryIngredient) => {
+            return pantryIngredient.ingredient
+        })
+        recipe.ingredients.forEach((currentIngredient) => {
+            if(!pantryIDs.includes(currentIngredient.id)) {
+                inPantry = false;
+                getNeededIngredients(currentIngredient)
+            } else if(pantryIDs.includes(currentIngredient.id)) {
+                inPantry = true;
+                determineAbilityToCook()
+            }
+        }) 
+        return inPantry;
+    }
+
+    determineAbilityToCook(recipeIngredient) {
+        
+    }
+ }
+
+
 export default User
