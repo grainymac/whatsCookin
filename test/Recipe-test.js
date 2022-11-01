@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 import Recipe from '../src/classes/Recipe';
 import { recipeSampleData } from "../src/data/recipeSampleData";
+import { ingredientSampleData } from "../src/data/ingredientSampleData";
 
 
 describe('Recipe', () => {
@@ -9,14 +10,15 @@ describe('Recipe', () => {
 
 
   beforeEach(() => {
-    recipe = new Recipe(recipeSampleData);
+    recipe = new Recipe(recipeSampleData, ingredientSampleData);
     recipeData = recipeSampleData[0];
   });
+
   
   it('should store an instructions array', () => {
     expect(recipe.instructions).to.equal(recipeSampleData[0].instructions);
   });
-  console.log('what is this1', recipeSampleData[0].instructions)
+
 
   it('should store recipe name', () => {
     expect(recipe.name).to.equal(recipeSampleData[0].name);

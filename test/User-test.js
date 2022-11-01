@@ -2,9 +2,9 @@ const chai = require("chai");
 const expect = chai.expect;
 
 import User from "../src/classes/User.js";
-import { usersSampleData } from "../src/data/usersSampleData.js";
+import usersSampleData from "../src/data/usersSampleData.js";
 import Recipe from "../src/classes/Recipe";
-import { recipeSampleData } from "../src/data/recipeSampleData";
+import recipeSampleData from "../src/data/recipeSampleData";
 import RecipeRepository from "../src/classes/RecipeRepository";
 
 describe("User", () => {
