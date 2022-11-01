@@ -333,7 +333,7 @@ function searchRecipesByName(search) {
     let nameFilteredRecipes = store.user.favoriteRecipeRepo.searchByName(search)
     updateRecipeDisplay(nameFilteredRecipes);
     changeSearchButton(clearCookbookSearchButton, searchCookbookButton);
-    deselectTag
+    deselectTag()
   }
 };
 
