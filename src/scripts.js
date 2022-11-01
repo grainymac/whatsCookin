@@ -204,12 +204,13 @@ function removeFromCookbookDisplay(recipeToDelete) {
   }
 };
 
-
-function buildModal(recipe) {
-  modal.style.display = 'block';
+function buildModalQuerySelectors(recipe) {
   document.querySelector('.modal-img').src = `${recipe.image}`
   document.querySelector('.modal-img').alt = `this is an image of ${recipe.name}`
   document.querySelector('.modal-title').innerText = `${recipe.name}`;
+}
+
+function updateModalIngredients(recipe) {
   const modalIngredientsSection = document.getElementById('ingredientSection');
   modalIngredientsSection.innerHTML = '';
   recipe.ingredients.forEach((ingredient) => {
@@ -217,6 +218,9 @@ function buildModal(recipe) {
         <li class="ingredient">${ingredient.name}: ${ingredient.amount} ${ingredient.unit}</li>
       `;
   });
+}
+
+function updateModalInstructions(recipe) {
   const modalInstructionSection = document.getElementById('instructionSection');
   modalInstructionSection.innerHTML = '';
   recipe.getInstructions().forEach((instruction) => {
@@ -224,9 +228,18 @@ function buildModal(recipe) {
         <p class="instruction">${instruction}</p>
       `;
   });
-  document.getElementById(
-    'modalTotalCost'
-  ).innerText = `Total Cost: $${recipe.totalCost()}`;
+}
+
+function updateModalCost(recipe) {
+  document.getElementById('modalTotalCost').innerText = `Total Cost: $${recipe.totalCost()}`;
+}
+
+function buildModal(recipe) {
+  modal.style.display = 'block';
+  buildModalQuerySelectors(recipe)
+  updateModalIngredients(recipe)
+  updateModalInstructions(recipe)
+  updateModalCost(recipe)
 }
 
 // ----- Tags -----
