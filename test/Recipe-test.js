@@ -9,13 +9,14 @@ describe('Recipe', () => {
 
 
   beforeEach(() => {
-    recipeData = recipeSampleData[0];
     recipe = new Recipe(recipeSampleData);
+    recipeData = recipeSampleData[0];
   });
-
+  
   it('should store an instructions array', () => {
-    expect(recipe.instructions).to.deep.equal(recipeSampleData[0].instructions);
+    expect(recipe.instructions).to.equal(recipeSampleData[0].instructions);
   });
+  console.log('what is this1', recipeSampleData[0].instructions)
 
   it('should store recipe name', () => {
     expect(recipe.name).to.equal(recipeSampleData[0].name);

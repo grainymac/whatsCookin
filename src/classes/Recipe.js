@@ -12,7 +12,9 @@ class Recipe {
   }
   
   getAllIngredientsData(ingredientsData) {
+    console.log('what is this2', ingredientsData)
     return this.recipeIngredients.map((ingredient) => {
+      console.log(ingredient)
       const id = ingredient.id;
       const amount = ingredient.quantity.amount;
       const unit = ingredient.quantity.unit;

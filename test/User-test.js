@@ -48,7 +48,7 @@ describe("User", () => {
   it("should be able to remove a favourite recipe", () => {
     user.addFavoriteRecipe(recipe1);
     user.addFavoriteRecipe(recipe2);
-    user.removeFavoriteRecipe(recipe);
+    user.removeFavoriteRecipe(recipe1);
     expect(user.favoriteRecipeRepo.allRecipes).to.deep.equal([recipe2]);
   });
 
