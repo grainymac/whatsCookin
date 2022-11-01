@@ -94,6 +94,27 @@ clearCookbookSearchButton.addEventListener('click', function () {
   clearSearchBar(cookbookSearchBar)
 });
 
+recipeSection.addEventListener('click', (event) => {
+  if (event.target === recipeSection) {
+    return
+  }
+
+  const parentCardId = event.target.closest('.recipe-card').dataset.recipeId
+
+  if (event.target.matches('.recipe-favorite-icon') && event.target.src === 'http://localhost:8080/star.png') {
+    event.target.src = 'star-yellow.png';
+    addRecipeToCookbook(parentCardId);
+  } 
+  else if (event.target.matches('.recipe-favorite-icon') && event.target.src === 'http://localhost:8080/star-yellow.png') {
+    event.target.src = 'star.png';
+    removeRecipeFromCookbook(parentCardId);
+    removeFromCookbookDisplay(event.target.closest('.recipe-card'));
+  } 
+  else if (event.target.closest('.recipe-card')) {
+    buildModal(store.recipeRepo.allRecipes.find(recipe => recipe.id == parentCardId))
+  }
+})
+
 const defineEventListeners = () => {
   searchAllRecipesButton.addEventListener('click', function () {
     searchRecipesByName(allRecipesSearchBar.value);
@@ -160,24 +181,6 @@ function buildRecipeCard(recipe, recipeCard, tags) {
       ${tags.toString()}
     </div>
   `;
-
-  recipeCard.onclick = (event) => {
-    if (event.target.className === 'recipe-favorite-icon') {
-      if (event.target.src === 'http://localhost:8080/star.png') {
-        event.target.src = 'star-yellow.png';
-        addRecipeToCookbook(
-          event.target.parentNode.parentNode.dataset.recipeId
-        );
-      } else if (event.target.src === 'http://localhost:8080/star-yellow.png') {
-        event.target.src = 'star.png';
-        removeRecipeFromCookbook(
-          event.target.parentNode.parentNode.dataset.recipeId);
-        removeFromCookbookDisplay(event.target.parentNode.parentNode);
-      }
-    } else {
-      buildModal(recipe);
-    }
-  };
 };
 
 // ----- Adding/Removing Recipes from Favorites -----
