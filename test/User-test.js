@@ -2,59 +2,18 @@ const chai = require('chai');
 const expect = chai.expect;
 
 import User from '../src/classes/User.js';
+import { usersSampleData } from '../src/data/usersSampleData.js';
 import Recipe from '../src/classes/Recipe';
+import { recipeSampleData } from '../src/data/recipeSampleData';
 import RecipeRepository from '../src/classes/RecipeRepository';
 
 describe('User', () => {
   let user, recipe, anotherRecipe;
 
   beforeEach(() => {
-    user = new User();
+    user = new User(usersSampleData);
 
-    recipe = new Recipe(
-      {
-        id: 231951,
-        image: 'https://spoonacular.com/recipeImages/231951-556x370.jpg',
-        ingredients: [
-          {
-            id: 20027,
-            quantity: {
-              amount: 2,
-              unit: 'tablespoons',
-            },
-          },
-          {
-            id: 10019334,
-            quantity: {
-              amount: 0.5,
-              unit: 'cup',
-            },
-          },
-        ],
-        instructions: [
-          {
-            instruction:
-              'Whisk together brown sugar, cornstarch, and 1/4 teaspoon salt in a heavy medium saucepan, then whisk in milk and cream. Bring to a boil over medium heat, whisking frequently, then boil, whisking, 1 minute.',
-            number: 1,
-          },
-        ],
-        name: 'Butterscotch Pudding',
-        tags: ['side dish'],
-      },
-      [
-        {
-          id: 20027,
-          name: 'corn starch',
-          estimatedCostInCents: 236,
-        },
-        {
-          id: 10019334,
-          name: 'dark brown sugar',
-          estimatedCostInCents: 501,
-        },
-      ]
-    );
-  });
+    recipe = new Recipe()
 
   anotherRecipe = new Recipe(
     {
