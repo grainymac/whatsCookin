@@ -9,10 +9,7 @@ describe('User', () => {
   let user, recipe, anotherRecipe;
 
   beforeEach(() => {
-    user = new User({
-      name: "Saige O'Kon",
-      id: 1,
-    });
+    user = new User();
 
     recipe = new Recipe(
       {
