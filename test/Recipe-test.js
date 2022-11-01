@@ -4,58 +4,29 @@ import { recipeSampleData } from "../src/data/recipeSampleData";
 
 
 describe('Recipe', () => {
-  let recipe, recipeSampleData, recipeInstructions, recipeTags;
-  console.log('what is this', recipeSampleData)
+  let recipe;
+  let recipeData;
+
 
   beforeEach(() => {
+    recipeData = recipeSampleData[0];
     recipe = new Recipe(recipeSampleData);
-    recipeInstructions = recipe.instructions;
-    recipeTags = recipe.tags;
   });
 
-  it('should store instructions array', () => {
-    expect(recipe.instructions).to.deep.equal(recipeInstructions);
+  it('should store an instructions array', () => {
+    expect(recipe.instructions).to.deep.equal(recipeSampleData[0].instructions);
   });
 
   it('should store recipe name', () => {
-    expect(recipe.name).to.equal('Loaded Chocolate Chip Pudding Cookie Cups');
+    expect(recipe.name).to.equal(recipeSampleData[0].name);
   });
 
   it('should store tags array', () => {
-    expect(recipe.tags).to.deep.equal([
-      'antipasti',
-      'starter',
-      'snack',
-      'appetizer',
-      'antipasto',
-      "hor d'oeuvre",
-    ]);
+    expect(recipe.tags).to.deep.equal([recipeSampleData[0].tags]);
   });
 
   it('should store the complete ingredient data for all recipe ingredients', () => {
-    expect(recipe.ingredients).to.deep.equal([
-      {
-        id: 20081,
-        name: 'wheat flour',
-        estimatedCostInCents: 142,
-        unit: 'c',
-        amount: 1.5,
-      },
-      {
-        id: 18372,
-        name: 'bicarbonate of soda',
-        estimatedCostInCents: 582,
-        amount: 0.5,
-        unit: 'tsp',
-      },
-      {
-        id: 1123,
-        name: 'eggs',
-        estimatedCostInCents: 472,
-        amount: 1,
-        unit: 'large',
-      },
-    ]);
+    expect(recipe.ingredients).to.deep.equal([recipeSampleData[0].ingredients]);
   });
 
   it('should have a method that returns ingredient names', () => {
