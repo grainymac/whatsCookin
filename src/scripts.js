@@ -266,6 +266,7 @@ function tagsToggleFilter(event) {
 };
 
 function addTag(event) {
+  clearSearchBar()
   const filterSelectedTags = store.tagList.filter((tag) =>
     tag.classList.contains('recipe-tag-selected')
   );
@@ -326,11 +327,13 @@ function searchRecipesByName(search) {
     let nameFilteredRecipes = store.recipeRepo.searchByName(search)
     updateRecipeDisplay(nameFilteredRecipes);
     changeSearchButton(clearAllRecipeSearchButton, searchAllRecipesButton);
+    deselectTag()
   } 
   else if (cookbookTab.checked && search.length > 0) {
     let nameFilteredRecipes = store.user.favoriteRecipeRepo.searchByName(search)
     updateRecipeDisplay(nameFilteredRecipes);
     changeSearchButton(clearCookbookSearchButton, searchCookbookButton);
+    deselectTag
   }
 };
 
