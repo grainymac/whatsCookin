@@ -122,6 +122,23 @@ margin: 10px;
   border-radius: 16px;
 }
 
+.glide__scroll {
+position: absolute;
+bottom: 30px;
+border-right: 6px solid #fff;
+border-bottom: 6px solid #fff;
+width: 30px;
+height: 30px;
+transform: translate(-50%, 0%) rotate(45deg);
+animation: scroll_arrow 4s ease-in-out infinite;
+}
+
+@keyframes scroll_arrow {
+  0% {transform: translate(0,-10px) rotate(45deg); opacity: 0;}
+  50% {opacity: 1;}
+  100% {transform: translate(0, 10px) rotate(45deg); opacity: 0;}
+}
+
 /* --------Side Nav--------- */
 .left-nav {
   border-radius: 10px;
