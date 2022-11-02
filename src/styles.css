@@ -13,7 +13,6 @@
   src: url('assets/JosefinSans-Regular.ttf') format('truetype');
 }
 
-
 html {
   position: relative;
   margin: 0px;
@@ -64,24 +63,159 @@ main {
   height: 500px;
 }
 
-.logo {
-  height: 75px;
-  margin-left: 20px;
-}
-
 .user-greeting {
   color: #fff;
   font-weight: 700;
-  margin-right: 20px;
+  margin-left: 20px;
   font-size: 20px;
   font-style: italic;
+}
+
+.logo {
+  position: absolute;
+  left: 48%;
+  height: 75px;
+}
+
+.pantry__btn {
+  all: unset;
+  cursor: pointer;
+  background-color: rgb(146, 128, 118);
+  position: relative;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+  margin-right: 20px;
+  width: 180px;
+  height: 40px;
+  border-radius: 14px;
+  border: 1px solid;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.dropdown__arrow {
+  display: inline-block;
+  position: relative;
+  border-bottom: 2px solid #fff;
+  border-right: 2px solid #fff;
+  width: 8px;
+  height: 8px;
+  margin-left: 20px;
+  top: -2px;
+  transform: rotate(45deg);
+  transition: all ease-in-out 300ms;
+}
+
+.dropdown__arrow-open {
+  transform: rotate(-135deg);
+  top: 3px;
+}
+
+.pantry__btn:hover {
+  filter: brightness(150%);
+}
+
+.pantry__btn:active {
+  top: 1px;
+}
+
+/* --------Pantry--------- */
+
+.pantry {
+  position: absolute;
+  display: none;
+  top: 80%;
+  right: 30px;
+  height: 700px;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.pantry__open {
+  display: block;
+  animation: dropdown__open 300ms ease-in-out forwards;
+  transform-origin: top center;
+}
+
+@keyframes dropdown__open {
+  0% {
+    opacity: 0;
+    transform: rotateX(-90deg);
+  }
+  50% {
+    transform: rotateX(0deg);
+  }
+  100% {
+    opacity: 1;
+    transform: rotatex(0deg);
+  }
+}
+
+.dropdown__header {
+  background-color: rgb(249, 233, 214);
+  width: 314px;
+  height: 43px;
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgb(249, 233, 214);
+  border: 2px solid #e3e5ea;
+}
+
+.header__id {
+  font-size: 15px;
+  margin-right: 10px;
+}
+
+.header__stock {
+  font-size: 16px;
+  margin-right: 30px;
+}
+
+.header__name {
+  font-size: 16px;
+  margin-right: 24px;
+}
+
+.pantry__ingredient {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  width: 314px;
+  height: 90px;
+  border-bottom: 1px solid #f4f5f6;
+  contain: content;
+  /* overflow: scroll; -> keeping here for now just in case, probably will remove*/
+}
+
+.ingredient__id {
+  margin-left: 40px;
+  width: 50px;
+  /* word-break: break-all; */
+}
+
+.ingredient__stock {
+  width: 40px;
+  margin-left: 14px;
+  word-break: break-all;
+  text-align: center;
+}
+
+.ingredient__name {
+  margin-right: 20px;
+  width: 78px;
+  text-align: center;
+  padding-right: 5px;
 }
 
 /* --------Glide--------- */
 .glide__image {
   position: relative;
   height: 100vh;
-  /* width: 33.33vw; */
   background-position: center;
   background-size: cover;
   margin: 0px;
@@ -103,9 +237,9 @@ main {
 }
 
 .glide__title {
-font-size: 36px;
-text-align: center;
-margin: 10px;
+  font-size: 36px;
+  text-align: center;
+  margin: 10px;
 }
 
 .glide__info {
@@ -117,7 +251,7 @@ margin: 10px;
 
 .glide__textbox {
   background-color: rgb(146, 128, 118);
-  opacity: .85;
+  opacity: 0.85;
   width: 80%;
   border-radius: 16px;
 }
@@ -149,7 +283,7 @@ animation: scroll_arrow 4s ease-in-out infinite;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #F2D388;
+  background: #f2d388;
   box-shadow: 1px 3px 3px rgb(0 0 0 / 20%), -1px -1px 4px rgb(0 0 0 / 20%);
 }
 
@@ -165,7 +299,7 @@ animation: scroll_arrow 4s ease-in-out infinite;
 }
 
 .recipe-tag {
-  background-color: #A7D2CB;
+  background-color: #a7d2cb;
   color: #000000;
   margin: 3px;
   font-weight: 600;
@@ -183,7 +317,7 @@ animation: scroll_arrow 4s ease-in-out infinite;
 }
 
 .recipe-tag-selected {
-  background-color: #C98474;
+  background-color: #c98474;
 }
 
 /* --------Recipe Search--------- */
@@ -215,7 +349,7 @@ animation: scroll_arrow 4s ease-in-out infinite;
 .user-tabs .tab {
   width: 100%;
   padding: 20px;
-  background: #A7D2CB;
+  background: #a7d2cb;
   border-radius: 0px 10px 10px 10px;
   order: 1;
   display: none;
@@ -316,7 +450,7 @@ animation: scroll_arrow 4s ease-in-out infinite;
 }
 
 .recipe-section-tag {
-  background-color: #874C62;
+  background-color: #874c62;
   color: #ffffff;
   user-select: none;
   margin: 3px;
@@ -347,7 +481,7 @@ animation: scroll_arrow 4s ease-in-out infinite;
   background-color: rgb(255, 255, 255);
   margin: auto;
   padding: 20px;
-  border: 5px solid #A7D2CB;
+  border: 5px solid #a7d2cb;
   border-radius: 16px;
   border-width: 15px;
   background-repeat: no-repeat;
@@ -374,7 +508,7 @@ animation: scroll_arrow 4s ease-in-out infinite;
 }
 
 .modal-img-container {
-  display:flex;
+  display: flex;
   justify-content: center;
 }
 
@@ -400,7 +534,7 @@ animation: scroll_arrow 4s ease-in-out infinite;
 .modal-cost {
   text-align: center;
   font-family: JosefinSans-Light;
-  background-color: #874C62;
+  background-color: #874c62;
   color: #fff;
   margin: 30px;
   font-weight: 600;

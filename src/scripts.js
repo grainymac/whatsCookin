@@ -5,6 +5,9 @@ import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
 
 // --------------------QUERY SELECTORS ------------------
+const pantryBtn = document.querySelector('.pantry__btn')
+const pantry = document.querySelector('.pantry')
+const dropdownArrow = document.querySelector('.dropdown__arrow')
 const allRecipesSearchBar = document.querySelector('#allRecipeSearch');
 const allRecipesTab = document.getElementById('tabAllRecipes');
 const clearAllRecipeSearchButton = document.querySelector('#clearAllRecipesButton');
@@ -78,6 +81,8 @@ window.onclick = (event) => {
   }
 };
 
+pantryBtn.addEventListener('click', togglePantry)
+
 clearAllRecipeSearchButton.addEventListener('click', function () {
   updateRecipeDisplay(store.recipeRepo.allRecipes)
 });
@@ -134,6 +139,13 @@ const defineEventListeners = () => {
 };
 
 // ------------------ FUNCTIONS ------------------
+
+
+function togglePantry() {
+  pantry.classList.toggle('pantry__open')
+  dropdownArrow.classList.toggle('dropdown__arrow-open')
+}
+
 
 // ----- Recipe Display -----
 
