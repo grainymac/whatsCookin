@@ -14,11 +14,11 @@ describe('RecipeRepository', () => {
     recipe = new Recipe(recipeSampleData[0], ingredientSampleData);
   });
 
-  it.only('Should be a function', () => {
+  it('Should be a function', () => {
     expect(RecipeRepository).to.be.a('function');
   });
 
-  it.only('should be an instance of Recipe Repository', () => {
+  it('should be an instance of Recipe Repository', () => {
     expect(recipeRepo).to.be.an.instanceOf(RecipeRepository);
   });
 
@@ -27,15 +27,15 @@ describe('RecipeRepository', () => {
   });
 
   it('Should have a method that filters by tag and stores the filtered recipes in a property', () => {
-    expect(recipeRepo.filterByTag('sauce')).to.deep.equal([
-      recipeRepo.allRecipes[2],
+    expect(recipeRepo.filterByTag('salad')).to.deep.equal([
+      recipeRepo.allRecipes[1],
     ]);
   });
 
   it('Should have a method that searches by name and stores the filtered recipes in a property', () => {
-    recipeRepo.searchByName("Dirty Steve's");
-    expect(recipeRepo.searchByName("Dirty Steve's")).to.deep.equal([
-      recipeRepo.allRecipes[2],
+    recipeRepo.searchByName("Avocado Chickpea Salad");
+    expect(recipeRepo.searchByName("Avocado Chickpea Salad")).to.deep.equal([
+      recipeRepo.allRecipes[1],
     ]);
   });
 
@@ -47,23 +47,19 @@ describe('RecipeRepository', () => {
       'appetizer',
       'antipasto',
       "hor d'oeuvre",
-      'lunch',
-      'main course',
-      'main dish',
-      'dinner',
-      'sauce',
+      'salad',
     ]);
   });
 
   it('Should have a method that adds a recipe to the recipe list', () => {
     recipeRepo.addRecipe(recipe);
-    expect(recipeRepo.allRecipes[3]).to.deep.equal(recipe);
+    expect(recipeRepo.allRecipes[0]).to.deep.equal(recipe);
   });
 
   it('Should have a method that adds removes a recipe from the recipe list', () => {
     recipeRepo.addRecipe(recipe);
-    recipeRepo.removeRecipe(recipeRepo.allRecipes[0]);
+    recipeRepo.removeRecipe(recipeRepo.allRecipes[1]);
 
-    expect(recipeRepo.allRecipes[2]).to.deep.equal(recipe);
+    expect(recipeRepo.allRecipes[0]).to.deep.equal(recipe);
   });
 });

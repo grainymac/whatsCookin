@@ -18,7 +18,7 @@ describe("User", () => {
   beforeEach(() => {
     user = new User(usersSampleData);
     recipe1 = new Recipe(recipeSampleData[0], ingredientSampleData);
-    // recipe2 = new Recipe(recipeSampleData[1], ingredientSampleData);
+    recipe2 = new Recipe(recipeSampleData[1], ingredientSampleData);
   });
 
   it("should be a function", () => {
@@ -57,14 +57,13 @@ describe("User", () => {
     expect(user.favoriteRecipeRepo.allRecipes).to.deep.equal([recipe2]);
   });
 
-  it.skip("Should have a method that filters by tag and stores the filtered recipes in a property", () => {
-    recipe2 = new Recipe(recipeSampleData[2], ingredientSampleData);
+  it("Should have a method that filters by tag and stores the filtered recipes in a property", () => {
     user.addFavoriteRecipe(recipe1);
     user.addFavoriteRecipe(recipe2);
-    expect(user.filterFavoriteRecipesByTag("salad")).to.deep.equal(recipeSampleData[2].tags);
+    expect(user.filterFavoriteRecipesByTag("salad")).to.deep.equal([recipe2]);
   });
 
-  it.skip("Should have a method that searches by name and stores the filtered recipes in a property", () => {
+  it("Should have a method that searches by name and stores the filtered recipes in a property", () => {
     user.addFavoriteRecipe(recipe1);
     user.addFavoriteRecipe(recipe2);
     expect(
