@@ -10,7 +10,7 @@ class Recipe {
     this.tags = recipeData.tags;
     this.ingredients = this.getAllIngredientsData(ingredientsData);
   }
-
+  
   getAllIngredientsData(ingredientsData) {
     return this.recipeIngredients.map((ingredient) => {
       const id = ingredient.id;
@@ -26,7 +26,7 @@ class Recipe {
         matchedIngredient.estimatedCostInCents,
         amount,
         unit
-      );
+        );
     });
   }
 
