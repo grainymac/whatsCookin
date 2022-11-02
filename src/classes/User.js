@@ -64,14 +64,13 @@ class User {
             if(foundPantryIngredient) {
                 console.log(foundPantryIngredient)
                 if(foundPantryIngredient.amount <= recipeIngredient.amount) {
-                    acc.push({name: `${recipeIngredient.name}`, needed: `${foundPantryIngredient.amount - recipeIngredient.amount}`})
+                    acc.push({name: `${recipeIngredient.name}`, needed: `${foundPantryIngredient.amount - recipeIngredient.amount}`)
                 }
             } else if(!foundPantryIngredient) {
-                acc.push({name: `${recipeIngredient.name}`, needed: `${recipeIngredient.amount}`})
+                acc.push(`${recipeIngredient.amount} ${recipeIngredient.name} `)
             }
         return acc;
         }, [])
-        console.log("NeededIngredients: ", neededIngredients)
         return neededIngredients
     }
 
