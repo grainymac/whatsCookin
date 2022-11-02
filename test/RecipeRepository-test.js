@@ -14,11 +14,11 @@ describe('RecipeRepository', () => {
     recipe = new Recipe(recipeSampleData[0], ingredientSampleData);
   });
 
-  it('Should be a function', () => {
+  it.only('Should be a function', () => {
     expect(RecipeRepository).to.be.a('function');
   });
 
-  it('should be an instance of Recipe Repository', () => {
+  it.only('should be an instance of Recipe Repository', () => {
     expect(recipeRepo).to.be.an.instanceOf(RecipeRepository);
   });
 

@@ -6,7 +6,6 @@ class RecipeRepository {
   }
 
   static fromRecipeData(recipeData, ingredientsData) {
-    console.log('what is this', recipeData)
     const recipes = recipeData.map((currentRecipe) => {
       return new Recipe(currentRecipe, ingredientsData)
     })

@@ -20,13 +20,14 @@ class Recipe {
         (ingredient) => ingredient.id === id
       );
 
+      console.log(matchedIngredient.name)
       return new Ingredient(
         id,
         matchedIngredient.name,
         matchedIngredient.estimatedCostInCents,
         amount,
         unit
-      );
+        );
     });
   }
 
