@@ -78,6 +78,29 @@ main {
   height: 75px;
 }
 
+.pantry__btn {
+  all: unset;
+  background-color: rgb(146, 128, 118);
+  position: relative;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+  margin-right: 20px;
+  width: 180px;
+  height: 45px;
+  border-radius: 16px;
+  border: 2px solid;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.pantry__btn:hover {
+  filter: brightness(150%);
+}
+
+.pantry__btn:active {
+  top: 1px;
+}
+
 /* --------Glide--------- */
 .glide__image {
   position: relative;
