@@ -64,17 +64,18 @@ main {
   height: 500px;
 }
 
-.logo {
-  height: 75px;
-  margin-left: 20px;
-}
-
 .user-greeting {
   color: #fff;
   font-weight: 700;
-  margin-right: 20px;
+  margin-left: 20px;
   font-size: 20px;
   font-style: italic;
+}
+
+.logo {
+  position: absolute;
+  left: 48%;
+  height: 75px;
 }
 
 /* --------Glide--------- */
