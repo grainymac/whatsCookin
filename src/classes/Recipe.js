@@ -2,10 +2,10 @@ import Ingredient from './Ingredient';
 
 class Recipe {
   constructor(recipeData, ingredientsData) {
-    console.log('what is this 1', recipeData)
     this.id = recipeData.id;
     this.image = recipeData.image;
     this.recipeIngredients = recipeData.ingredients;
+    console.log('line 8', this.recipeIngredients)
     this.instructions = recipeData.instructions;
     this.name = recipeData.name;
     this.tags = recipeData.tags;
@@ -13,7 +13,7 @@ class Recipe {
   }
   
   getAllIngredientsData(ingredientsData) {
-    return ingredientsData.map((ingredient) => {
+    return this.recipeIngredients.map((ingredient) => {
       const id = ingredient.id;
       const amount = ingredient.quantity.amount;
       const unit = ingredient.quantity.unit;

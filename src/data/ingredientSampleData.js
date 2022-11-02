@@ -1,23 +1,17 @@
 export const ingredientSampleData = [
     {
       id: 20081,
-      quantity: {
-        amount: 1.5,
-        unit: "c",
-      },
+      name: 'wheat flour',
+      estimatedCostInCents: 142,
     },
     {
       id: 18372,
-      quantity: {
-        amount: 0.5,
-        unit: "tsp",
-      },
+      name: 'bicarbonate of soda',
+      estimatedCostInCents: 582,
     },
     {
       id: 1123,
-      quantity: {
-        amount: 1,
-        unit: "large",
-      },
+      name: 'eggs',
+      estimatedCostInCents: 472,
     },
   ]
