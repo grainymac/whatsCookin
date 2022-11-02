@@ -7,6 +7,8 @@ class User {
         this.id = userData.id
         this.name = userData.name
         this.pantry = userData.pantry
+        this.canCook = [];
+        this.cannotCook = [];
         this.favoriteRecipeRepo = new RecipeRepository()
     }
 
@@ -26,26 +28,34 @@ class User {
         return this.favoriteRecipeRepo.searchByName(userSearch)
     }
 
-    findIngredientInPantry(recipe) {
-        let inPantry;
+    findIngredientsInPantry(recipe) {
         const pantryIDs = this.pantry.map((pantryIngredient) => {
             return pantryIngredient.ingredient
         })
-        recipe.ingredients.forEach((currentIngredient) => {
-            if(!pantryIDs.includes(currentIngredient.id)) {
-                inPantry = false;
-                getNeededIngredients(currentIngredient)
-            } else if(pantryIDs.includes(currentIngredient.id)) {
-                inPantry = true;
-                determineAbilityToCook()
-            }
-        }) 
-        return inPantry;
+        const inPantry = recipe.ingredients.every((currentIngredient) => {
+            return pantryIDs.includes(currentIngredient.id)
+        })
+        if(!inPantry) {
+            return determineMissingIngredients()
+        } else if(inPantry) {
+            return checkIngredientAmounts(recipe)
+        }
     }
 
-    determineAbilityToCook(recipeIngredient) {
-        
+    checkIngredientAmounts(recipe) {
+        const isEnough = this.pantry.every((pantryIngredient) => {
+            const foundIngredient = recipe.ingredients.find((ingredient) => {
+                return ingredient.id === pantryIngredient.ingredient
+            })
+            return foundIngredient.amount <= pantry.amount
+        })
+        if(!isEnough) {
+            determineMissingIngredients()
+        } else if(isEnough) {
+            this.canCook.push(recipe)
+        }
     }
+
  }
 
 
