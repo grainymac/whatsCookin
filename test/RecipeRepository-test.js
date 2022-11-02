@@ -39,6 +39,11 @@ describe('RecipeRepository', () => {
     ]);
   });
 
+  it('should not return incorrect recipes if user search does not match recipe names', () => {
+    recipeRepo.searchByName("Cereal");
+    expect(recipeRepo.searchByName("Cereal")).to.deep.equal([]);
+  })
+
   it('Should have a method that returns the tags for all the recipes', () => {
     expect(recipeRepo.retrieveAllTags()).to.deep.equal([
       'antipasti',
