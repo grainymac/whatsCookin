@@ -21,50 +21,50 @@ describe("User", () => {
     // recipe2 = new Recipe(recipeSampleData[1], ingredientSampleData);
   });
 
-  it.only("should be a function", () => {
+  it("should be a function", () => {
     expect(User).to.be.a("function");
   });
 
-  it.only("should an instance of User", () => {
+  it("should an instance of User", () => {
     expect(user).to.be.an.instanceOf(User);
   });
 
-  it.only("should have a name", () => {
+  it("should have a name", () => {
     expect(user.name).to.equal("Saige O'Kon");
   });
 
-  it.only("should have an id attached to user", () => {
+  it("should have an id attached to user", () => {
     expect(user.id).to.equal(1);
   });
 
-  it.only("should have a favorite recipe repo that is an instance of Recipe Repoistory", () => {
+  it("should have a favorite recipe repo that is an instance of Recipe Repoistory", () => {
     expect(user.favoriteRecipeRepo).to.be.an.instanceOf(RecipeRepository);
   });
 
-  it.only("should start with no favourite recipes to cook", () => {
+  it("should start with no favourite recipes to cook", () => {
     expect(user.favoriteRecipeRepo.allRecipes).to.deep.equal([]);
   });
 
-  it.only("should be able to add a favourite recipe", () => {
+  it("should be able to add a favourite recipe", () => {
     user.addFavoriteRecipe(recipe1);
     expect(user.favoriteRecipeRepo.allRecipes).to.deep.equal([recipe1]);
   });
 
-  it.only("should be able to remove a favourite recipe", () => {
+  it("should be able to remove a favourite recipe", () => {
     user.addFavoriteRecipe(recipe1);
     user.addFavoriteRecipe(recipe2);
     user.removeFavoriteRecipe(recipe1);
     expect(user.favoriteRecipeRepo.allRecipes).to.deep.equal([recipe2]);
   });
 
-  it.only("Should have a method that filters by tag and stores the filtered recipes in a property", () => {
+  it.skip("Should have a method that filters by tag and stores the filtered recipes in a property", () => {
     recipe2 = new Recipe(recipeSampleData[2], ingredientSampleData);
     user.addFavoriteRecipe(recipe1);
     user.addFavoriteRecipe(recipe2);
     expect(user.filterFavoriteRecipesByTag("salad")).to.deep.equal(recipeSampleData[2].tags);
   });
 
-  it.only("Should have a method that searches by name and stores the filtered recipes in a property", () => {
+  it.skip("Should have a method that searches by name and stores the filtered recipes in a property", () => {
     user.addFavoriteRecipe(recipe1);
     user.addFavoriteRecipe(recipe2);
     expect(

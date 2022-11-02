@@ -2,14 +2,16 @@ import { expect } from 'chai';
 import RecipeRepository from '../src/classes/RecipeRepository';
 import Recipe from '../src/classes/Recipe';
 import { recipeSampleData } from "../src/data/recipeSampleData";
+import { ingredientSampleData } from "../src/data/ingredientSampleData";
+
 
 
 describe('RecipeRepository', () => {
-  let recipeSampleData, recipeRepo, recipe, ingredientsData;
+  let recipeRepo, recipe;
 
   beforeEach(() => {
-    recipeRepo = RecipeRepository.fromRecipeData(recipeSampleData, ingredientsData);
-    recipe = new Recipe(recipeSampleData);
+    recipeRepo = RecipeRepository.fromRecipeData(recipeSampleData, ingredientSampleData);
+    recipe = new Recipe(recipeSampleData[0], ingredientSampleData);
   });
 
   it('Should be a function', () => {

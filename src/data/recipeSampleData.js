@@ -51,23 +51,23 @@ export const recipeSampleData = [
       "hor d'oeuvre",
     ],
   },
-  [
-    {
-      id: 20081,
-      name: "wheat flour",
-      estimatedCostInCents: 142,
-    },
-    {
-      id: 18372,
-      name: "bicarbonate of soda",
-      estimatedCostInCents: 582,
-    },
-    {
-      id: 1123,
-      name: "eggs",
-      estimatedCostInCents: 472,
-    },
-  ],
+  // [
+  //   {
+  //     id: 20081,
+  //     name: "wheat flour",
+  //     estimatedCostInCents: 142,
+  //   },
+  //   {
+  //     id: 18372,
+  //     name: "bicarbonate of soda",
+  //     estimatedCostInCents: 582,
+  //   },
+  //   {
+  //     id: 1123,
+  //     name: "eggs",
+  //     estimatedCostInCents: 472,
+  //   },
+  // ],
   {
     id: 999044,
     image: "https://spoonacular.com/recipeImages/999044-556x370.jpg",
@@ -108,22 +108,22 @@ export const recipeSampleData = [
     ],
     name: "Avocado Chickpea Salad",
     tags: ["salad"],
-  },
-  [
-    {
-      id: 9037,
-      name: "haas avocados",
-      estimatedCostInCents: 275,
-    },
-    {
-      id: 16057,
-      name: "garbanzos",
-      estimatedCostInCents: 85,
-    },
-    {
-      id: 11297,
-      name: "flat leaf parsley leaves",
-      estimatedCostInCents: 1030,
-    },
-  ],
+  }
+  // [
+  //   {
+  //     id: 9037,
+  //     name: "haas avocados",
+  //     estimatedCostInCents: 275,
+  //   },
+  //   {
+  //     id: 16057,
+  //     name: "garbanzos",
+  //     estimatedCostInCents: 85,
+  //   },
+  //   {
+  //     id: 11297,
+  //     name: "flat leaf parsley leaves",
+  //     estimatedCostInCents: 1030,
+  //   },
+  // ],
 ];
