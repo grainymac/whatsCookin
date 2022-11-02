@@ -6,6 +6,23 @@ class Ingredient {
     this.amount = amount
     this.unit = unit
   }
+
+  static fromIngredientData(id, ingredientsData, recipeData) {
+    const fromIngredients = ingredientsData.find(ingredient => id === ingredient.id)
+    const fromRecipe = recipeData.ingredients.find(ingredient => id === ingredient.id)
+    
+    let allIngredientData = {}
+
+    allIngredientData.id = id
+    allIngredientData.name = fromIngredients.name
+    allIngredientData.cost = fromIngredients.estimatedCostInCents
+    if (recipeData) {
+      allIngredientData.amount = fromRecipe.quantity.amount
+      allIngredientData.unit = fromRecipe.quantity.unit
+    }
+
+    return new Ingredient(id, name, cost, amount, unit)
+  }
 }
 
 export default Ingredient
