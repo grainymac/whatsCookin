@@ -2,65 +2,69 @@ const chai = require("chai");
 const expect = chai.expect;
 
 import User from "../src/classes/User.js";
-import usersSampleData from "../src/data/usersSampleData.js";
+import { usersSampleData } from "../src/data/usersSampleData.js";
 import Recipe from "../src/classes/Recipe";
-import recipeSampleData from "../src/data/recipeSampleData";
+import { recipeSampleData } from "../src/data/recipeSampleData";
 import RecipeRepository from "../src/classes/RecipeRepository";
+import { ingredientSampleData } from "../src/data/ingredientSampleData";
+
 
 describe("User", () => {
-  let user, recipe1, recipe2;
+  let user;
+  let recipe1, recipe2;
+
+
 
   beforeEach(() => {
     user = new User(usersSampleData);
-    recipe1 = new Recipe(recipeSampleData[0]);
-    recipe2 = new Recipe(recipeSampleData[1]);
+    recipe1 = new Recipe(recipeSampleData[0], ingredientSampleData);
+    // recipe2 = new Recipe(recipeSampleData[1], ingredientSampleData);
   });
 
-  it("should be a function", () => {
+  it.only("should be a function", () => {
     expect(User).to.be.a("function");
   });
 
-  it("should an instance of User", () => {
+  it.only("should an instance of User", () => {
     expect(user).to.be.an.instanceOf(User);
   });
 
-  it("should have a name", () => {
+  it.only("should have a name", () => {
     expect(user.name).to.equal("Saige O'Kon");
   });
 
-  it("should have an id attached to user", () => {
+  it.only("should have an id attached to user", () => {
     expect(user.id).to.equal(1);
   });
 
-  it("should have a favorite recipe repo that is an instance of Recipe Repoistory", () => {
+  it.only("should have a favorite recipe repo that is an instance of Recipe Repoistory", () => {
     expect(user.favoriteRecipeRepo).to.be.an.instanceOf(RecipeRepository);
   });
 
-  it("should start with no favourite recipes to cook", () => {
+  it.only("should start with no favourite recipes to cook", () => {
     expect(user.favoriteRecipeRepo.allRecipes).to.deep.equal([]);
   });
 
-  it("should be able to add a favourite recipe", () => {
+  it.only("should be able to add a favourite recipe", () => {
     user.addFavoriteRecipe(recipe1);
     expect(user.favoriteRecipeRepo.allRecipes).to.deep.equal([recipe1]);
   });
 
-  it("should be able to remove a favourite recipe", () => {
+  it.only("should be able to remove a favourite recipe", () => {
     user.addFavoriteRecipe(recipe1);
     user.addFavoriteRecipe(recipe2);
     user.removeFavoriteRecipe(recipe1);
     expect(user.favoriteRecipeRepo.allRecipes).to.deep.equal([recipe2]);
   });
 
-  it("Should have a method that filters by tag and stores the filtered recipes in a property", () => {
+  it.only("Should have a method that filters by tag and stores the filtered recipes in a property", () => {
+    recipe2 = new Recipe(recipeSampleData[2], ingredientSampleData);
     user.addFavoriteRecipe(recipe1);
     user.addFavoriteRecipe(recipe2);
-    expect(user.filterFavoriteRecipesByTag("side dish")).to.deep.equal([
-      user.favoriteRecipeRepo.allRecipes[0],
-    ]);
+    expect(user.filterFavoriteRecipesByTag("salad")).to.deep.equal(recipeSampleData[2].tags);
   });
 
-  it("Should have a method that searches by name and stores the filtered recipes in a property", () => {
+  it.only("Should have a method that searches by name and stores the filtered recipes in a property", () => {
     user.addFavoriteRecipe(recipe1);
     user.addFavoriteRecipe(recipe2);
     expect(

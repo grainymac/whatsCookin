@@ -5,7 +5,6 @@ class Recipe {
     this.id = recipeData.id;
     this.image = recipeData.image;
     this.recipeIngredients = recipeData.ingredients;
-    console.log('line 8', this.recipeIngredients)
     this.instructions = recipeData.instructions;
     this.name = recipeData.name;
     this.tags = recipeData.tags;
