@@ -13,7 +13,6 @@
   src: url('assets/JosefinSans-Regular.ttf') format('truetype');
 }
 
-
 html {
   position: relative;
   margin: 0px;
@@ -80,6 +79,7 @@ main {
 
 .pantry__btn {
   all: unset;
+  cursor: pointer;
   background-color: rgb(146, 128, 118);
   position: relative;
   color: #fff;
@@ -89,7 +89,7 @@ main {
   width: 180px;
   height: 45px;
   border-radius: 16px;
-  border: 2px solid;
+  border: 1px solid;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -99,6 +99,63 @@ main {
 
 .pantry__btn:active {
   top: 1px;
+}
+
+/* --------Pantry--------- */
+
+.pantry {
+  position: absolute;
+  display: block;
+}
+
+.pantry__open {
+  display: none;
+}
+
+.dropdown__header {
+  background-color: #fff7e3;
+  width: 314px;
+  height: 43px;
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #fff7e3;
+  border: 2px solid #e3e5ea;
+}
+
+.header__stock {
+  margin-right: 20px;
+}
+.pantry__ingredient {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /*   font: need font */
+  width: 314px;
+  height: 90px;
+  border-bottom: 1px solid #f4f5f6;
+  contain: content;
+  overflow: scroll;
+}
+
+.ingredient__id {
+  margin-left: 20px;
+  width: 50px;
+  word-break: break-all;
+}
+
+.ingredient__name {
+  margin-right: 20px;
+  width: 78px;
+}
+
+.ingredient__stock {
+  width: 40px;
+  margin-left: 30px;
+  word-break: break-all;
 }
 
 /* --------Glide--------- */
@@ -127,9 +184,9 @@ main {
 }
 
 .glide__title {
-font-size: 36px;
-text-align: center;
-margin: 10px;
+  font-size: 36px;
+  text-align: center;
+  margin: 10px;
 }
 
 .glide__info {
@@ -141,7 +198,7 @@ margin: 10px;
 
 .glide__textbox {
   background-color: rgb(146, 128, 118);
-  opacity: .85;
+  opacity: 0.85;
   width: 80%;
   border-radius: 16px;
 }
@@ -156,7 +213,7 @@ margin: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: #F2D388;
+  background: #f2d388;
   box-shadow: 1px 3px 3px rgb(0 0 0 / 20%), -1px -1px 4px rgb(0 0 0 / 20%);
 }
 
@@ -172,7 +229,7 @@ margin: 10px;
 }
 
 .recipe-tag {
-  background-color: #A7D2CB;
+  background-color: #a7d2cb;
   color: #000000;
   margin: 3px;
   font-weight: 600;
@@ -190,7 +247,7 @@ margin: 10px;
 }
 
 .recipe-tag-selected {
-  background-color: #C98474;
+  background-color: #c98474;
 }
 
 /* --------Recipe Search--------- */
@@ -222,7 +279,7 @@ margin: 10px;
 .user-tabs .tab {
   width: 100%;
   padding: 20px;
-  background: #A7D2CB;
+  background: #a7d2cb;
   border-radius: 0px 10px 10px 10px;
   order: 1;
   display: none;
@@ -323,7 +380,7 @@ margin: 10px;
 }
 
 .recipe-section-tag {
-  background-color: #874C62;
+  background-color: #874c62;
   color: #ffffff;
   user-select: none;
   margin: 3px;
@@ -354,7 +411,7 @@ margin: 10px;
   background-color: rgb(255, 255, 255);
   margin: auto;
   padding: 20px;
-  border: 5px solid #A7D2CB;
+  border: 5px solid #a7d2cb;
   border-radius: 16px;
   border-width: 15px;
   background-repeat: no-repeat;
@@ -381,7 +438,7 @@ margin: 10px;
 }
 
 .modal-img-container {
-  display:flex;
+  display: flex;
   justify-content: center;
 }
 
@@ -407,7 +464,7 @@ margin: 10px;
 .modal-cost {
   text-align: center;
   font-family: JosefinSans-Light;
-  background-color: #874C62;
+  background-color: #874c62;
   color: #fff;
   margin: 30px;
   font-weight: 600;
