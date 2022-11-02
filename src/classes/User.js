@@ -32,13 +32,14 @@ class User {
         const pantryIDs = this.pantry.map((pantryIngredient) => {
             return pantryIngredient.ingredient
         })
-        const inPantry = recipe.ingredients.every((currentIngredient) => {
-            return pantryIDs.includes(currentIngredient.id)
+        const notInPantry = recipe.ingredients.filter((recipeIngredient) => {
+            return !pantryIDs.includes(recipeIngredient.id)
         })
-        if(!inPantry) {
-            return determineMissingIngredients()
-        } else if(inPantry) {
-            return checkIngredientAmounts(recipe)
+        if(!notInPantry) {
+            return this.checkIngredientAmounts(recipe)
+        } else {
+            this.determineMissingIngredients(recipe);
+            return false
         }
     }
 
@@ -50,10 +51,28 @@ class User {
             return foundIngredient.amount <= pantry.amount
         })
         if(!isEnough) {
-            determineMissingIngredients()
-        } else if(isEnough) {
-            this.canCook.push(recipe)
+            this.determineMissingIngredients(recipe);
         }
+        return isEnough
+    }
+
+    determineMissingIngredients(recipe) {
+        const neededIngredients = recipe.ingredients.reduce((acc, recipeIngredient) => {
+            const foundPantryIngredient = this.pantry.find((pantryIngredient) => {
+                return pantryIngredient.ingredient === recipeIngredient.id
+            })
+            if(foundPantryIngredient) {
+                console.log(foundPantryIngredient)
+                if(foundPantryIngredient.amount <= recipeIngredient.amount) {
+                    acc.push({name: `${recipeIngredient.name}`, needed: `${foundPantryIngredient.amount - recipeIngredient.amount}`})
+                }
+            } else if(!foundPantryIngredient) {
+                acc.push({name: `${recipeIngredient.name}`, needed: `${recipeIngredient.amount}`})
+            }
+        return acc;
+        }, [])
+        console.log("NeededIngredients: ", neededIngredients)
+        return neededIngredients
     }
 
  }
