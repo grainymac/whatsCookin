@@ -28,5 +28,15 @@ export const ingredientSampleData = [
     id: 11297,
     name: "flat leaf parsley leaves",
     estimatedCostInCents: 1030
+  },
+  {
+    id: 11215,
+    name: "whole garlic clove",
+    estimatedCostInCents: 220
+  },
+  {
+    id: 2047,
+    name: "salt",
+    estimatedCostInCents: 280
   }
 ]

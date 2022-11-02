@@ -49,25 +49,8 @@ export const recipeSampleData = [
       "appetizer",
       "antipasto",
       "hor d'oeuvre",
-    ],
+    ]
   },
-  // [
-  //   {
-  //     id: 20081,
-  //     name: "wheat flour",
-  //     estimatedCostInCents: 142,
-  //   },
-  //   {
-  //     id: 18372,
-  //     name: "bicarbonate of soda",
-  //     estimatedCostInCents: 582,
-  //   },
-  //   {
-  //     id: 1123,
-  //     name: "eggs",
-  //     estimatedCostInCents: 472,
-  //   },
-  // ],
   {
     id: 999044,
     image: "https://spoonacular.com/recipeImages/999044-556x370.jpg",
@@ -108,22 +91,69 @@ export const recipeSampleData = [
     ],
     name: "Avocado Chickpea Salad",
     tags: ["salad"],
+  },
+  {
+    id: 412309,
+    image: "https://spoonacular.com/recipeImages/412309-556x370.jpeg",
+    ingredients: [
+      {
+        id: 11215,
+        quantity: {
+          amount: 1,
+          unit: "clove"
+        },
+      },
+      {
+        id: 2047,
+        quantity: {
+          amount: 0.5,
+          unit: "t"
+        },
+      },
+    ],
+    instructions: [
+      {
+        instruction: "Melt butter and brush some of the butter around the slow cooker.Using a stand mixer, combine flour, 1-cup sugar, baking powder, and salt. Then, add milk and remaining melted cooled butter, mixing just until dry ingredients are moistened.",
+        number: 1,
+      },
+      {
+        instruction: "Pour the batter in the slow cooker and place the frozen peaches on top.Cook on high for 3 hours with lid on top. Once the cobbler is done, divide and serve cobbler warm with ice cream and whipped cream on top.",
+        number: 2,
+      },
+    ],
+    name: "Slow Cooker Peach Cobbler",
+    tags: [
+      "side dish"
+    ]
+  },
+  {
+    id: 673337,
+    image: "https://spoonacular.com/recipeImages/673337-556x370.jpg",
+    ingredients: [
+      {
+        id: 11215,
+        quantity: {
+          amount: 7,
+          unit: "clove"
+        },
+      },
+      {
+        id: 2047,
+        quantity: {
+          amount: 0.5,
+          unit: "t"
+        },
+      },
+    ],
+    instructions: [
+      {
+        instruction: "Pour mixture into prepared pan, using your hands press to flatten. Set aside for 1-2 hours to set.In a separate bowl, combine powdered sugar with milk and stir to combine. Using a spoon, drizzle glaze on top of cereal bars and dust with colored sugar or sprinkles.",
+        number: 1,
+      },
+    ],
+    name: "Cereal Marshmallow Bars",
+    tags: [
+      "side dish"
+    ]
   }
-  // [
-  //   {
-  //     id: 9037,
-  //     name: "haas avocados",
-  //     estimatedCostInCents: 275,
-  //   },
-  //   {
-  //     id: 16057,
-  //     name: "garbanzos",
-  //     estimatedCostInCents: 85,
-  //   },
-  //   {
-  //     id: 11297,
-  //     name: "flat leaf parsley leaves",
-  //     estimatedCostInCents: 1030,
-  //   },
-  // ],
 ];
