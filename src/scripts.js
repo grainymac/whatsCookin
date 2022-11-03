@@ -5,6 +5,9 @@ import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
 
 // --------------------QUERY SELECTORS ------------------
+const pantryBtn = document.querySelector('.pantry__btn')
+const pantry = document.querySelector('.pantry')
+const dropdownArrow = document.querySelector('.dropdown__arrow')
 const allRecipesSearchBar = document.querySelector('#allRecipeSearch');
 const allRecipesTab = document.getElementById('tabAllRecipes');
 const clearAllRecipeSearchButton = document.querySelector('#clearAllRecipesButton');
@@ -81,6 +84,8 @@ window.onclick = (event) => {
   }
 };
 
+pantryBtn.addEventListener('click', togglePantry)
+
 clearAllRecipeSearchButton.addEventListener('click', function () {
   updateRecipeDisplay(store.recipeRepo.allRecipes)
 });
@@ -96,6 +101,27 @@ clearCookbookSearchButton.addEventListener('click', function () {
 clearCookbookSearchButton.addEventListener('click', function () {
   clearSearchBar(cookbookSearchBar)
 });
+
+recipeSection.addEventListener('click', (event) => {
+  if (event.target === recipeSection) {
+    return
+  }
+
+  const parentCardId = event.target.closest('.recipe-card').dataset.recipeId
+
+  if (event.target.matches('.recipe-favorite-icon') && event.target.src === 'http://localhost:8080/star.png') {
+    event.target.src = 'star-yellow.png';
+    addRecipeToCookbook(parentCardId);
+  } 
+  else if (event.target.matches('.recipe-favorite-icon') && event.target.src === 'http://localhost:8080/star-yellow.png') {
+    event.target.src = 'star.png';
+    removeRecipeFromCookbook(parentCardId);
+    removeFromCookbookDisplay(event.target.closest('.recipe-card'));
+  } 
+  else if (event.target.closest('.recipe-card')) {
+    buildModal(store.recipeRepo.allRecipes.find(recipe => recipe.id == parentCardId))
+  }
+})
 
 const defineEventListeners = () => {
   searchAllRecipesButton.addEventListener('click', function () {
@@ -116,6 +142,13 @@ const defineEventListeners = () => {
 };
 
 // ------------------ FUNCTIONS ------------------
+
+
+function togglePantry() {
+  pantry.classList.toggle('pantry__open')
+  dropdownArrow.classList.toggle('dropdown__arrow-open')
+}
+
 
 // ----- Recipe Display -----
 
@@ -163,24 +196,6 @@ function buildRecipeCard(recipe, recipeCard, tags) {
       ${tags.toString()}
     </div>
   `;
-
-  recipeCard.onclick = (event) => {
-    if (event.target.className === 'recipe-favorite-icon') {
-      if (event.target.src === 'http://localhost:8080/star.png') {
-        event.target.src = 'star-yellow.png';
-        addRecipeToCookbook(
-          event.target.parentNode.parentNode.dataset.recipeId
-        );
-      } else if (event.target.src === 'http://localhost:8080/star-yellow.png') {
-        event.target.src = 'star.png';
-        removeRecipeFromCookbook(
-          event.target.parentNode.parentNode.dataset.recipeId);
-        removeFromCookbookDisplay(event.target.parentNode.parentNode);
-      }
-    } else {
-      buildModal(recipe);
-    }
-  };
 };
 
 // ----- Adding/Removing Recipes from Favorites -----
@@ -207,12 +222,13 @@ function removeFromCookbookDisplay(recipeToDelete) {
   }
 };
 
-
-function buildModal(recipe) {
-  modal.style.display = 'block';
+function buildModalQuerySelectors(recipe) {
   document.querySelector('.modal-img').src = `${recipe.image}`
   document.querySelector('.modal-img').alt = `this is an image of ${recipe.name}`
   document.querySelector('.modal-title').innerText = `${recipe.name}`;
+}
+
+function updateModalIngredients(recipe) {
   const modalIngredientsSection = document.getElementById('ingredientSection');
   modalIngredientsSection.innerHTML = '';
   recipe.ingredients.forEach((ingredient) => {
@@ -220,6 +236,9 @@ function buildModal(recipe) {
         <li class="ingredient">${ingredient.name}: ${ingredient.amount} ${ingredient.unit}</li>
       `;
   });
+}
+
+function updateModalInstructions(recipe) {
   const modalInstructionSection = document.getElementById('instructionSection');
   modalInstructionSection.innerHTML = '';
   recipe.getInstructions().forEach((instruction) => {
@@ -227,9 +246,18 @@ function buildModal(recipe) {
         <p class="instruction">${instruction}</p>
       `;
   });
-  document.getElementById(
-    'modalTotalCost'
-  ).innerText = `Total Cost: $${recipe.totalCost()}`;
+}
+
+function updateModalCost(recipe) {
+  document.getElementById('modalTotalCost').innerText = `Total Cost: $${recipe.totalCost()}`;
+}
+
+function buildModal(recipe) {
+  modal.style.display = 'block';
+  buildModalQuerySelectors(recipe)
+  updateModalIngredients(recipe)
+  updateModalInstructions(recipe)
+  updateModalCost(recipe)
 }
 
 // ----- Tags -----
@@ -269,6 +297,7 @@ function tagsToggleFilter(event) {
 };
 
 function addTag(event) {
+  clearSearchBar()
   const filterSelectedTags = store.tagList.filter((tag) =>
     tag.classList.contains('recipe-tag-selected')
   );
@@ -329,11 +358,13 @@ function searchRecipesByName(search) {
     let nameFilteredRecipes = store.recipeRepo.searchByName(search)
     updateRecipeDisplay(nameFilteredRecipes);
     changeSearchButton(clearAllRecipeSearchButton, searchAllRecipesButton);
+    deselectTag()
   } 
   else if (cookbookTab.checked && search.length > 0) {
     let nameFilteredRecipes = store.user.favoriteRecipeRepo.searchByName(search)
     updateRecipeDisplay(nameFilteredRecipes);
     changeSearchButton(clearCookbookSearchButton, searchCookbookButton);
+    deselectTag()
   }
 };
 
