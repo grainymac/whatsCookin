@@ -2,10 +2,11 @@ import { expect } from 'chai'
 import Ingredient from '../src/classes/Ingredient'
 
 describe('Ingredient', () => {
-  let ingredient
+  let ingredient, ingredient2
 
   beforeEach(() => {
     ingredient = new Ingredient(456, 'cheese', 550, 5, 'lbs')
+    ingredient2 = new Ingredient(444, 'bagel', 440, 5, 'lbs')
   })
 
   it('should be a function', () => {
@@ -22,6 +23,7 @@ describe('Ingredient', () => {
 
   it('should have a name', () => {
     expect(ingredient.name).to.equal('cheese')
+    expect(ingredient2.name).to.equal('bagel')
   })
 
   it('should have a cost', () => {

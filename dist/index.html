@@ -8,8 +8,61 @@
   </head>
   <body>
     <section class="banner">
-      <img class="logo" src="whatsCookin.png" alt="logo image" />
       <p class="user-greeting">Hello, user!</p>
+      <img class="logo" src="whatsCookin.png" alt="logo image" />
+      <button class="pantry__btn">
+        Your Pantry
+        <div class="dropdown__arrow"></div>
+      </button>
+      <div class="pantry">
+        <div class="dropdown__header">
+          <div class="header__container">
+            <h5 class="header__id">Ingredient ID</h5>
+            <h5 class="header__stock">Stock</h5>
+            <h5 class="header__name">Name</h5>
+          </div>
+          <div class="pantry__ingredient">
+            <p class="ingredient__id">20081</p>
+            <p class="ingredient__stock">3</p>
+            <p class="ingredient__name">wheat flour</p>
+          </div>
+          <div class="pantry__ingredient">
+            <p class="ingredient__id">20081</p>
+            <p class="ingredient__stock">0.25</p>
+            <p class="ingredient__name">instant vanilla pudding</p>
+          </div>
+          <div class="pantry__ingredient">
+            <p class="ingredient__id">7036</p>
+            <p class="ingredient__stock">0.25</p>
+            <p class="ingredient__name">italian sausage links</p>
+          </div>
+          <div class="pantry__ingredient">
+            <p class="ingredient__id">1256</p>
+            <p class="ingredient__stock">2</p>
+            <p class="ingredient__name">skim milk ricotta cheese</p>
+          </div>
+          <div class="pantry__ingredient">
+            <p class="ingredient__id">16057</p>
+            <p class="ingredient__stock">12</p>
+            <p class="ingredient__name">garbanzos</p>
+          </div>
+          <div class="pantry__ingredient">
+            <p class="ingredient__id">20081</p>
+            <p class="ingredient__stock">3</p>
+            <p class="ingredient__name">bicarbonate of soda</p>
+          </div>
+          <div class="pantry__ingredient">
+            <p class="ingredient__id">203243</p>
+            <p class="ingredient__stock">3</p>
+            <p class="ingredient__name">Whole Grain Teff Flour</p>
+          </div>
+          <div class="pantry__ingredient">
+            <p class="ingredient__id">1055062</p>
+            <p class="ingredient__stock">1</p>
+            <p class="ingredient__name">boneless skinless chicken breasts</p>
+          </div>
+        </div>
+      </div>
     </section>
     <div class="glide">
       <div data-glide-el="track" class="glide__track">
@@ -21,8 +74,11 @@
             <div class="glide__content-overlay">
               <div class="glide__textbox">
                 <h2 class="glide__title">Dirty Steve's Wing Sauce</h2>
-                <p class="glide__info">Dirty Steve's Wing Sauce changed my life!! -Anonymous</p>
+                <p class="glide__info">
+                  Dirty Steve's Wing Sauce changed my life!! -Anonymous
+                </p>
               </div>
+              <div class="glide__scroll"></div>
             </div>
           </li>
           <li
@@ -34,6 +90,7 @@
                 <h2 class="glide__title">Loaded Chocolate Chip Pudding Cookie Cups </h2>
                 <p class="glide__info">I never expected I could have these Pudding Cookie Cups for a snack, an hors d'oeuvre, AND appetizer! So empowering! -thisCoolUser</p>
                 </div>
+                <div class="glide__scroll"></div>
             </div>
           </li>
           <li
@@ -42,9 +99,16 @@
           >
             <div class="glide__content-overlay">
               <div class="glide__textbox">
-                <h2 class="glide__title">The Ultimate Healthy Soft & Chewy Pumpkin Chocolate Chip Cookies</h2>
-                <p class="glide__info">They say these cookies are as good as gold, who knew they are as expensive as gold too! -Lisa18294 </p>
+                <h2 class="glide__title">
+                  The Ultimate Healthy Soft & Chewy Pumpkin Chocolate Chip
+                  Cookies
+                </h2>
+                <p class="glide__info">
+                  They say these cookies are as good as gold, who knew they are
+                  as expensive as gold too! -Lisa18294
+                </p>
               </div>
+              <div class="glide__scroll"></div>
             </div>
           </li>
         </ul>
@@ -84,8 +148,18 @@
                 id="allRecipeSearch"
                 placeholder="Search all recipes by name"
               />
-              <button class="search-allrecipes-button" id="searchAllRecipesButton"><span>Search</span></button>
-              <button class="clear-allrecipes-button hidden" id="clearAllRecipesButton">Clear</button>
+              <button
+                class="search-allrecipes-button"
+                id="searchAllRecipesButton"
+              >
+                <span>Search</span>
+              </button>
+              <button
+                class="clear-allrecipes-button hidden"
+                id="clearAllRecipesButton"
+              >
+                Clear
+              </button>
             </div>
             <input type="radio" id="tabCookbook" name="user-tabs" />
             <label for="tabCookbook">Cookbook</label>
@@ -125,8 +199,8 @@
             <section class="modal-ingredients-container">
               <h4 class="modal-subtitle" id="modalIngredients">Ingredients:</h4>
               <section
-              class="ingredient-section"
-              id="ingredientSection"
+                class="ingredient-section"
+                id="ingredientSection"
               ></section>
             </section>
             <section class="modal-instructions-container">
