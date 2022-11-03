@@ -11,7 +11,7 @@ import { ingredientSampleData } from "../src/data/ingredientSampleData";
 
 describe("User", () => {
   let user;
-  let recipe1, recipe2, recipe3, recipe4;
+  let recipe1, recipe2, recipe3;
 
 
 
@@ -20,7 +20,6 @@ describe("User", () => {
     recipe1 = new Recipe(recipeSampleData[0], ingredientSampleData);
     recipe2 = new Recipe(recipeSampleData[1], ingredientSampleData);
     recipe3 = new Recipe(recipeSampleData[2], ingredientSampleData);
-    recipe4 = new Recipe(recipeSampleData[3], ingredientSampleData);
   });
 
   it("should be a function", () => {
@@ -89,7 +88,7 @@ describe("User", () => {
   })
 
   it("Should have a method that determines that pantry doesn't have enough ingredients to cook the recipe", () => {
-    const checkRecipe3 = user.getMissingIngredientsForRecipe(recipe4);
+    const checkRecipe3 = user.getMissingIngredientsForRecipe(recipe3);
 
     expect(checkRecipe3).to.deep.equal([ { id: 11215, name: 'whole garlic clove', amount: 2 } ])
   })
