@@ -8,25 +8,12 @@ class Recipe {
     this.instructions = recipeData.instructions;
     this.name = recipeData.name;
     this.tags = recipeData.tags;
-    this.ingredients = this.getAllIngredientsData(ingredientsData);
+    this.ingredients = this.getAllIngredientsData(recipeData, ingredientsData);
   }
   
-  getAllIngredientsData(ingredientsData) {
+  getAllIngredientsData(recipeData, ingredientsData) {
     return this.recipeIngredients.map((ingredient) => {
-      const id = ingredient.id;
-      const amount = ingredient.quantity.amount;
-      const unit = ingredient.quantity.unit;
-      const matchedIngredient = ingredientsData.find(
-        (ingredient) => ingredient.id === id
-      );
-
-      return new Ingredient(
-        id,
-        matchedIngredient.name,
-        matchedIngredient.estimatedCostInCents,
-        amount,
-        unit
-        );
+      return Ingredient.fromIngredientData(ingredient.id, ingredientsData, recipeData)
     });
   }
 
@@ -37,7 +24,7 @@ class Recipe {
   totalCost() {
     const cost =
       this.ingredients.reduce((accumulator, value) => {
-        return (accumulator += value.estimatedCostInCents * value.amount);
+        return (accumulator += value.cost * value.amount);
       }, 0) / 100;
     return cost.toFixed(2);
   }
