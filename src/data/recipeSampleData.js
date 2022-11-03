@@ -93,40 +93,6 @@ export const recipeSampleData = [
     tags: ["salad"],
   },
   {
-    id: 412309,
-    image: "https://spoonacular.com/recipeImages/412309-556x370.jpeg",
-    ingredients: [
-      {
-        id: 11215,
-        quantity: {
-          amount: 1,
-          unit: "clove"
-        },
-      },
-      {
-        id: 2047,
-        quantity: {
-          amount: 0.5,
-          unit: "t"
-        },
-      },
-    ],
-    instructions: [
-      {
-        instruction: "Melt butter and brush some of the butter around the slow cooker.Using a stand mixer, combine flour, 1-cup sugar, baking powder, and salt. Then, add milk and remaining melted cooled butter, mixing just until dry ingredients are moistened.",
-        number: 1,
-      },
-      {
-        instruction: "Pour the batter in the slow cooker and place the frozen peaches on top.Cook on high for 3 hours with lid on top. Once the cobbler is done, divide and serve cobbler warm with ice cream and whipped cream on top.",
-        number: 2,
-      },
-    ],
-    name: "Slow Cooker Peach Cobbler",
-    tags: [
-      "side dish"
-    ]
-  },
-  {
     id: 673337,
     image: "https://spoonacular.com/recipeImages/673337-556x370.jpg",
     ingredients: [
