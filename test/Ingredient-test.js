@@ -1,12 +1,14 @@
 import { expect } from 'chai'
 import Ingredient from '../src/classes/Ingredient'
+import { ingredientSampleData } from '../src/data/ingredientSampleData'
+import { recipeSampleData } from '../src/data/recipeSampleData'
 
 describe('Ingredient', () => {
   let ingredient, ingredient2
 
   beforeEach(() => {
-    ingredient = new Ingredient(456, 'cheese', 550, 5, 'lbs')
-    ingredient2 = new Ingredient(444, 'bagel', 440, 5, 'lbs')
+    ingredient = Ingredient.fromIngredientData(ingredientSampleData[0].id, ingredientSampleData)
+    ingredient2 = Ingredient.fromIngredientData(ingredientSampleData[3].id, ingredientSampleData, recipeSampleData[1])
   })
 
   it('should be a function', () => {
@@ -18,23 +20,25 @@ describe('Ingredient', () => {
   })
 
   it('should have an id', () => {
-    expect(ingredient.id).to.equal(456)
+    expect(ingredient.id).to.equal(20081)
   })
 
   it('should have a name', () => {
-    expect(ingredient.name).to.equal('cheese')
-    expect(ingredient2.name).to.equal('bagel')
+    expect(ingredient.name).to.equal('wheat flour')
+    expect(ingredient2.name).to.equal('haas avocados')
   })
 
   it('should have a cost', () => {
-    expect(ingredient.estimatedCostInCents).to.equal(550)
+    expect(ingredient.cost).to.equal(142)
   })
 
   it('should have a unit', () => {
-    expect(ingredient.unit).to.equal('lbs')
+    expect(ingredient.unit).to.equal(undefined)
+    expect(ingredient2.unit).to.equal('')
   })
 
   it('should have an amount', () => {
-    expect(ingredient.amount).to.equal(5)
+    expect(ingredient.amount).to.equal(undefined)
+    expect(ingredient2.amount).to.equal(1)
   })
 })
