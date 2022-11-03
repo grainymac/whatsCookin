@@ -7,6 +7,7 @@ import User from './classes/User';
 // --------------------QUERY SELECTORS ------------------
 const pantryBtn = document.querySelector('.pantry__btn')
 const pantry = document.querySelector('.pantry')
+const pantryContainer = document.querySelector('.dropdown__header')
 const dropdownArrow = document.querySelector('.dropdown__arrow')
 const allRecipesSearchBar = document.querySelector('#allRecipeSearch');
 const allRecipesTab = document.getElementById('tabAllRecipes');
@@ -62,9 +63,6 @@ const initializeApp = () => {
 
       displayAllTags();
       updateRecipeDisplay(store.recipeRepo.allRecipes);
-      console.log('User pantry: ', store.user.pantry)
-      console.log('Recipe Ingredients: ', store.recipeRepo.allRecipes[0].ingredients)
-      console.log('User Testing: ', store.user.findIngredientsInPantry(store.recipeRepo.allRecipes[0]))
 
       defineEventListeners();
     })
@@ -147,8 +145,28 @@ const defineEventListeners = () => {
 function togglePantry() {
   pantry.classList.toggle('pantry__open')
   dropdownArrow.classList.toggle('dropdown__arrow-open')
+  populatePantryDisplay();
+  console.log(store.user.pantry)
 }
 
+function populatePantryDisplay() {
+  pantryContainer.innerHTML = `
+  <div class="header__container">
+    <h5 class="header__id">Ingredient ID</h5>
+    <h5 class="header__stock">Stock</h5>
+    <h5 class="header__name">Name</h5>
+  </div>
+  `
+  store.user.pantry.forEach((pantryIngredient) => {
+    pantryContainer.innerHTML += `
+      <div class="pantry__ingredient">
+        <p class="ingredient__id">${pantryIngredient.ingredient}</p>
+        <p class="ingredient__stock">${pantryIngredient.amount}</p>
+        <p class="ingredient__name">placeholder</p>
+      </div>
+    `
+  })
+}
 
 // ----- Recipe Display -----
 
