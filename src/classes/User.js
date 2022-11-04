@@ -60,6 +60,16 @@ class User {
         'ingredientID': ingredient.id,
         'ingredientModification': ingredient.amount * -1})
       }
+      .then((response) => {
+        if (response.status >= 200 && response.status <= 299) {
+          const pantryIndex = this.pantry.findIndex(pantryIngredient => pantryIngredient.id === ingredient.id)
+
+          this.pantry[pantryIndex].amount -= ingredient.amount
+        } else {
+          throw Error(response.statusText)
+        }
+      })
+      .catch(error => console.log(error))
     })
   }
 }
