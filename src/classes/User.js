@@ -37,7 +37,7 @@ class User {
 
     recipe.ingredients.forEach((recipeIngredient) => {
       const foundIngredient = this.pantry.find((pantryIngredient) => {
-        return recipeIngredient.id === pantryIngredient.ingredient
+        return recipeIngredient.id === pantryIngredient.id
       })
       if (!foundIngredient) {
         missingIngredients.push({
