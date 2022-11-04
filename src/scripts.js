@@ -74,10 +74,6 @@ const initializeApp = () => {
 
       displayAllTags();
       updateRecipeDisplay(store.recipeRepo.allRecipes);
-<<<<<<< HEAD
-
-=======
->>>>>>> main
       defineEventListeners();
     })
     .catch((err) => console.error(err));
