@@ -118,7 +118,7 @@ recipeSection.addEventListener('click', (event) => {
     removeRecipeFromCookbook(parentCardId);
     removeFromCookbookDisplay(event.target.closest('.recipe-card'));
   } 
-  else if (event.target.closest('.recipe-card')) {
+  else if (event.target.closest('.recipe-img')) {
     buildModal(store.recipeRepo.allRecipes.find(recipe => recipe.id == parentCardId))
   }
 })
