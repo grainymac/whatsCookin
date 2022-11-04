@@ -11,6 +11,23 @@ describe('Recipe', () => {
     recipe = new Recipe(recipeSampleData[0], ingredientSampleData);
   });
 
+  it('should be a function', () => {
+    expect().to.be.a('function');
+  })
+
+  it('should be an instance of recipe', () => {
+    expect().to.be.an.instanceOf();
+  })
+
+  it('should have recipe instructions', () => {
+    expect().to.be();
+  })
+
+  it('should have an id', () => {
+    expect().to.be();
+  })
+
+  it('should it be ')
 
   it('should store an instructions array', () => {
     expect(recipe.instructions).to.equal(recipeSampleData[0].instructions);
