@@ -8,12 +8,12 @@ class Recipe {
     this.instructions = recipeData.instructions;
     this.name = recipeData.name;
     this.tags = recipeData.tags;
-    this.ingredients = this.getAllIngredientsData(recipeData, ingredientsData);
+    this.ingredients = this.getAllIngredientsData(ingredientsData);
   }
   
-  getAllIngredientsData(recipeData, ingredientsData) {
+  getAllIngredientsData(ingredientsData) {
     return this.recipeIngredients.map((ingredient) => {
-      return Ingredient.fromIngredientData(ingredient.id, ingredientsData, recipeData)
+      return Ingredient.fromIngredientData(ingredient, ingredientsData)
     });
   }
 
