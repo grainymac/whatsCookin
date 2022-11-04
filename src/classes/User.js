@@ -1,12 +1,19 @@
-import Recipe from './Recipe'
+import Ingredient from './Ingredient'
 import RecipeRepository from './RecipeRepository'
 
 class User {
-  constructor(userData = {}) {
+  constructor(userData = {}, pantryIngredients = []) {
     this.id = userData.id
     this.name = userData.name
-    this.pantry = userData.pantry
+    this.pantry = pantryIngredients
     this.favoriteRecipeRepo = new RecipeRepository()
+  }
+
+  static fromUserData(userData, ingredientsData) {
+    const pantryIngredients = userData.pantry.map((pantryIngredient) => {
+      return Ingredient.fromIngredientData(pantryIngredient, ingredientsData)
+    })
+    return new User(userData, pantryIngredients)
   }
 
   addFavoriteRecipe = (recipe) => {
@@ -30,7 +37,7 @@ class User {
 
     recipe.ingredients.forEach((recipeIngredient) => {
       const foundIngredient = this.pantry.find((pantryIngredient) => {
-        return recipeIngredient.id === pantryIngredient.ingredient
+        return recipeIngredient.id === pantryIngredient.id
       })
       if (!foundIngredient) {
         missingIngredients.push({
