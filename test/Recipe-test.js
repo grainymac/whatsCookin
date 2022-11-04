@@ -28,13 +28,12 @@ describe('Recipe', () => {
   })
 
   it('should have an image', () => {
-    expect().to.be();
+    expect(recipe.image).to.equal('https://spoonacular.com/recipeImages/595736-556x370.jpg');
   })
 
   it('should store an instructions array', () => {
     expect(recipe.instructions).to.equal(recipeSampleData[0].instructions);
   });
-
 
   it('should store recipe name', () => {
     expect(recipe.name).to.equal(recipeSampleData[0].name);
