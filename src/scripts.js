@@ -6,6 +6,7 @@ import User from './classes/User';
 
 // --------------------QUERY SELECTORS ------------------
 const popupError = document.querySelector('.pop-up-error');
+const addIngredientSuccessPopup = document.querySelector('.add-ingredients-success')
 const popupSuccess = document.querySelector('.pop-up-success');
 const pantryBtn = document.querySelector('.pantry__btn');
 const pantry = document.querySelector('.pantry');
@@ -134,6 +135,8 @@ const defineEventListeners = () => {
 
   recipeSection.addEventListener('click', displayCookRecipePopUp);
 
+  window.addEventListener('click', addRecipesToPantry)
+
   popupSuccess.addEventListener('click', closePopUp);
 
   allRecipesTab.onchange = () => {
@@ -228,7 +231,7 @@ function buildRecipeCard(recipe, recipeCard, abilityToCook) {
       }" src="${flagFavoritedRecipes(recipe)}" alt="star icon"/>
     </section>
     <div class="cook-recipe-container">
-      <button class="recipe-card-button" id="recipeCardButton">${abilityToCook}</button
+      <button class="recipe-card-button" id="recipeCardButton">${abilityToCook}</button>
     </div>
   `;
 }
@@ -329,6 +332,15 @@ function buildModal(recipe) {
   updateModalIngredients(recipe);
   updateModalInstructions(recipe);
   updateModalCost(recipe);
+}
+
+function addRecipesToPantry (event) {
+  console.log(event)
+  if(event.target.id === 'addIngredientsBtn') {
+    //Do the POST
+    missingIngredientModal.style.display = 'none';
+    addIngredientSuccessPopup.style.display = 'block';
+  }
 }
 
 // ----- Tags -----
