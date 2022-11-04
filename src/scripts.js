@@ -141,6 +141,8 @@ const defineEventListeners = () => {
     searchRecipesByName(cookbookSearchBar.value);
   });
 
+  recipeSection.addEventListener('click', displayCookRecipePopUp)
+
   allRecipesTab.onchange = () => {
     resetTabs(store.recipeRepo.allRecipes);
   };
@@ -158,6 +160,12 @@ function togglePantry() {
   dropdownArrow.classList.toggle('dropdown__arrow-open')
 }
 
+function displayCookRecipePopUp(event) {
+  console.log(event)
+  if(event.target.id === 'recipeCardButton' && event.target.innerText === 'Cook this recipe!') {
+    popupSuccess.style.display = "block"
+  }
+}
 
 // ----- Recipe Display -----
 
@@ -211,7 +219,7 @@ function buildRecipeCard(recipe, recipeCard, abilityToCook) {
       }" src="${flagFavoritedRecipes(recipe)}" alt="star icon"/>
     </section>
     <div class="cook-recipe-container">
-      <button class="recipe-card-button">${abilityToCook}</button
+      <button class="recipe-card-button" id="recipeCardButton">${abilityToCook}</button
     </div>
   `;
   
