@@ -190,9 +190,9 @@ function populatePantryDisplay() {
   store.user.pantry.forEach((pantryIngredient) => {
     pantryContainer.innerHTML += `
       <div class="pantry__ingredient">
-        <p class="ingredient__id">${pantryIngredient.ingredient}</p>
+        <p class="ingredient__id">${pantryIngredient.id}</p>
         <p class="ingredient__stock">${pantryIngredient.amount}</p>
-        <p class="ingredient__name">placeholder</p>
+        <p class="ingredient__name">${pantryIngredient.name}</p>
       </div>
     `
   })
