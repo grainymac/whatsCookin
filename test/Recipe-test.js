@@ -24,7 +24,7 @@ describe('Recipe', () => {
   })
 
   it('should have an id', () => {
-    expect().to.be();
+    expect(recipe.id).to.equal(595736);
   })
 
   it('should have an image', () => {
