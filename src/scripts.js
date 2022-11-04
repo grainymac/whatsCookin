@@ -62,6 +62,9 @@ const initializeApp = () => {
 
       displayAllTags();
       updateRecipeDisplay(store.recipeRepo.allRecipes);
+      console.log('User pantry: ', store.user.pantry)
+      console.log('Recipe Ingredients: ', store.recipeRepo.allRecipes[0].ingredients)
+      console.log('User Testing: ', store.user.findIngredientsInPantry(store.recipeRepo.allRecipes[0]))
 
       defineEventListeners();
     })
