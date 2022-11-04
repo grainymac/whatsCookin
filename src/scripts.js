@@ -5,6 +5,9 @@ import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
 
 // --------------------QUERY SELECTORS ------------------
+const popupError = document.querySelector('.pop-up-error');
+const popupSuccess = document.querySelector('.pop-up-success')
+const logo = document.querySelector('.logo')
 const pantryBtn = document.querySelector('.pantry__btn')
 const pantry = document.querySelector('.pantry')
 const dropdownArrow = document.querySelector('.dropdown__arrow')
@@ -59,12 +62,12 @@ const initializeApp = () => {
         store.ingredientsData
       );
       store.user = changeUser(store.userData);
+      
 
       displayAllTags();
       updateRecipeDisplay(store.recipeRepo.allRecipes);
       console.log('User pantry: ', store.user.pantry)
       console.log('Recipe Ingredients: ', store.recipeRepo.allRecipes[0].ingredients)
-      console.log('User Testing: ', store.user.findIngredientsInPantry(store.recipeRepo.allRecipes[0]))
 
       defineEventListeners();
     })
@@ -118,7 +121,7 @@ recipeSection.addEventListener('click', (event) => {
     removeRecipeFromCookbook(parentCardId);
     removeFromCookbookDisplay(event.target.closest('.recipe-card'));
   } 
-  else if (event.target.closest('.recipe-card')) {
+  else if (event.target.closest('.recipe-card') && event.target.id !== 'recipeCardButton') {
     buildModal(store.recipeRepo.allRecipes.find(recipe => recipe.id == parentCardId))
   }
 })
@@ -131,6 +134,10 @@ const defineEventListeners = () => {
   searchCookbookButton.addEventListener('click', function () {
     searchRecipesByName(cookbookSearchBar.value);
   });
+
+  recipeSection.addEventListener('click', displayCookRecipePopUp)
+
+  popupSuccess.addEventListener('click', closePopUp)
 
   allRecipesTab.onchange = () => {
     resetTabs(store.recipeRepo.allRecipes);
@@ -149,6 +156,17 @@ function togglePantry() {
   dropdownArrow.classList.toggle('dropdown__arrow-open')
 }
 
+function displayCookRecipePopUp(event) {
+  if(event.target.id === 'recipeCardButton' && event.target.innerText === 'Cook this recipe!') {
+    popupSuccess.style.display = 'block';
+  }
+}
+
+function closePopUp(event) {
+  if(event.target.id === 'dismissButton') {
+    popupSuccess.style.display = 'none';
+  }
+}
 
 // ----- Recipe Display -----
 
@@ -159,13 +177,22 @@ function updateRecipeDisplay(recipesToDisplay) {
   show(searchCookbookButton);
   show(searchAllRecipesButton);
   recipesToDisplay.forEach((recipe) => {
-    const tagsHTML = buildTags(recipe);
     const recipeCard = document.createElement('section');
+    const abilityToCook = determineAbilityToCook(recipe)
 
-    buildRecipeCard(recipe, recipeCard, tagsHTML);
+    buildRecipeCard(recipe, recipeCard, abilityToCook);
     recipeSection.appendChild(recipeCard);
   });
 };
+
+function determineAbilityToCook(recipe) {
+  if(store.user.getMissingIngredientsForRecipe(recipe).length > 0) {
+    return 'Missing Ingredients!'
+  } else {
+    console.log("I exist!")
+    return 'Cook this recipe!'
+  }
+}
 
 function flagFavoritedRecipes(recipe) {
   const isRecipeFavorited =
@@ -177,7 +204,7 @@ function flagFavoritedRecipes(recipe) {
   }
 };
 
-function buildRecipeCard(recipe, recipeCard, tags) {
+function buildRecipeCard(recipe, recipeCard, abilityToCook) {
   recipeCard.classList.add('recipe-card');
   recipeCard.dataset.recipeId = `${recipe.id}`;
   recipeCard.innerHTML = `
@@ -192,10 +219,11 @@ function buildRecipeCard(recipe, recipeCard, tags) {
         recipe.id
       }" src="${flagFavoritedRecipes(recipe)}" alt="star icon"/>
     </section>
-    <div class="recipe-tags-container">
-      ${tags.toString()}
+    <div class="cook-recipe-container">
+      <button class="recipe-card-button" id="recipeCardButton">${abilityToCook}</button
     </div>
   `;
+  
 };
 
 // ----- Adding/Removing Recipes from Favorites -----
