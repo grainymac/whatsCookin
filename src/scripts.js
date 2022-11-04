@@ -11,6 +11,7 @@ const popupSuccess = document.querySelector('.pop-up-success')
 const logo = document.querySelector('.logo')
 const pantryBtn = document.querySelector('.pantry__btn')
 const pantry = document.querySelector('.pantry')
+const pantryContainer = document.querySelector('.dropdown__header')
 const dropdownArrow = document.querySelector('.dropdown__arrow')
 const allRecipesSearchBar = document.querySelector('#allRecipeSearch');
 const allRecipesTab = document.getElementById('tabAllRecipes');
@@ -161,8 +162,10 @@ const defineEventListeners = () => {
 // ------------------ FUNCTIONS ------------------
 
 function togglePantry() {
-  pantry.classList.toggle('pantry__open');
-  dropdownArrow.classList.toggle('dropdown__arrow-open');
+  pantry.classList.toggle('pantry__open')
+  dropdownArrow.classList.toggle('dropdown__arrow-open')
+  populatePantryDisplay();
+  console.log(store.user.pantry)
 }
 
 function displayCookRecipePopUp(event) {
@@ -175,6 +178,24 @@ function closePopUp(event) {
   if(event.target.id === 'dismissButton') {
     popupSuccess.style.display = 'none';
   }
+}
+function populatePantryDisplay() {
+  pantryContainer.innerHTML = `
+  <div class="header__container">
+    <h5 class="header__id">Ingredient ID</h5>
+    <h5 class="header__stock">Stock</h5>
+    <h5 class="header__name">Name</h5>
+  </div>
+  `
+  store.user.pantry.forEach((pantryIngredient) => {
+    pantryContainer.innerHTML += `
+      <div class="pantry__ingredient">
+        <p class="ingredient__id">${pantryIngredient.id}</p>
+        <p class="ingredient__stock">${pantryIngredient.amount}</p>
+        <p class="ingredient__name">${pantryIngredient.name}</p>
+      </div>
+    `
+  })
 }
 
 // ----- Recipe Display -----
