@@ -12,22 +12,24 @@ describe('Recipe', () => {
   });
 
   it('should be a function', () => {
-    expect().to.be.a('function');
+    expect(Recipe).to.be.a('function');
   })
 
   it('should be an instance of recipe', () => {
-    expect().to.be.an.instanceOf();
+    expect(recipe).to.be.an.instanceOf(Recipe);
   })
 
   it('should have recipe instructions', () => {
-    expect().to.be();
+    expect(recipe.instructions).to.equal(recipeSampleData[0].instructions);
   })
 
   it('should have an id', () => {
     expect().to.be();
   })
 
-  it('should it be ')
+  it('should have an image', () => {
+    expect().to.be();
+  })
 
   it('should store an instructions array', () => {
     expect(recipe.instructions).to.equal(recipeSampleData[0].instructions);
