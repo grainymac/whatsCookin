@@ -4,7 +4,7 @@ class Ingredient {
     this.name = data.name
     this.cost = data.cost
     this.amount = data.amount
-    this.unit = data?.unit
+    this.unit = data.unit
   }
 
   static fromIngredientData(ingredientSource, ingredientsData) {
