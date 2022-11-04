@@ -77,12 +77,6 @@ const initializeApp = () => {
 // ------------------- EVENT LISTENERS ------------------
 window.addEventListener('load', initializeApp);
 
-logo.addEventListener('click', displayMessage)
-
-function displayMessage() {
-  popupSuccess.style.display = "block"
-}
-
 close.onclick = () => {
   modal.style.display = 'none';
 };
@@ -127,7 +121,7 @@ recipeSection.addEventListener('click', (event) => {
     removeRecipeFromCookbook(parentCardId);
     removeFromCookbookDisplay(event.target.closest('.recipe-card'));
   } 
-  else if (event.target.closest('.recipe-card')) {
+  else if (event.target.closest('.recipe-card') && event.target.id !== 'recipeCardButton') {
     buildModal(store.recipeRepo.allRecipes.find(recipe => recipe.id == parentCardId))
   }
 })
@@ -142,6 +136,8 @@ const defineEventListeners = () => {
   });
 
   recipeSection.addEventListener('click', displayCookRecipePopUp)
+
+  popupSuccess.addEventListener('click', closePopUp)
 
   allRecipesTab.onchange = () => {
     resetTabs(store.recipeRepo.allRecipes);
@@ -161,9 +157,14 @@ function togglePantry() {
 }
 
 function displayCookRecipePopUp(event) {
-  console.log(event)
   if(event.target.id === 'recipeCardButton' && event.target.innerText === 'Cook this recipe!') {
-    popupSuccess.style.display = "block"
+    popupSuccess.style.display = 'block';
+  }
+}
+
+function closePopUp(event) {
+  if(event.target.id === 'dismissButton') {
+    popupSuccess.style.display = 'none';
   }
 }
 
