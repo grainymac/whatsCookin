@@ -580,10 +580,27 @@ animation: scroll_arrow 4s ease-in-out infinite;
   display: none;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   font-size: 20px;
 }
 
+.success-message,
+.error-message {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.alert-icon-error {
+  margin-top: 10px;
+  width: 45px;
+  height: 40px;
+}
+
+.alert-icon-success {
+  margin-top: 10px;
+  width: 40px;
+  height: 40px;
+}
 
 /* .pop-up-content-error {
   background-color: rgb(192, 192, 192);
@@ -606,7 +623,7 @@ animation: scroll_arrow 4s ease-in-out infinite;
 /* } */
 
 .dismiss-button {
-  background-color: red;
+  background-color: rgb(135, 76, 98, .5);
   width: 50%;
   position: absolute;
   bottom: 0;
