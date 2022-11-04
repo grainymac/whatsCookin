@@ -16,7 +16,7 @@ describe("User", () => {
 
 
   beforeEach(() => {
-    user = new User(usersSampleData);
+    user = User.fromUserData(usersSampleData, ingredientSampleData);
     recipe1 = new Recipe(recipeSampleData[0], ingredientSampleData);
     recipe2 = new Recipe(recipeSampleData[1], ingredientSampleData);
     recipe3 = new Recipe(recipeSampleData[2], ingredientSampleData);
