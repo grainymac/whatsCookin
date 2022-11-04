@@ -1,3 +1,4 @@
+import { AutomaticPrefetchPlugin } from 'webpack'
 import Recipe from './Recipe'
 import RecipeRepository from './RecipeRepository'
 
@@ -48,6 +49,18 @@ class User {
     })
 
     return missingIngredients
+  }
+
+  cookRecipe(recipe) {
+    recipe.ingredients.forEach(ingredient => {
+      fetch('http://localhost:3001/api/v1/users'), {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({'userID': this.id,
+        'ingredientID': ingredient.id,
+        'ingredientModification': ingredient.amount * -1})
+      }
+    })
   }
 }
 
