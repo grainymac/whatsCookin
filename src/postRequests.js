@@ -1,6 +1,6 @@
 const usersURL = 'http://localhost:3001/api/v1/users';
 
-function createPostRequests(user, ingredients) {
+function createPostRequests(user, ingredients, factor) {
   const postRequests = [];
   ingredients.forEach((ingredient) => {
     const request = fetch(usersURL, {
@@ -9,7 +9,7 @@ function createPostRequests(user, ingredients) {
       body: JSON.stringify({
         userID: user.id,
         ingredientID: ingredient.id,
-        ingredientModification: ingredient.amount,
+        ingredientModification: ingredient.amount * factor,
       }),
     })
       .then((response) => {
