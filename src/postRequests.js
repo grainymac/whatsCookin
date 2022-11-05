@@ -1,11 +1,5 @@
 const usersURL = 'http://localhost:3001/api/v1/users';
 
-function addAllIngredients(recipe, user) {
-  const neededIngredients = user.getMissingIngredientsForRecipe(recipe);
-  const requests = createPostRequests(user, neededIngredients);
-  return postAll(requests, user, recipe);
-}
-
 function createPostRequests(user, ingredients) {
   const postRequests = [];
   ingredients.forEach((ingredient) => {
@@ -31,14 +25,10 @@ function createPostRequests(user, ingredients) {
 }
 
 function postAll(requests) {
-  console.log('PROMISES', requests);
+
   return Promise.all(requests)
-    .then((data) => {
-      data.forEach((response) => {
-        console.log(response);
-      });
-    })
-    .catch((err) => console.error(err));
+    .then((data) => data)
+    .catch((err) => console.error('AHHHH', err));
 }
 
-export { addAllIngredients, createPostRequests, postAll };
+export { createPostRequests, postAll };
