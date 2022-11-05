@@ -1,6 +1,8 @@
 import './styles.css';
 import { fetchAll } from './apiCalls';
-import { addAllIngredients } from './postRequests';
+
+import { createPostRequests, postAll } from './postRequests';
+
 import Glide from '@glidejs/glide';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
@@ -89,6 +91,33 @@ const initializeApp = () => {
     })
     .catch((err) => console.error(err));
 };
+
+// ------------------- Post to Server ------------------
+
+function addAllIngredients(recipe, user) {
+  const neededIngredients = user.getMissingIngredientsForRecipe(recipe);
+  const requests = createPostRequests(user, neededIngredients);
+  postAll(requests)
+    .then((data) => {
+      data.forEach((response) => {
+        console.log(response);
+      });
+      store.user.addPantryIngredients(
+        recipe,
+        store.ingredientsData
+      );
+      populatePantryDisplay();
+      console.log(
+        'MISSING AFTER',
+        store.user.getMissingIngredientsForRecipe(recipe)
+      );
+      console.log('NEW PANTRY: ', store.user.pantry);
+    })
+    .catch((err) => {
+      console.error(err);
+      popupError.style.display = 'block';
+    });
+}
 
 // ------------------- EVENT LISTENERS ------------------
 window.addEventListener('load', initializeApp);
@@ -388,7 +417,6 @@ function buildModal(recipe) {
   updateModalInstructions(recipe);
   updateModalCost(recipe);
 }
-
 
 // ----- Tags -----
 
