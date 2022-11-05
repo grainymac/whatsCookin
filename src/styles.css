@@ -605,6 +605,7 @@ animation: scroll_arrow 4s ease-in-out infinite;
 }
 
 /* ------error message------ */
+.add-ingredients-success,
 .pop-up-error,
 .pop-up-success {
   width: 400px;
@@ -627,6 +628,7 @@ animation: scroll_arrow 4s ease-in-out infinite;
   font-size: 20px;
 }
 
+.add-ingredients-message,
 .success-message,
 .error-message {
   padding-left: 10px;
