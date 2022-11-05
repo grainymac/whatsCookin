@@ -13,34 +13,30 @@ const fetchData = (url) => {
 
 const apiCalls = {
   getUserData: () => {
-    return fetchData('https://what-s-cookin-starter-kit.herokuapp.com/api/v1/users');
+    return fetchData('http://localhost:3001/api/v1/users');
   },
   getIngredientsData: () => {
-    return fetchData(
-      'https://what-s-cookin-starter-kit.herokuapp.com/api/v1/ingredients'
-    );
+    return fetchData('http://localhost:3001/api/v1/ingredients');
   },
   getRecipeData: () => {
-    return fetchData(
-      'https://what-s-cookin-starter-kit.herokuapp.com/api/v1/recipes'
-    );
+    return fetchData('http://localhost:3001/api/v1/recipes');
   },
 };
 
 function fetchAll() {
-    return Promise.all([
-      apiCalls.getUserData(),
-      apiCalls.getIngredientsData(),
-      apiCalls.getRecipeData(),
-    ])
-      .then((data) => {
-        return {
-          usersData: data[0].usersData,
-          ingredientsData: data[1].ingredientsData,
-          recipeData: data[2].recipeData,
-        };
-      })
-      .catch((err) => console.error(err));
-  }
+  return Promise.all([
+    apiCalls.getUserData(),
+    apiCalls.getIngredientsData(),
+    apiCalls.getRecipeData(),
+  ])
+    .then((data) => {
+      return {
+        usersData: data[0],
+        ingredientsData: data[1],
+        recipeData: data[2],
+      };
+    })
+    .catch((err) => console.error(err));
+}
 
 export { apiCalls, fetchData, fetchAll };
