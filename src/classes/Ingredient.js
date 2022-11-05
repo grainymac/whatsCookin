@@ -9,7 +9,7 @@ class Ingredient {
 
   static fromIngredientData(ingredientSource, ingredientsData) {
     const fromIngredients = ingredientsData.find(
-      (ingredient) => ingredient.id === Object.values(ingredientSource)[0]
+      (ingredient) => ingredient.id === ingredientSource.id || ingredientSource.ingredient 
     );
 
     let allIngredientData = {};

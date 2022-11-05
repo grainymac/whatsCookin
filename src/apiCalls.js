@@ -25,7 +25,7 @@ const apiCalls = {
 
 function fetchAll() {
   return Promise.all([
-    apiCalls.getUserData(),
+    apiCalls.getUserData(), 
     apiCalls.getIngredientsData(),
     apiCalls.getRecipeData(),
   ])

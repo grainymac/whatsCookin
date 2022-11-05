@@ -11,7 +11,10 @@ class User {
 
   static fromUserData(userData, ingredientsData) {
     const pantryIngredients = userData.pantry.map((pantryIngredient) => {
-      return Ingredient.fromIngredientData(pantryIngredient, ingredientsData);
+      return Ingredient.fromIngredientData(
+        { id: pantryIngredient.ingredient, amount: pantryIngredient.amount },
+        ingredientsData
+      );
     });
     return new User(userData, pantryIngredients);
   }
@@ -33,8 +36,6 @@ class User {
   }
 
   addPantryIngredients(recipe, ingredientsData) {
-    console.log('OLD', this.pantry);
-    console.log("HELP", this.getMissingIngredientsForRecipe(recipe))
     const newIngredients = this.getMissingIngredientsForRecipe(recipe);
 
     newIngredients.forEach((newIngredient) => {
@@ -51,12 +52,10 @@ class User {
         this.pantry.push(newPantryIngredient);
       }
     });
-    console.log('NEW', this.pantry);
   }
 
   getMissingIngredientsForRecipe(recipe) {
     const missingIngredients = [];
-
     recipe.ingredients.forEach((recipeIngredient) => {
       const foundIngredient = this.pantry.find((pantryIngredient) => {
         return recipeIngredient.id === pantryIngredient.id;
