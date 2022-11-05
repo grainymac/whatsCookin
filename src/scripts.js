@@ -55,6 +55,7 @@ const store = {
   tag: '',
 };
 
+
 var glide = new Glide('.glide', {
   type: 'carousel',
   autoplay: 5000,
@@ -96,7 +97,7 @@ const initializeApp = () => {
 
 function addAllIngredients(recipe, user) {
   const neededIngredients = user.getMissingIngredientsForRecipe(recipe);
-  const requests = createPostRequests(user, neededIngredients);
+  const requests = createPostRequests(user, neededIngredients, 1);
   postAll(requests)
     .then((data) => {
       data.forEach((response) => {
@@ -111,12 +112,29 @@ function addAllIngredients(recipe, user) {
         'MISSING AFTER',
         store.user.getMissingIngredientsForRecipe(recipe)
       );
-      console.log('NEW PANTRY: ', store.user.pantry);
+      // console.log('NEW PANTRY: ', store.user.pantry);
     })
     .catch((err) => {
       console.error(err);
       popupError.style.display = 'block';
     });
+}
+
+function removeIngredientsFromPantry(recipeID, user) {
+  const currentRecipe = store.recipeRepo.findRecipeById(recipeID)
+  console.log("RECIPE", currentRecipe)
+  const requests = createPostRequests(user, currentRecipe.ingredients, -1)
+  postAll(requests)
+    .then((data) => {
+      console.log(data)
+      store.user.removePantryIngredients(currentRecipe)
+      populatePantryDisplay()
+      console.log("PANTRY AFTER REMOVE", store.user.pantry)
+    })
+    .catch((err) => {
+      console.error(err)
+      popupError.style.display = 'block'
+    })
 }
 
 // ------------------- EVENT LISTENERS ------------------
@@ -164,8 +182,6 @@ const defineEventListeners = () => {
   searchCookbookButton.addEventListener('click', function () {
     searchRecipesByName(cookbookSearchBar.value);
   });
-
-  // recipeSection.addEventListener('click', displayCookRecipePopUp);
 
   popupSuccess.addEventListener('click', closePopUp);
 
@@ -226,6 +242,7 @@ function determineAbilityToCook(recipe) {
   if (store.user.getMissingIngredientsForRecipe(recipe).length > 0) {
     return 'Missing Ingredients!';
   } else {
+    console.log("User can cook recipe")
     return 'Cook this recipe!';
   }
 }
@@ -266,7 +283,6 @@ function buildRecipeCard(recipe, recipeCard, abilityToCook) {
   abilityToCookBtn.innerText = `${abilityToCook}`;
   abilityToCookBtn.addEventListener('click', function() {
     displayCookRecipePopUp(event, recipe.id)});
-    // store.currentRecipe = recipe;
 ;
   cookRecipeContainer.appendChild(abilityToCookBtn);
   recipeCard.appendChild(cookRecipeContainer);
@@ -277,6 +293,7 @@ function displayCookRecipePopUp(event, recipeID) {
     event.target.innerText === 'Cook this recipe!'
     ) {
     popupSuccess.style.display = 'block';
+    removeIngredientsFromPantry(recipeID, store.user)
   } else if (
     event.target.innerText === 'Missing Ingredients!'
   ) {
