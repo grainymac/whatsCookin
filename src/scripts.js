@@ -1,5 +1,6 @@
 import './styles.css';
 import { fetchAll } from './apiCalls';
+import { addAllIngredients } from './post';
 import Glide from '@glidejs/glide';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
@@ -37,7 +38,7 @@ const tagsContainer = document.querySelector('#tagsContainer');
 const missingIngredientModal = document.querySelector(
   '#missingIngredientModal'
 );
-const recipeCardButton = document.querySelector('#recipeCardButton');
+const addIngredientsBtn = document.querySelector('.add-all-ingredients-btn');
 
 // ------------------- GLOBAL VARIABLES ------------------
 const store = {
@@ -45,6 +46,7 @@ const store = {
   ingredientsData: [],
   recipeData: [],
   recipeRepo: new RecipeRepository(),
+  currentRecipe: {},
   user: new User(),
   tagList: [],
   tag: '',
@@ -81,6 +83,8 @@ const initializeApp = () => {
       displayAllTags();
       updateRecipeDisplay(store.recipeRepo.allRecipes);
       defineEventListeners();
+      console.log('USER', store.user);
+      console.log('PANTRY', store.user.pantry);
     })
     .catch((err) => console.error(err));
 };
@@ -99,6 +103,8 @@ window.onclick = (event) => {
     missingIngredientModal.style.display = 'none';
   }
 };
+
+addIngredientsBtn.addEventListener('click', addRecipesToPantry);
 
 pantryBtn.addEventListener('click', togglePantry);
 
@@ -131,8 +137,6 @@ const defineEventListeners = () => {
 
   recipeSection.addEventListener('click', displayCookRecipePopUp);
 
-  window.addEventListener('click', addRecipesToPantry);
-
   popupSuccess.addEventListener('click', closePopUp);
 
   allRecipesTab.onchange = () => {
@@ -150,7 +154,6 @@ function togglePantry() {
   pantry.classList.toggle('pantry__open');
   dropdownArrow.classList.toggle('dropdown__arrow-open');
   populatePantryDisplay();
-  console.log(store.user.pantry);
 }
 
 function displayCookRecipePopUp(event) {
@@ -216,7 +219,6 @@ function determineAbilityToCook(recipe) {
   if (store.user.getMissingIngredientsForRecipe(recipe).length > 0) {
     return 'Missing Ingredients!';
   } else {
-    console.log('I exist!');
     return 'Cook this recipe!';
   }
 }
@@ -246,10 +248,20 @@ function buildRecipeCard(recipe, recipeCard, abilityToCook) {
         recipe.id
       }" src="${flagFavoritedRecipes(recipe)}" alt="star icon"/>
     </section>
-    <div class="cook-recipe-container">
-      <button class="recipe-card-button" id="recipeCardButton">${abilityToCook}</button>
-    </div>
   `;
+
+  const cookRecipeContainer = document.createElement('div');
+  cookRecipeContainer.classList.add('cook-recipe-container');
+
+  const abilityToCookBtn = document.createElement('button');
+  abilityToCookBtn.classList.add('recipe-card-button');
+  abilityToCookBtn.setAttribute('id', 'recipeCardButton');
+  abilityToCookBtn.innerText = `${abilityToCook}`;
+  abilityToCookBtn.addEventListener('click', () => {
+    store.currentRecipe = recipe;
+  });
+  cookRecipeContainer.appendChild(abilityToCookBtn);
+  recipeCard.appendChild(cookRecipeContainer);
 }
 
 // ----- Adding/Removing Recipes from Favorites -----
@@ -349,23 +361,20 @@ function buildModal(recipe) {
 }
 
 function addRecipesToPantry(event) {
-  console.log(event);
   if (event.target.id === 'addIngredientsBtn') {
-    //Do the POST
+    console.log("RECIPE", store.currentRecipe)
+    addAllIngredients(store.currentRecipe, store.user);
+
+    store.user.addPantryIngredients(store.currentRecipe, store.ingredientsData);
+
+    console.log('NEW PANTRY: ', store.user.pantry);
+
     missingIngredientModal.style.display = 'none';
     addIngredientSuccessPopup.style.display = 'block';
   }
 }
 
 // ----- Tags -----
-
-function buildTags(recipe) {
-  return recipe.tags
-    .map((tag) => {
-      return `<p class="recipe-section-tag">${tag}</p>`;
-    })
-    .join(' ');
-}
 
 function displayAllTags() {
   tagsContainer.innerHTML = '';
