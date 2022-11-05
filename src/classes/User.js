@@ -54,6 +54,17 @@ class User {
     });
   }
 
+  removePantryIngredients(recipe) {
+    recipe.ingredients.forEach((recipeIngredient) => {
+      const foundIngredient = this.pantry.find((pantryIngredient) => {
+        return pantryIngredient.id === recipeIngredient.id
+      });
+      console.log(foundIngredient)
+      foundIngredient.amount -= recipeIngredient.amount
+      // console.log("INGREDIENT INFO:", foundIngredient.amount, foundIngredient.id)
+    })
+  }
+
   getMissingIngredientsForRecipe(recipe) {
     const missingIngredients = [];
     recipe.ingredients.forEach((recipeIngredient) => {
