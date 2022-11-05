@@ -284,7 +284,7 @@ function addRecipesToPantry(event, recipeID) {
     console.log("CURRENT RECIPE", currentRecipe)
     addAllIngredients(currentRecipe, store.user);
 
-    store.user.addPantryIngredients(recipeID, store.ingredientsData);
+    store.user.addPantryIngredients(currentRecipe, store.ingredientsData);
 
     console.log('NEW PANTRY: ', store.user.pantry);
 
