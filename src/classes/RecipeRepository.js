@@ -42,6 +42,12 @@ class RecipeRepository {
       this.allRecipes.splice(this.allRecipes.indexOf(recipe), 1)
     }
   }
+
+  findRecipeById(recipeID) {
+    return this.allRecipes.find((recipe) => {
+      return recipe.id === recipeID
+    })
+  }
 }
 
 
