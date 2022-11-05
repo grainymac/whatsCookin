@@ -46,6 +46,7 @@ const store = {
   ingredientsData: [],
   recipeData: [],
   recipeRepo: new RecipeRepository(),
+  currentRecipe: {},
   user: new User(),
   tagList: [],
   tag: '',
@@ -247,12 +248,22 @@ function buildRecipeCard(recipe, recipeCard, abilityToCook) {
         recipe.id
       }" src="${flagFavoritedRecipes(recipe)}" alt="star icon"/>
     </section>
-    <div class="cook-recipe-container">
-      <button class="recipe-card-button" id="recipeCardButton">${abilityToCook}</button>
-    </div>
   `;
 
-  addAllIngredients(recipe, store.user)
+  const cookRecipeContainer = document.createElement('div');
+  cookRecipeContainer.classList.add('cook-recipe-container');
+
+  const abilityToCookBtn = document.createElement('button');
+  abilityToCookBtn.classList.add('recipe-card-button');
+  abilityToCookBtn.setAttribute('id', 'recipeCardButton');
+  abilityToCookBtn.innerText = `${abilityToCook}`;
+  abilityToCookBtn.addEventListener('click', () => {
+    store.currentRecipe = recipe;
+    console.log('HELLO', store.currentRecipe);
+    addRecipesToPantry;
+  });
+  cookRecipeContainer.appendChild(abilityToCookBtn);
+  recipeCard.appendChild(cookRecipeContainer);
 }
 
 // ----- Adding/Removing Recipes from Favorites -----
@@ -352,9 +363,21 @@ function buildModal(recipe) {
 }
 
 function addRecipesToPantry(event) {
-  console.log(event);
   if (event.target.id === 'addIngredientsBtn') {
     //Do the POST
+    console.log(
+      'BEFOREEE',
+      store.user.getMissingIngredientsForRecipe(store.currentRecipe)
+    );
+    addAllIngredients(store.currentRecipe, store.user);
+
+    store.user.addPantryIngredients(store.currentRecipe, store.ingredientsData);
+
+    console.log(
+      'AFTERRRR',
+      store.user.getMissingIngredientsForRecipe(store.currentRecipe)
+    );
+
     missingIngredientModal.style.display = 'none';
     addIngredientSuccessPopup.style.display = 'block';
   }

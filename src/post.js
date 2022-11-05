@@ -1,15 +1,15 @@
 const usersURL = 'http://localhost:3001/api/v1/users';
 
 function addAllIngredients(recipe, user) {
-  const neededIngredients = user.getMissingIngredientsForRecipe(recipe);
+  const neededIngredients =
+    user.getMissingIngredientsForRecipe(recipe);
   const requests = createPostRequests(user, neededIngredients);
-  return postAll(requests);
+  return postAll(requests, user, recipe);
 }
 
 function createPostRequests(user, ingredients) {
   const postRequests = [];
   ingredients.forEach((ingredient) => {
-    console.log("HEY", ingredient.amount)
     const request = fetch(usersURL, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -31,9 +31,15 @@ function createPostRequests(user, ingredients) {
   return postRequests;
 }
 
-function postAll(requests) {
+function postAll(requests, user, recipe) {
+  console.log('PROMISES', requests);
   return Promise.all(requests)
-    .then((data) => console.log("POST", data[0]))
+    .then((data) => {
+      data.forEach((response) => {
+        console.log(response);
+      });
+    //  user.addPantryIngredients(recipe);
+    })
     .catch((err) => console.error(err));
 }
 

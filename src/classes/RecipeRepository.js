@@ -30,7 +30,7 @@ class RecipeRepository {
     })
     return Array.from(new Set(allTags))
   }
-
+  
   addRecipe(recipe) {
     if (!this.allRecipes.includes(recipe)) {
       this.allRecipes.push(recipe)
