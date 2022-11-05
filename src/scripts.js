@@ -7,13 +7,15 @@ import User from './classes/User';
 // --------------------QUERY SELECTORS ------------------
 
 const popupError = document.querySelector('.pop-up-error');
-const addIngredientSuccessPopup = document.querySelector('.add-ingredients-success')
-const popupSuccess = document.querySelector('.pop-up-success')
-const logo = document.querySelector('.logo')
-const pantryBtn = document.querySelector('.pantry__btn')
-const pantry = document.querySelector('.pantry')
-const pantryContainer = document.querySelector('.dropdown__header')
-const dropdownArrow = document.querySelector('.dropdown__arrow') 
+const addIngredientSuccessPopup = document.querySelector(
+  '.add-ingredients-success'
+);
+const popupSuccess = document.querySelector('.pop-up-success');
+const logo = document.querySelector('.logo');
+const pantryBtn = document.querySelector('.pantry__btn');
+const pantry = document.querySelector('.pantry');
+const pantryContainer = document.querySelector('.dropdown__header');
+const dropdownArrow = document.querySelector('.dropdown__arrow');
 const allRecipesSearchBar = document.querySelector('#allRecipeSearch');
 const allRecipesTab = document.getElementById('tabAllRecipes');
 const clearAllRecipeSearchButton = document.querySelector(
@@ -36,7 +38,6 @@ const missingIngredientModal = document.querySelector(
   '#missingIngredientModal'
 );
 const recipeCardButton = document.querySelector('#recipeCardButton');
-
 
 // ------------------- GLOBAL VARIABLES ------------------
 const store = {
@@ -117,7 +118,7 @@ clearCookbookSearchButton.addEventListener('click', function () {
   clearSearchBar(cookbookSearchBar);
 });
 
-recipeSection.addEventListener('click', recipeCardActionFilter)
+recipeSection.addEventListener('click', recipeCardActionFilter);
 
 const defineEventListeners = () => {
   searchAllRecipesButton.addEventListener('click', function () {
@@ -130,7 +131,7 @@ const defineEventListeners = () => {
 
   recipeSection.addEventListener('click', displayCookRecipePopUp);
 
-  window.addEventListener('click', addRecipesToPantry)
+  window.addEventListener('click', addRecipesToPantry);
 
   popupSuccess.addEventListener('click', closePopUp);
 
@@ -146,10 +147,10 @@ const defineEventListeners = () => {
 // ------------------ FUNCTIONS ------------------
 
 function togglePantry() {
-  pantry.classList.toggle('pantry__open')
-  dropdownArrow.classList.toggle('dropdown__arrow-open')
+  pantry.classList.toggle('pantry__open');
+  dropdownArrow.classList.toggle('dropdown__arrow-open');
   populatePantryDisplay();
-  console.log(store.user.pantry)
+  console.log(store.user.pantry);
 }
 
 function displayCookRecipePopUp(event) {
@@ -166,15 +167,15 @@ function displayCookRecipePopUp(event) {
     close.onclick = () => {
       modal.style.display = 'none';
     };
-    }
   }
-
+}
 
 function closePopUp(event) {
   if (event.target.id === 'dismissButton') {
     popupSuccess.style.display = 'none';
   }
 }
+
 function populatePantryDisplay() {
   pantryContainer.innerHTML = `
   <div class="header__container">
@@ -182,7 +183,7 @@ function populatePantryDisplay() {
     <h5 class="header__stock">Stock</h5>
     <h5 class="header__name">Name</h5>
   </div>
-  `
+  `;
   store.user.pantry.forEach((pantryIngredient) => {
     pantryContainer.innerHTML += `
       <div class="pantry__ingredient">
@@ -190,8 +191,8 @@ function populatePantryDisplay() {
         <p class="ingredient__stock">${pantryIngredient.amount}</p>
         <p class="ingredient__name">${pantryIngredient.name}</p>
       </div>
-    `
-  })
+    `;
+  });
 }
 
 // ----- Recipe Display -----
@@ -249,13 +250,9 @@ function buildRecipeCard(recipe, recipeCard, abilityToCook) {
       <button class="recipe-card-button" id="recipeCardButton">${abilityToCook}</button>
     </div>
   `;
-
-};
-
-
+}
 
 // ----- Adding/Removing Recipes from Favorites -----
-
 
 function recipeCardActionFilter(event) {
   if (event.target === recipeSection) {
@@ -286,7 +283,6 @@ function recipeCardActionFilter(event) {
     );
   }
 }
-
 
 function addRecipeToCookbook(recipeId) {
   const foundRecipe = store.recipeRepo.allRecipes.find((recipe) => {
@@ -350,10 +346,11 @@ function buildModal(recipe) {
   updateModalIngredients(recipe);
   updateModalInstructions(recipe);
   updateModalCost(recipe);
+}
 
-function addRecipesToPantry (event) {
-  console.log(event)
-  if(event.target.id === 'addIngredientsBtn') {
+function addRecipesToPantry(event) {
+  console.log(event);
+  if (event.target.id === 'addIngredientsBtn') {
     //Do the POST
     missingIngredientModal.style.display = 'none';
     addIngredientSuccessPopup.style.display = 'block';
@@ -485,7 +482,7 @@ function changeUser(usersData) {
   document.querySelector(
     '.user-greeting'
   ).innerText = `Hello, ${userData.name}!`;
-  
+
   return User.fromUserData(userData, store.ingredientsData);
 }
 
