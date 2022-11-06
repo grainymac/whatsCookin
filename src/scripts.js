@@ -328,6 +328,7 @@ function addRecipesToPantry(recipeID) {
     missingIngredientModal.style.display = 'none';
     addIngredientSuccessPopup.style.display = 'block';
     cookAfterAddingBtn.addEventListener('click', function() {
+      addIngredientSuccessPopup.style.display = 'none';
       removeIngredientsFromPantry(recipeID, store.user)
     })
   }, 2000);
@@ -336,6 +337,7 @@ function addRecipesToPantry(recipeID) {
 function displayPopUp() {
   addIngredientSuccessPopup.style.display = 'none';
 }
+
 
 // ----- Adding/Removing Recipes from Favorites -----
 
