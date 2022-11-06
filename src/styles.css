@@ -580,29 +580,109 @@ animation: scroll_arrow 4s ease-in-out infinite;
   cursor: pointer;
 }
 
-/* missing ingredient modal */
-.missing-ingredient-modal {
-  display: none;
-  position: fixed;
-  z-index: 1;
-  padding-top: 100px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0,0.4);
-}
+  /* ============================================================ MISSING INGREDIENT MODAL */
+  .missing-ingredient-modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4);
+  }
+  
+  .missing-ingredient-modal-content {
+    display: flex;
+    flex-direction: column;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    height: 60%;
+    width: 20%;
+    border-radius: 16px;
+    border: #c9847487 10px outset;
+  }
+  
+  .missing-ingredients-txt {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .add-all-ingredients-btn {
+    display: flex;
+    align-self: center;
+    width: 200px;
+    position: relative;
+    padding: 8px 16px;
+    background: #c9847487;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    cursor: pointer;
+  }
 
-/* Modal Content */
-.missing-ingredient-modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-}
+  .add-all-ingredients-btn:hover {
+    background: #f7a39087;
+  }
+  
+  .add-all-ingredients-btn:active {
+    background: #A7D2CB;
+  }
+  
+  .btn-txt {
+    display: flex;
+    justify-content: center;
+    font: bold 20px "Quicksand", san-serif;
+    color: #000000;
+    transition: all 0.2s;
+  }
+  
+  .btn-loading .btn-txt {
+    background: #0e471b;
+    visibility: hidden;
+    opacity: 0;
+  }
+  
+  .btn-loading::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    border: 4px solid transparent;
+    border-top-color: #ffffff;
+    border-radius: 80%;
+    animation: button-loading-spinner 1s ease infinite;
+  }
+  
+  @keyframes button-loading-spinner {
+    from {
+      transform: rotate(0turn);
+    }
+  
+    to {
+      transform: rotate(1turn);
+    }
+  }
+  
+  /* ============================================================ ADDED INGREDIENT POP-UP */
+  .add-ingredients-success {
+    border-radius: 10px;
+    border: #138138 10px outset;
+    height: 40%;
+    width: 10%;
+  }
+  
 
 /* ------error message------ */
 .add-ingredients-success,

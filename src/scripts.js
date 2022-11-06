@@ -38,8 +38,10 @@ const tagsContainer = document.querySelector('#tagsContainer');
 const missingIngredientModal = document.querySelector(
   '#missingIngredientModal'
 );
-const missingIngredientContent = document.querySelector('#missingIngredientModalContent')
-
+const missingIngredientContent = document.querySelector(
+  '#missingIngredientModalContent'
+);
+const addIngredientsBtn = document.querySelector('#addIngredientsBtn');
 
 // ------------------- GLOBAL VARIABLES ------------------
 const store = {
@@ -52,7 +54,6 @@ const store = {
   tagList: [],
   tag: '',
 };
-
 
 var glide = new Glide('.glide', {
   type: 'carousel',
@@ -93,22 +94,20 @@ const initializeApp = () => {
 
 // ------------------- Post to Server ------------------
 
-function addAllIngredients(recipe, user) {
-  const neededIngredients = user.getMissingIngredientsForRecipe(recipe);
+function addAllIngredients(recipeID, user) {
+  const currentRecipe = store.recipeRepo.findRecipeById(recipeID);
+  const neededIngredients = user.getMissingIngredientsForRecipe(currentRecipe);
   const requests = createPostRequests(user, neededIngredients, 1);
   postAll(requests)
     .then((data) => {
       data.forEach((response) => {
         console.log(response);
       });
-      store.user.addPantryIngredients(
-        recipe,
-        store.ingredientsData
-      );
+      store.user.addPantryIngredients(currentRecipe, store.ingredientsData);
       populatePantryDisplay();
       console.log(
         'MISSING AFTER',
-        store.user.getMissingIngredientsForRecipe(recipe)
+        store.user.getMissingIngredientsForRecipe(currentRecipe)
       );
       console.log('NEW PANTRY: ', store.user.pantry);
     })
@@ -119,21 +118,21 @@ function addAllIngredients(recipe, user) {
 }
 
 function removeIngredientsFromPantry(recipeID, user) {
-  const currentRecipe = store.recipeRepo.findRecipeById(recipeID)
-  console.log("RECIPE", currentRecipe)
-  const requests = createPostRequests(user, currentRecipe.ingredients, -1)
+  const currentRecipe = store.recipeRepo.findRecipeById(recipeID);
+  console.log('RECIPE', currentRecipe);
+  const requests = createPostRequests(user, currentRecipe.ingredients, -1);
   postAll(requests)
     .then((data) => {
-      console.log(data)
-      store.user.removePantryIngredients(currentRecipe)
-      console.log("PANTRY AFTER REMOVE", store.user.pantry)
-      populatePantryDisplay()
+      console.log(data);
+      store.user.removePantryIngredients(currentRecipe);
+      console.log('PANTRY AFTER REMOVE', store.user.pantry);
+      populatePantryDisplay();
       popupSuccess.style.display = 'block';
     })
     .catch((err) => {
-      console.error("I'm here!", err)
-      popupError.style.display = 'block'
-    })
+      console.error("I'm here!", err);
+      popupError.style.display = 'block';
+    });
 }
 
 // ------------------- EVENT LISTENERS ------------------
@@ -150,8 +149,6 @@ window.onclick = (event) => {
     missingIngredientModal.style.display = 'none';
   }
 };
-
-
 
 pantryBtn.addEventListener('click', togglePantry);
 
@@ -194,6 +191,9 @@ const defineEventListeners = () => {
 };
 
 // ------------------ FUNCTIONS ------------------
+function toggleIngredientsBtn() {
+  addIngredientsBtn.classList.add('btn-loading');
+}
 
 function togglePantry() {
   pantry.classList.toggle('pantry__open');
@@ -210,7 +210,7 @@ function populatePantryDisplay() {
   </div>
   `;
   store.user.pantry.forEach((pantryIngredient) => {
-    if(pantryIngredient.amount) {
+    if (pantryIngredient.amount) {
       pantryContainer.innerHTML += `
         <div class="pantry__ingredient">
           <p class="ingredient__id">${pantryIngredient.id}</p>
@@ -243,7 +243,7 @@ function determineAbilityToCook(recipe) {
   if (store.user.getMissingIngredientsForRecipe(recipe).length > 0) {
     return 'Missing Ingredients!';
   } else {
-    console.log("User can cook recipe")
+    console.log('User can cook recipe');
     return 'Cook this recipe!';
   }
 }
@@ -277,43 +277,35 @@ function buildRecipeCard(recipe, recipeCard, abilityToCook) {
 
   const cookRecipeContainer = document.createElement('div');
   cookRecipeContainer.classList.add('cook-recipe-container');
-  
+
   const abilityToCookBtn = document.createElement('button');
   abilityToCookBtn.classList.add('recipe-card-button');
   abilityToCookBtn.setAttribute('id', 'recipeCardButton');
   abilityToCookBtn.innerText = `${abilityToCook}`;
-  abilityToCookBtn.addEventListener('click', function() {
-    displayCookRecipePopUp(event, recipe.id)});
-;
+  abilityToCookBtn.addEventListener('click', function () {
+    displayCookRecipePopUp(event, recipe.id);
+  });
   cookRecipeContainer.appendChild(abilityToCookBtn);
   recipeCard.appendChild(cookRecipeContainer);
 }
 
 function displayCookRecipePopUp(event, recipeID) {
-  if (
-    event.target.innerText === 'Cook this recipe!'
-    ) {
-    removeIngredientsFromPantry(recipeID, store.user)
-  } else if (
-    event.target.innerText === 'Missing Ingredients!'
-  ) {
-    createMissingIngredientsModal(recipeID)
+  if (event.target.innerText === 'Cook this recipe!') {
+    removeIngredientsFromPantry(recipeID, store.user);
+  } else if (event.target.innerText === 'Missing Ingredients!') {
+    console.log('EVENT', event.target.innerText);
+    createMissingIngredientsModal(recipeID);
   }
 }
 
 function createMissingIngredientsModal(recipeID) {
-    missingIngredientModal.style.display = 'block';
-    const addIngredientsBtn = document.createElement('button')
-    addIngredientsBtn.classList.add('.add-all-ingredients-btn');
-    addIngredientsBtn.setAttribute('id', 'addIngredientsBtn')
-    addIngredientsBtn.innerText = "Add Ingredients to Pantry";
-    missingIngredientContent.appendChild(addIngredientsBtn);
-    addIngredientsBtn.addEventListener('click', function() { 
-      addRecipesToPantry(event, recipeID)
-    });
-    close.onclick = () => {
-      modal.style.display = 'none';
-    };
+  missingIngredientModal.style.display = 'block';
+  addIngredientsBtn.addEventListener('click', function () {
+    addRecipesToPantry(recipeID);
+  });
+  close.onclick = () => {
+    modal.style.display = 'none';
+  };
 }
 
 function closePopUp(event) {
@@ -322,19 +314,19 @@ function closePopUp(event) {
   }
 }
 
-function addRecipesToPantry(event, recipeID) {
-  console.log(event)
-  if (event.target.id === 'addIngredientsBtn') {
-    console.log("RECIPE", recipeID)
-    const currentRecipe = store.recipeRepo.findRecipeById(recipeID)
-    console.log("CURRENT RECIPE", currentRecipe)
-    addAllIngredients(currentRecipe, store.user);
+function addRecipesToPantry(recipeID) {
+  toggleIngredientsBtn();
+  addAllIngredients(recipeID, store.user);
 
-    console.log('NEW PANTRY: ', store.user.pantry);
-
+  setTimeout(() => {
+    addIngredientsBtn.classList.remove('btn-loading');
     missingIngredientModal.style.display = 'none';
     addIngredientSuccessPopup.style.display = 'block';
-  }
+  }, 2000);
+}
+
+function displayPopUp() {
+  addIngredientSuccessPopup.style.display = 'none';
 }
 
 // ----- Adding/Removing Recipes from Favorites -----
@@ -431,19 +423,6 @@ function buildModal(recipe) {
   updateModalIngredients(recipe);
   updateModalInstructions(recipe);
   updateModalCost(recipe);
-}
-
-function addRecipesToPantry(event) {
-  if (event.target.id === 'addIngredientsBtn') {
-    console.log(
-      'MISSING BEFORE',
-      store.user.getMissingIngredientsForRecipe(store.currentRecipe)
-    );
-    addAllIngredients(store.currentRecipe, store.user, store.ingredientsData);
-
-    missingIngredientModal.style.display = 'none';
-    addIngredientSuccessPopup.style.display = 'block';
-  }
 }
 
 // ----- Tags -----
