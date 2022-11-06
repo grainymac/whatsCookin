@@ -70,7 +70,11 @@ var glide = new Glide('.glide', {
 
 glide.mount();
 
+
+let cookbookFlag = false
+
 let currentRecipeDisplay;
+
 
 // ------------------ Initialize App ------------------
 const initializeApp = () => {
@@ -192,14 +196,15 @@ const defineEventListeners = () => {
   popupSuccess.addEventListener('click', closePopUp);
 
   popupError.addEventListener('click', closePopUp);
+  
+  allRecipesTab.addEventListener('click', (event) => {
+    resetTabs(event, store.recipeRepo.allRecipes);
+  });
 
-  allRecipesTab.onchange = () => {
-    resetTabs(store.recipeRepo.allRecipes);
-  };
-
-  cookbookTab.onchange = () => {
-    resetTabs(store.user.favoriteRecipeRepo.allRecipes);
-  };
+  cookbookTab.addEventListener('click', (event) => {
+    resetTabs(event, store.user.favoriteRecipeRepo.allRecipes);
+    
+  });
 };
 
 // ------------------ FUNCTIONS ------------------
@@ -287,8 +292,9 @@ function buildRecipeCard(recipe, recipeCard, abilityToCook) {
       }" src="${flagFavoritedRecipes(recipe)}" alt="star icon"/>
     </section>
   `;
-    
-  updateRecipeCardButtons(recipe, recipeCard, abilityToCook)
+  if(cookbookFlag) {
+    updateRecipeCardButtons(recipe, recipeCard, abilityToCook)
+  }
 }
 
 function updateRecipeCardButtons (recipe, recipeCard, abilityToCook) {
@@ -518,7 +524,12 @@ function getTag(event) {
   }
 }
 
-function resetTabs(repo) {
+function resetTabs(event, repo) {
+  if(event.target.id === 'tabCookbook') {
+    cookbookFlag = true
+  } else if (event.target.id === 'tabAllRecipes') {
+    cookbookFlag = false
+  }
   resetCurrentRecipeRepo(repo)
   updateRecipeDisplay(repo);
   displayAllTags();
