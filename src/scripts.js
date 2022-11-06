@@ -70,7 +70,7 @@ var glide = new Glide('.glide', {
 
 glide.mount();
 
-let currentRecipeRepo;
+let currentRecipeDisplay;
 
 // ------------------ Initialize App ------------------
 const initializeApp = () => {
@@ -110,7 +110,8 @@ function addAllIngredients(recipeID, user) {
       });
       store.user.addPantryIngredients(currentRecipe, store.ingredientsData);
       populatePantryDisplay();
-      updateRecipeDisplay(currentRecipeRepo);
+      addIngredientSuccessPopup.style.display = 'block';
+      updateRecipeDisplay(currentRecipeDisplay);
       console.log(
         'MISSING AFTER',
         store.user.getMissingIngredientsForRecipe(currentRecipe)
@@ -133,7 +134,7 @@ function removeIngredientsFromPantry(recipeID, user) {
       store.user.removePantryIngredients(currentRecipe);
       console.log('PANTRY AFTER REMOVE', store.user.pantry);
       populatePantryDisplay();
-      updateRecipeDisplay(currentRecipeRepo);
+      updateRecipeDisplay(currentRecipeDisplay);
       popupSuccess.style.display = 'block';
     })
     .catch((err) => {
@@ -189,6 +190,8 @@ const defineEventListeners = () => {
   });
 
   popupSuccess.addEventListener('click', closePopUp);
+
+  popupError.addEventListener('click', closePopUp);
 
   allRecipesTab.onchange = () => {
     resetTabs(store.recipeRepo.allRecipes);
@@ -324,6 +327,7 @@ function createMissingIngredientsModal(recipeID) {
 function closePopUp(event) {
   if (event.target.id === 'dismissButton') {
     popupSuccess.style.display = 'none';
+    popupError.style.display = 'none';
   }
 }
 
@@ -334,7 +338,6 @@ function addRecipesToPantry(recipeID) {
   setTimeout(() => {
     addIngredientsBtn.classList.remove('btn-loading');
     missingIngredientModal.style.display = 'none';
-    addIngredientSuccessPopup.style.display = 'block';
     cookAfterAddingBtn.addEventListener('click', function() {
       addIngredientSuccessPopup.style.display = 'none';
       removeIngredientsFromPantry(recipeID, store.user)
@@ -585,6 +588,6 @@ function hide(element) {
 }
 
 function resetCurrentRecipeRepo(newRecipeRepo) {
-  currentRecipeRepo = ''
-  currentRecipeRepo = newRecipeRepo
+  currentRecipeDisplay = ''
+  currentRecipeDisplay = newRecipeRepo
 }
