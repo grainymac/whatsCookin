@@ -130,9 +130,10 @@ function removeIngredientsFromPantry(recipeID, user) {
       store.user.removePantryIngredients(currentRecipe)
       console.log("PANTRY AFTER REMOVE", store.user.pantry)
       populatePantryDisplay()
+      popupSuccess.style.display = 'block';
     })
     .catch((err) => {
-      console.error(err)
+      console.error("I'm here!", err)
       popupError.style.display = 'block'
     })
 }
@@ -294,7 +295,6 @@ function displayCookRecipePopUp(event, recipeID) {
   if (
     event.target.innerText === 'Cook this recipe!'
     ) {
-    popupSuccess.style.display = 'block';
     removeIngredientsFromPantry(recipeID, store.user)
   } else if (
     event.target.innerText === 'Missing Ingredients!'
@@ -331,8 +331,6 @@ function addRecipesToPantry(event, recipeID) {
     const currentRecipe = store.recipeRepo.findRecipeById(recipeID)
     console.log("CURRENT RECIPE", currentRecipe)
     addAllIngredients(currentRecipe, store.user);
-
-    store.user.addPantryIngredients(currentRecipe, store.ingredientsData);
 
     console.log('NEW PANTRY: ', store.user.pantry);
 

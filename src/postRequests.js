@@ -28,7 +28,7 @@ function postAll(requests) {
 
   return Promise.all(requests)
     .then((data) => data)
-    .catch((err) => console.error('AHHHH', err));
+    // .catch((err) => console.error('AHHHH', err));
 }
 
 export { createPostRequests, postAll };
