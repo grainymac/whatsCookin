@@ -42,6 +42,7 @@ const missingIngredientContent = document.querySelector(
   '#missingIngredientModalContent'
 );
 const addIngredientsBtn = document.querySelector('#addIngredientsBtn');
+const cookAfterAddingBtn = document.querySelector(".now-cook-recipe-buttton")
 
 // ------------------- GLOBAL VARIABLES ------------------
 const store = {
@@ -274,31 +275,35 @@ function buildRecipeCard(recipe, recipeCard, abilityToCook) {
       }" src="${flagFavoritedRecipes(recipe)}" alt="star icon"/>
     </section>
   `;
+    
+  updateRecipeCardButtons(recipe, recipeCard, abilityToCook)
+}
 
+function updateRecipeCardButtons (recipe, recipeCard, abilityToCook) {
   const cookRecipeContainer = document.createElement('div');
   cookRecipeContainer.classList.add('cook-recipe-container');
-
   const abilityToCookBtn = document.createElement('button');
   abilityToCookBtn.classList.add('recipe-card-button');
   abilityToCookBtn.setAttribute('id', 'recipeCardButton');
   abilityToCookBtn.innerText = `${abilityToCook}`;
   abilityToCookBtn.addEventListener('click', function () {
-    displayCookRecipePopUp(event, recipe.id);
+    displayCookRecipePopUp(event, recipe.id, recipeCard);
   });
   cookRecipeContainer.appendChild(abilityToCookBtn);
   recipeCard.appendChild(cookRecipeContainer);
 }
 
-function displayCookRecipePopUp(event, recipeID) {
+function displayCookRecipePopUp(event, recipeID, recipeCard) {
   if (event.target.innerText === 'Cook this recipe!') {
     removeIngredientsFromPantry(recipeID, store.user);
   } else if (event.target.innerText === 'Missing Ingredients!') {
     console.log('EVENT', event.target.innerText);
-    createMissingIngredientsModal(recipeID);
+    createMissingIngredientsModal(recipeID, recipeCard);
   }
 }
 
-function createMissingIngredientsModal(recipeID) {
+function createMissingIngredientsModal(recipeID, recipeCard) {
+  console.log("THE RECIPE CARD", recipeCard)
   missingIngredientModal.style.display = 'block';
   addIngredientsBtn.addEventListener('click', function () {
     addRecipesToPantry(recipeID);
@@ -322,6 +327,9 @@ function addRecipesToPantry(recipeID) {
     addIngredientsBtn.classList.remove('btn-loading');
     missingIngredientModal.style.display = 'none';
     addIngredientSuccessPopup.style.display = 'block';
+    cookAfterAddingBtn.addEventListener('click', function() {
+      removeIngredientsFromPantry(recipeID, store.user)
+    })
   }, 2000);
 }
 
