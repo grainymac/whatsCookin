@@ -39,6 +39,7 @@ const missingIngredientModal = document.querySelector(
   '#missingIngredientModal'
 );
 const missingIngredientContent = document.querySelector('#missingIngredientModalContent')
+const addIngredientsBtn = document.querySelector('#addIngredientsBtn');
 
 
 // ------------------- GLOBAL VARIABLES ------------------
@@ -132,7 +133,7 @@ window.onclick = (event) => {
   }
 };
 
-
+addIngredientsBtn.addEventListener('click', toggleBtn);
 
 pantryBtn.addEventListener('click', togglePantry);
 
@@ -177,6 +178,10 @@ const defineEventListeners = () => {
 };
 
 // ------------------ FUNCTIONS ------------------
+function toggleBtn() {
+  addIngredientsBtn.classList.add('btn-loading')
+  addRecipesToPantry()
+}
 
 function togglePantry() {
   pantry.classList.toggle('pantry__open');
@@ -284,12 +289,15 @@ function displayCookRecipePopUp(event, recipeID) {
 
 function createMissingIngredientsModal(recipeID) {
     missingIngredientModal.style.display = 'block';
-    const addIngredientsBtn = document.createElement('button')
-    addIngredientsBtn.classList.add('.add-all-ingredients-btn');
-    addIngredientsBtn.setAttribute('id', 'addIngredientsBtn')
-    addIngredientsBtn.innerText = "Add Ingredients to Pantry";
-    missingIngredientContent.appendChild(addIngredientsBtn);
+    // const addIngredientsBtn = document.createElement('button')
+    // addIngredientsBtn.classList.add('.add-all-ingredients-btn');
+    // addIngredientsBtn.setAttribute('id', 'addIngredientsBtn')
+    // addIngredientsBtn.innerText = "Add Ingredients to Pantry";
+    // const btnTxt = document.createElement('span')
+    // btnTxt.classList.add('.btn-txt');
+    // missingIngredientContent.appendChild(addIngredientsBtn);
     addIngredientsBtn.addEventListener('click', function() { 
+      // addIngredientsBtn.classList.add('btn-loading')
       addRecipesToPantry(event, recipeID)
     });
     close.onclick = () => {
@@ -304,20 +312,27 @@ function closePopUp(event) {
 }
 
 function addRecipesToPantry(event, recipeID) {
-  console.log(event)
-  if (event.target.id === 'addIngredientsBtn') {
-    console.log("RECIPE", recipeID)
-    const currentRecipe = store.recipeRepo.findRecipeById(recipeID)
-    console.log("CURRENT RECIPE", currentRecipe)
-    addAllIngredients(currentRecipe, store.user);
+  setTimeout(() => {
+    console.log(event)
+    // if (event.target.id === 'addIngredientsBtn') {
+      console.log("RECIPE", recipeID)
+      const currentRecipe = store.recipeRepo.findRecipeById(recipeID)
+      console.log("CURRENT RECIPE", currentRecipe)
+      addAllIngredients(currentRecipe, store.user);
 
-    store.user.addPantryIngredients(currentRecipe, store.ingredientsData);
+      store.user.addPantryIngredients(currentRecipe, store.ingredientsData);
 
-    console.log('NEW PANTRY: ', store.user.pantry);
+      console.log('NEW PANTRY: ', store.user.pantry);
 
-    missingIngredientModal.style.display = 'none';
-    addIngredientSuccessPopup.style.display = 'block';
-  }
+      missingIngredientModal.style.display = 'none';
+      addIngredientSuccessPopup.style.display = 'block';
+      // displayPopUp();
+    // }
+  }, 2000);
+}
+
+function displayPopUp() {
+    addIngredientSuccessPopup.style.display = 'none';
 }
 
 // ----- Adding/Removing Recipes from Favorites -----

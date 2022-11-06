@@ -626,6 +626,10 @@ animation: scroll_arrow 4s ease-in-out infinite;
     border-radius: 2px;
     cursor: pointer;
   }
+
+  .add-all-ingredients-btn:hover {
+    background: #f7a39087;
+  }
   
   .add-all-ingredients-btn:active {
     background: #A7D2CB;
@@ -675,6 +679,8 @@ animation: scroll_arrow 4s ease-in-out infinite;
   .add-ingredients-success {
     border-radius: 10px;
     border: #138138 10px outset;
+    height: 40%;
+    width: 10%;
   }
   
 
