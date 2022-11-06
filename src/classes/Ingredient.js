@@ -9,7 +9,7 @@ class Ingredient {
 
   static fromIngredientData(ingredientSource, ingredientsData) {
     const fromIngredients = ingredientsData.find(
-      (ingredient) => ingredient.id === ingredientSource.id || ingredientSource.ingredient 
+      (ingredient) => ingredient.id === ingredientSource.id
     );
 
     let allIngredientData = {};
@@ -18,7 +18,7 @@ class Ingredient {
     allIngredientData.name = fromIngredients.name;
     allIngredientData.cost = fromIngredients.estimatedCostInCents;
     allIngredientData.amount =
-      ingredientSource.amount || ingredientSource.quantity.amount;
+      ingredientSource.amount || ingredientSource.quantity?.amount;
     if (ingredientSource.quantity) {
       allIngredientData.unit = ingredientSource.quantity.unit;
     }
