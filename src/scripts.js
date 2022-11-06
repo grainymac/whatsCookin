@@ -112,7 +112,7 @@ function addAllIngredients(recipe, user) {
         'MISSING AFTER',
         store.user.getMissingIngredientsForRecipe(recipe)
       );
-      // console.log('NEW PANTRY: ', store.user.pantry);
+      console.log('NEW PANTRY: ', store.user.pantry);
     })
     .catch((err) => {
       console.error(err);
@@ -128,8 +128,8 @@ function removeIngredientsFromPantry(recipeID, user) {
     .then((data) => {
       console.log(data)
       store.user.removePantryIngredients(currentRecipe)
-      populatePantryDisplay()
       console.log("PANTRY AFTER REMOVE", store.user.pantry)
+      populatePantryDisplay()
     })
     .catch((err) => {
       console.error(err)
@@ -211,13 +211,15 @@ function populatePantryDisplay() {
   </div>
   `;
   store.user.pantry.forEach((pantryIngredient) => {
-    pantryContainer.innerHTML += `
-      <div class="pantry__ingredient">
-        <p class="ingredient__id">${pantryIngredient.id}</p>
-        <p class="ingredient__stock">${pantryIngredient.amount}</p>
-        <p class="ingredient__name">${pantryIngredient.name}</p>
-      </div>
-    `;
+    if(pantryIngredient.amount) {
+      pantryContainer.innerHTML += `
+        <div class="pantry__ingredient">
+          <p class="ingredient__id">${pantryIngredient.id}</p>
+          <p class="ingredient__stock">${pantryIngredient.amount}</p>
+          <p class="ingredient__name">${pantryIngredient.name}</p>
+        </div>
+      `;
+    }
   });
 }
 

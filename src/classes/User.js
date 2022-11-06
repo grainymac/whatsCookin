@@ -61,7 +61,6 @@ class User {
       });
       console.log(foundIngredient)
       foundIngredient.amount -= recipeIngredient.amount
-      // console.log("INGREDIENT INFO:", foundIngredient.amount, foundIngredient.id)
     })
   }
 
