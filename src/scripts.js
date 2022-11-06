@@ -416,18 +416,18 @@ function buildModal(recipe) {
   updateModalCost(recipe);
 }
 
-function addRecipesToPantry(event) {
-  if (event.target.id === 'addIngredientsBtn') {
-    console.log(
-      'MISSING BEFORE',
-      store.user.getMissingIngredientsForRecipe(store.currentRecipe)
-    );
-    addAllIngredients(store.currentRecipe, store.user, store.ingredientsData);
+// function addRecipesToPantry(event) {
+//   if (event.target.id === 'addIngredientsBtn') {
+//     console.log(
+//       'MISSING BEFORE',
+//       store.user.getMissingIngredientsForRecipe(store.currentRecipe)
+//     );
+//     addAllIngredients(store.currentRecipe, store.user, store.ingredientsData);
 
-    missingIngredientModal.style.display = 'none';
-    addIngredientSuccessPopup.style.display = 'block';
-  }
-}
+//     missingIngredientModal.style.display = 'none';
+//     addIngredientSuccessPopup.style.display = 'block';
+//   }
+// }
 
 // ----- Tags -----
 
