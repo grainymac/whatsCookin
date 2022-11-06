@@ -1,6 +1,10 @@
 import './styles.css';
 import { fetchAll } from './apiCalls';
+<<<<<<<<< Temporary merge branch 1
 import { createPostRequests, postAll } from './postRequests';
+=========
+import { addAllIngredients } from './postRequests';
+>>>>>>>>> Temporary merge branch 2
 import Glide from '@glidejs/glide';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
@@ -101,13 +105,13 @@ function addAllIngredients(recipe, user) {
         console.log(response);
       });
       store.user.addPantryIngredients(
-        store.currentRecipe,
+        recipe,
         store.ingredientsData
       );
       populatePantryDisplay();
       console.log(
         'MISSING AFTER',
-        store.user.getMissingIngredientsForRecipe(store.currentRecipe)
+        store.user.getMissingIngredientsForRecipe(recipe)
       );
       console.log('NEW PANTRY: ', store.user.pantry);
     })
@@ -416,6 +420,21 @@ function buildModal(recipe) {
   updateModalCost(recipe);
 }
 
+<<<<<<<<< Temporary merge branch 1
+function addRecipesToPantry(event) {
+  if (event.target.id === 'addIngredientsBtn') {
+    console.log(
+      'MISSING BEFORE',
+      store.user.getMissingIngredientsForRecipe(store.currentRecipe)
+    );
+    addAllIngredients(store.currentRecipe, store.user, store.ingredientsData);
+
+    missingIngredientModal.style.display = 'none';
+    addIngredientSuccessPopup.style.display = 'block';
+  }
+}
+=========
+>>>>>>>>> Temporary merge branch 2
 
 // ----- Tags -----
 
