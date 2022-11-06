@@ -1,10 +1,6 @@
 import './styles.css';
 import { fetchAll } from './apiCalls';
-<<<<<<<<< Temporary merge branch 1
 import { createPostRequests, postAll } from './postRequests';
-=========
-import { addAllIngredients } from './postRequests';
->>>>>>>>> Temporary merge branch 2
 import Glide from '@glidejs/glide';
 import RecipeRepository from './classes/RecipeRepository';
 import User from './classes/User';
@@ -420,7 +416,6 @@ function buildModal(recipe) {
   updateModalCost(recipe);
 }
 
-<<<<<<<<< Temporary merge branch 1
 function addRecipesToPantry(event) {
   if (event.target.id === 'addIngredientsBtn') {
     console.log(
@@ -433,8 +428,6 @@ function addRecipesToPantry(event) {
     addIngredientSuccessPopup.style.display = 'block';
   }
 }
-=========
->>>>>>>>> Temporary merge branch 2
 
 // ----- Tags -----
 
