@@ -12,7 +12,7 @@ const addIngredientSuccessPopup = document.querySelector(
   '.add-ingredients-success'
 );
 const popupSuccess = document.querySelector('.pop-up-success');
-const logo = document.querySelector('.logo');
+// const logo = document.querySelector('.logo');
 const pantryBtn = document.querySelector('.pantry__btn');
 const pantry = document.querySelector('.pantry');
 const pantryContainer = document.querySelector('.dropdown__header');
@@ -26,6 +26,8 @@ const clearCookbookSearchButton = document.querySelector(
   '#clearCookbookButton'
 );
 const close = document.querySelector('#close');
+const closeIngredientModal = document.querySelector('#closeIngredientModal');
+const addIngredientModal = document.querySelector('#addIngredientModal');
 const cookbookSearchBar = document.querySelector('#cookbookSearch');
 const cookbookTab = document.getElementById('tabCookbook');
 const modal = document.querySelector('#modal');
@@ -140,6 +142,14 @@ window.addEventListener('load', initializeApp);
 
 close.onclick = () => {
   modal.style.display = 'none';
+};
+
+closeIngredientModal.onclick = () => {
+  missingIngredientModal.style.display = 'none';
+};
+
+addIngredientModal.onclick = () => {
+  addIngredientSuccessPopup.style.display = 'none';
 };
 
 window.onclick = (event) => {
