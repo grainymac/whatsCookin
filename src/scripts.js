@@ -96,7 +96,6 @@ const initializeApp = () => {
       
       defineEventListeners();
       console.log('USER', store.user);
-      console.log('PANTRY', store.user.pantry);
     })
     .catch((err) => console.error(err));
 };
@@ -134,7 +133,8 @@ function removeIngredientsFromPantry(recipeID, user) {
   const requests = createPostRequests(user, currentRecipe.ingredients, -1);
   postAll(requests)
     .then((data) => {
-      console.log(data);
+      console.log(data)
+      console.log("DID I GET HERE?");
       store.user.removePantryIngredients(currentRecipe);
       console.log('PANTRY AFTER REMOVE', store.user.pantry);
       populatePantryDisplay();
