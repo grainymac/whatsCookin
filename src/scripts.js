@@ -102,8 +102,6 @@ const initializeApp = () => {
 function addAllIngredients(recipeID, user) {
   const currentRecipe = store.recipeRepo.findRecipeById(recipeID);
   const neededIngredients = user.getMissingIngredientsForRecipe(currentRecipe);
-  console.log('RECIPE:', currentRecipe);
-  console.log('NEEDED BEFORE:', neededIngredients);
   const requests = createPostRequests(user, neededIngredients, 1);
   postAll(requests)
     .then((data) => {
@@ -111,11 +109,6 @@ function addAllIngredients(recipeID, user) {
       populatePantryDisplay();
       addIngredientSuccessPopup.style.display = 'block';
       updateRecipeDisplay(currentRecipeDisplay);
-      console.log('PANTRY AFTER:', store.user.pantry);
-      console.log(
-        'NEEDED AFTER',
-        user.getMissingIngredientsForRecipe(currentRecipe)
-      );
     })
     .catch((err) => {
       console.error(err);
@@ -125,11 +118,6 @@ function addAllIngredients(recipeID, user) {
 
 function removeIngredientsFromPantry(recipeID, user) {
   const currentRecipe = store.recipeRepo.findRecipeById(recipeID);
-  console.log(
-    'NEEDED BEFORE:',
-    user.getMissingIngredientsForRecipe(currentRecipe)
-  );
-  console.log('CURRENT RECIPE', currentRecipe);
   const requests = createPostRequests(user, currentRecipe.ingredients, -1);
   postAll(requests)
     .then((data) => {
@@ -137,11 +125,6 @@ function removeIngredientsFromPantry(recipeID, user) {
       populatePantryDisplay();
       updateRecipeDisplay(currentRecipeDisplay);
       popupSuccess.style.display = 'block';
-      console.log('REMOVED PANTRY', store.user.pantry);
-      console.log(
-        'NEEDED AFTER:',
-        user.getMissingIngredientsForRecipe(currentRecipe)
-      );
     })
     .catch((err) => {
       console.error('CATCH ERROR', err);
@@ -308,7 +291,6 @@ function updateRecipeCardButtons(recipe, recipeCard, abilityToCook) {
   abilityToCookBtn.setAttribute('id', 'recipeCardButton');
   abilityToCookBtn.innerText = `${abilityToCook}`;
   abilityToCookBtn.dataset.recipeId = `${recipe.id}`;
-  console.log(abilityToCookBtn.dataset.recipeId);
   abilityToCookBtn.addEventListener('click', function (event) {
     displayCookRecipePopUp(event, recipe);
   });
@@ -325,7 +307,6 @@ function displayCookRecipePopUp(event, recipe) {
 }
 
 function createMissingIngredientsModal(recipeId) {
-  console.log('WHATSUP', recipeId);
   missingIngredientModal.style.display = 'block';
   addIngredientsBtn.dataset.recipeId = recipeId;
 
@@ -343,7 +324,6 @@ function closePopUp(event) {
 
 function addToPantry() {
   const recipeId = Number(addIngredientsBtn.dataset.recipeId);
-  console.log('YES', recipeId);
   toggleIngredientsBtn();
   addAllIngredients(recipeId, store.user);
 
@@ -385,7 +365,6 @@ function recipeCardActionFilter(event) {
     event.target.closest('.recipe-card') &&
     event.target.id !== 'recipeCardButton'
   ) {
-    console.log('RECIPE CARD CLICK:', event);
     buildModal(
       store.recipeRepo.allRecipes.find((recipe) => recipe.id == parentCardId)
     );
