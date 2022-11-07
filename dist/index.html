@@ -15,53 +15,7 @@
         <div class="dropdown__arrow"></div>
       </button>
       <div class="pantry">
-        <div class="dropdown__header">
-          <!-- <div class="header__container">
-            <h5 class="header__id">Ingredient ID</h5>
-            <h5 class="header__stock">Stock</h5>
-            <h5 class="header__name">Name</h5>
-          </div>
-          <div class="pantry__ingredient">
-            <p class="ingredient__id">20081</p>
-            <p class="ingredient__stock">3</p>
-            <p class="ingredient__name">wheat flour</p>
-          </div>
-          <div class="pantry__ingredient">
-            <p class="ingredient__id">20081</p>
-            <p class="ingredient__stock">0.25</p>
-            <p class="ingredient__name">instant vanilla pudding</p>
-          </div>
-          <div class="pantry__ingredient">
-            <p class="ingredient__id">7036</p>
-            <p class="ingredient__stock">0.25</p>
-            <p class="ingredient__name">italian sausage links</p>
-          </div>
-          <div class="pantry__ingredient">
-            <p class="ingredient__id">1256</p>
-            <p class="ingredient__stock">2</p>
-            <p class="ingredient__name">skim milk ricotta cheese</p>
-          </div>
-          <div class="pantry__ingredient">
-            <p class="ingredient__id">16057</p>
-            <p class="ingredient__stock">12</p>
-            <p class="ingredient__name">garbanzos</p>
-          </div>
-          <div class="pantry__ingredient">
-            <p class="ingredient__id">20081</p>
-            <p class="ingredient__stock">3</p>
-            <p class="ingredient__name">bicarbonate of soda</p>
-          </div>
-          <div class="pantry__ingredient">
-            <p class="ingredient__id">203243</p>
-            <p class="ingredient__stock">3</p>
-            <p class="ingredient__name">Whole Grain Teff Flour</p>
-          </div>
-          <div class="pantry__ingredient">
-            <p class="ingredient__id">1055062</p>
-            <p class="ingredient__stock">1</p>
-            <p class="ingredient__name">boneless skinless chicken breasts</p>
-          </div> -->
-        </div>
+        <div class="dropdown__header"></div>
       </div>
     </section>
     <div class="glide">
@@ -87,10 +41,16 @@
           >
             <div class="glide__content-overlay">
               <div class="glide__textbox">
-                <h2 class="glide__title">Loaded Chocolate Chip Pudding Cookie Cups </h2>
-                <p class="glide__info">I never expected I could have these Pudding Cookie Cups for a snack, an hors d'oeuvre, AND appetizer! So empowering! -thisCoolUser</p>
-                </div>
-                <div class="glide__scroll"></div>
+                <h2 class="glide__title">
+                  Loaded Chocolate Chip Pudding Cookie Cups
+                </h2>
+                <p class="glide__info">
+                  I never expected I could have these Pudding Cookie Cups for a
+                  snack, an hors d'oeuvre, AND appetizer! So empowering!
+                  -thisCoolUser
+                </p>
+              </div>
+              <div class="glide__scroll"></div>
             </div>
           </li>
           <li
@@ -184,9 +144,9 @@
           </div>
         </section>
 
-      <section id="recipeSection" class="recipes-section"></section>
+        <section id="recipeSection" class="recipes-section"></section>
       </div>
-<!-- Hidden Elements -->
+      <!-- Hidden Elements -->
       <section class="modal-box">
         <div class="modal" id="modal">
           <div class="modal-content">
@@ -218,40 +178,64 @@
       </section>
 
       <section id="missingIngredientModal" class="missing-ingredient-modal">
-        <div id="missingIngredientModalContent" class="missing-ingredient-modal-content">
-          <span class="close-ingredient-modal" id="closeIngredientModal">&times;</span>
-          <p class="missing-ingredients-txt" id="missingIngredientsTxt">Your Missing Ingredients Are:</p>
-            <div class="missing-ingredients-list" id="missingIngredientsList">
-
-            </div>
-          <button type="button" class="add-all-ingredients-btn" id="addIngredientsBtn"><span class="btn-txt">Add Ingredients to Pantry</span></button>
+        <div
+          id="missingIngredientModalContent"
+          class="missing-ingredient-modal-content"
+        >
+          <span class="close-ingredient-modal" id="closeIngredientModal"
+            >&times;</span
+          >
+          <p class="missing-ingredients-txt" id="missingIngredientsTxt">
+            Your Missing Ingredients Are:
+          </p>
+          <ul class="missing-ingredients-list" id="missingIngredientsList"></ul>
+          <button
+            type="button"
+            class="add-all-ingredients-btn"
+            id="addIngredientsBtn"
+          >
+            <span class="btn-txt">Add Ingredients to Pantry</span>
+          </button>
         </div>
       </section>
 
       <div class="add-ingredients-success" id="addIngredientsSuccess">
-        <span class="add-ingredient-modal" id="addIngredientModal">&times;</span>
+        <span class="add-ingredient-modal" id="addIngredientModal"
+          >&times;</span
+        >
         <p class="add-ingredients-message">Ingredients added to your pantry!</p>
-        <button class="now-cook-recipe-buttton" id="nowCookRecipeButton">Cook Recipe!</button>
+        <button class="now-cook-recipe-buttton" id="nowCookRecipeButton">
+          Cook Recipe!
+        </button>
       </div>
 
-
       <div class="pop-up-error" id="cook-recipe-error">
-        <img class="alert-icon-error" src="alert-icon-red-11.png" alt="red-alert-icon">
-        <p class="error-message">Oops! <br> Something went wrong!</p>
+        <img
+          class="alert-icon-error"
+          src="alert-icon-red-11.png"
+          alt="red-alert-icon"
+        />
+        <p class="error-message">
+          Oops! <br />
+          Something went wrong!
+        </p>
         <div class="dismiss-button" id="dismissButton">Dismiss</div>
       </div>
 
       <div class="pop-up-success" id="cook-recipe-success">
-        <img class="alert-icon-success" src="green-checkmark.png" alt="green-checkmark-icon">
+        <img
+          class="alert-icon-success"
+          src="green-checkmark.png"
+          alt="green-checkmark-icon"
+        />
         <p class="success-message">You've successfully cooked the recipe!</p>
         <div class="dismiss-button" id="dismissButton">Dismiss</div>
       </div>
-      
     </main>
   </body>
   <footer class="footer">
     <img class="logo" src="whatsCookin.png" alt="logo image" />
-  </footer> 
+  </footer>
   <!-- Do not include the scripts.js file here - it is done automatically by the webpack server -->
   <script src="bundle.js"></script>
 </html>

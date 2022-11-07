@@ -40,6 +40,9 @@ const tagsContainer = document.querySelector('#tagsContainer');
 const missingIngredientModal = document.querySelector(
   '#missingIngredientModal'
 );
+const missingIngredientsList = document.querySelector(
+  '.missing-ingredients-list'
+);
 const missingIngredientContent = document.querySelector(
   '#missingIngredientModalContent'
 );
@@ -120,7 +123,7 @@ function addAllIngredients(recipeID, user) {
 
 function removeIngredientsFromPantry(recipeID, user) {
   const currentRecipe = store.recipeRepo.findRecipeById(recipeID);
-  console.log("RECIPE", currentRecipe)
+  console.log('RECIPE', currentRecipe);
   const requests = createPostRequests(user, currentRecipe.ingredients, -1);
   postAll(requests)
     .then((data) => {
@@ -133,7 +136,7 @@ function removeIngredientsFromPantry(recipeID, user) {
       console.error('CATCH ERROR', err);
       popupError.style.display = 'block';
       updateRecipeDisplay(currentRecipeDisplay);
-      console.log("NEEDED", user.getMissingIngredientsForRecipe(currentRecipe))
+      console.log('NEEDED', user.getMissingIngredientsForRecipe(currentRecipe));
     });
 }
 
@@ -313,20 +316,52 @@ function updateRecipeCardButtons(recipe, recipeCard, abilityToCook) {
 
 function displayCookRecipePopUp(event, recipe) {
   if (event.target.innerText === 'Cook this recipe!') {
-    console.log("HOW MANY INGREDIENTS?", store.user.getMissingIngredientsForRecipe(recipe))
+    console.log(
+      'HOW MANY INGREDIENTS?',
+      store.user.getMissingIngredientsForRecipe(recipe)
+    );
     removeIngredientsFromPantry(recipe.id, store.user);
   } else if (event.target.innerText === 'Missing Ingredients!') {
     createMissingIngredientsModal(recipe.id);
   }
 }
 
+// ----- Missing Ingredients Modal -----
+
 function createMissingIngredientsModal(recipeId) {
+  missingIngredientsList.innerHTML = '';
   missingIngredientModal.style.display = 'block';
   addIngredientsBtn.dataset.recipeId = recipeId;
+  const recipe = store.recipeRepo.findRecipeById(recipeId);
+  const ingredientList = createMissingIngredientsList(recipe);
+  createMissingListElements(ingredientList)
 
   close.onclick = () => {
     modal.style.display = 'none';
   };
+}
+
+function createMissingIngredientsList(recipe) {
+  const missingIngredients = store.user.getMissingIngredientsForRecipe(recipe);
+  const ingredientList = missingIngredients.map((missingIngredient) => {
+    if (
+      missingIngredient.unit === '' &&
+      missingIngredient.name[missingIngredient.name.length - 1] !== 's'
+    ) {
+      return `${missingIngredient.amount} ${missingIngredient.unit} ${missingIngredient.name}s`;
+    } else {
+      return `${missingIngredient.amount} ${missingIngredient.unit} ${missingIngredient.name}`;
+    }
+  });
+  return ingredientList
+}
+
+function createMissingListElements(ingredientList) {
+  ingredientList.forEach((listedIngredient) => {
+    const ingredient = document.createElement('li');
+    ingredient.innerText = `${listedIngredient}`;
+    missingIngredientsList.appendChild(ingredient);
+  });
 }
 
 function closePopUp(event) {
@@ -335,6 +370,8 @@ function closePopUp(event) {
     popupError.style.display = 'none';
   }
 }
+
+// ----- Adding/Removing Ingredients from Pantry -----
 
 function addToPantry() {
   const recipeId = Number(addIngredientsBtn.dataset.recipeId);
@@ -349,7 +386,7 @@ function addToPantry() {
 
 function removeFromPantry() {
   const recipeId = Number(addIngredientsBtn.dataset.recipeId);
-  console.log(recipeId)
+  console.log(recipeId);
   addIngredientSuccessPopup.style.display = 'none';
   removeIngredientsFromPantry(recipeId, store.user);
 }
