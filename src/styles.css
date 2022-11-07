@@ -748,18 +748,6 @@ main {
     cursor: pointer;
   }
 
-  .now-cook-recipe-buttton {
-    background-color: #F2D388;
-    height: 50px;
-    width: 150px;
-    border: none;
-    outline: none;
-    border-radius: 40px;
-    font: bold 20px "Quicksand", san-serif;
-    color: #000000;
-    cursor: pointer;
-  }
-
 /* ------error message------ */
 .add-ingredients-success,
 .pop-up-error,

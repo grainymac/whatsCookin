@@ -47,7 +47,6 @@ const missingIngredientContent = document.querySelector(
   '#missingIngredientModalContent'
 );
 const addIngredientsBtn = document.querySelector('#addIngredientsBtn');
-const cookAfterAddingBtn = document.querySelector('.now-cook-recipe-buttton');
 
 // ------------------- GLOBAL VARIABLES ------------------
 const store = {
@@ -208,8 +207,6 @@ const defineEventListeners = () => {
 };
 
 addIngredientsBtn.addEventListener('click', addToPantry);
-
-cookAfterAddingBtn.addEventListener('click', removeFromPantry);
 
 // ------------------ FUNCTIONS ------------------
 function toggleIngredientsBtn() {
