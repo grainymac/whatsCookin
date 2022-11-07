@@ -339,7 +339,7 @@ function createMissingIngredientsModal(recipeId) {
   });
 
   ingredientList.forEach((listedIngredient) => {
-    const ingredient = document.createElement('p');
+    const ingredient = document.createElement('li');
     ingredient.innerText = `${listedIngredient}`;
     missingIngredientsList.appendChild(ingredient);
   });
