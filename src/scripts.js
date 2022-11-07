@@ -217,10 +217,15 @@ function toggleIngredientsBtn() {
 }
 
 function togglePantry() {
-  pantry.classList.toggle('pantry__open');
+  pantry.classList.toggle('pantry__open')
+  if(pantry.classList.contains('pantry__open')) {
+    pantry.ariaExpanded = 'true';
+  } else {
+    pantry.ariaExpanded = 'false'}
   dropdownArrow.classList.toggle('dropdown__arrow-open');
   populatePantryDisplay();
 }
+
 
 function populatePantryDisplay() {
   pantryContainer.innerHTML = `
