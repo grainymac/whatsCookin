@@ -178,18 +178,17 @@
       </section>
 
       <section id="missingIngredientModal" class="missing-ingredient-modal">
-
         <div
           id="missingIngredientModalContent"
           class="missing-ingredient-modal-content"
         >
+          <span class="close-ingredient-modal" id="closeIngredientModal"
+            >&times;</span
+          >
           <p class="missing-ingredients-txt" id="missingIngredientsTxt">
             Your Missing Ingredients Are:
           </p>
-          <ul
-            class="missing-ingredients-list"
-            id="missingIngredientsList"
-          ></ul>
+          <ul class="missing-ingredients-list" id="missingIngredientsList"></ul>
           <button
             type="button"
             class="add-all-ingredients-btn"
@@ -201,7 +200,9 @@
       </section>
 
       <div class="add-ingredients-success" id="addIngredientsSuccess">
-        <span class="add-ingredient-modal" id="addIngredientModal">&times;</span>
+        <span class="add-ingredient-modal" id="addIngredientModal"
+          >&times;</span
+        >
         <p class="add-ingredients-message">Ingredients added to your pantry!</p>
         <button class="now-cook-recipe-buttton" id="nowCookRecipeButton">
           Cook Recipe!
