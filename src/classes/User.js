@@ -74,12 +74,14 @@ class User {
           id: recipeIngredient.id,
           name: recipeIngredient.name,
           amount: recipeIngredient.amount,
+          unit: recipeIngredient.unit,
         });
       } else if (foundIngredient.amount < recipeIngredient.amount) {
         missingIngredients.push({
           id: recipeIngredient.id,
           name: recipeIngredient.name,
           amount: recipeIngredient.amount - foundIngredient.amount,
+          unit: recipeIngredient.unit,
         });
       }
     });
