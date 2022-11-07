@@ -68,4 +68,8 @@ describe('RecipeRepository', () => {
 
     expect(recipeRepo.allRecipes[0]).to.deep.equal(recipe);
   });
+
+  it('Should find a recipe given its ID', () => {
+    expect(recipeRepo.findRecipeById(595736)).to.deep.equal(recipe)
+  })
 });
