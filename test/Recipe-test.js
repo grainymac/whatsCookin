@@ -11,11 +11,29 @@ describe('Recipe', () => {
     recipe = new Recipe(recipeSampleData[0], ingredientSampleData);
   });
 
+  it('should be a function', () => {
+    expect(Recipe).to.be.a('function');
+  })
+
+  it('should be an instance of recipe', () => {
+    expect(recipe).to.be.an.instanceOf(Recipe);
+  })
+
+  it('should have recipe instructions', () => {
+    expect(recipe.instructions).to.equal(recipeSampleData[0].instructions);
+  })
+
+  it('should have an id', () => {
+    expect(recipe.id).to.equal(595736);
+  })
+
+  it('should have an image', () => {
+    expect(recipe.image).to.equal('https://spoonacular.com/recipeImages/595736-556x370.jpg');
+  })
 
   it('should store an instructions array', () => {
     expect(recipe.instructions).to.equal(recipeSampleData[0].instructions);
   });
-
 
   it('should store recipe name', () => {
     expect(recipe.name).to.equal(recipeSampleData[0].name);
