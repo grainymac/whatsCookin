@@ -9,7 +9,7 @@ describe('Ingredient', () => {
 
   beforeEach(() => {
     ingredient = Ingredient.fromIngredientData(recipeSampleData[1].ingredients[0], ingredientSampleData)
-    ingredient2 = Ingredient.fromIngredientData(usersSampleData.pantry[2], ingredientSampleData)
+    ingredient2 = Ingredient.fromIngredientData({id: usersSampleData.pantry[2].ingredient, amount: usersSampleData.pantry[2].amount}, ingredientSampleData)
   })
 
   it('should be a function', () => {
