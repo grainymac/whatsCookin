@@ -459,14 +459,27 @@ animation: scroll_arrow 4s ease-in-out infinite;
 }
 
 .recipe-card-button {
-  height: 50px;
-  width: 150px;
-  background-color: #0e471b;
-  color: white;
-  border-radius: 5px;
-  box-shadow: 1px 3px 3px rgb(0 0 0 / 20%), -1px -1px 4px rgb(0 0 0 / 20%);
+  outline:none;
+  height: 40px;
+  text-align: center;
+  width: 130px;
+  border-radius: 40px;
+  background: #fff;
+  border: 2px solid #7f9f9a;
+  color: #000000;
   cursor: pointer;
+  transition: all 0.25s ease;
 }
+
+.recipe-card-button:hover {
+    color: #000000;
+    background: #A7D2CB;
+  }
+
+  .recipe-card-button:active {
+    letter-spacing: 2px;
+    letter-spacing: 2px ;
+  }
 
 
 .recipe-section-tag {
@@ -623,7 +636,7 @@ animation: scroll_arrow 4s ease-in-out infinite;
     background: #c9847487;
     border: none;
     outline: none;
-    border-radius: 2px;
+    border-radius: 40px;
     cursor: pointer;
   }
 
@@ -674,15 +687,59 @@ animation: scroll_arrow 4s ease-in-out infinite;
       transform: rotate(1turn);
     }
   }
+
+  .close-ingredient-modal {
+    color: #aaaaaa;
+    float: right;
+    font-size: 32px;
+    font-weight: bold;
+  }
   
+  .close-ingredient-modal:hover,
+  .close-ingredient-modal:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
   /* ============================================================ ADDED INGREDIENT POP-UP */
   .add-ingredients-success {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     border-radius: 10px;
-    border: #138138 10px outset;
+    border: #F2D388 10px outset;
     height: 40%;
     width: 10%;
   }
   
+  .add-ingredient-modal {
+    display: flex;
+    margin-right: 10px;
+    color: #aaaaaa;
+    float: right;
+    font-size: 32px;
+    font-weight: bold;
+  }
+  
+  .add-ingredient-modal:hover,
+  .add-ingredient-modal:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .now-cook-recipe-buttton {
+    background-color: #F2D388;
+    height: 50px;
+    width: 150px;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    font: bold 20px "Quicksand", san-serif;
+    color: #000000;
+    cursor: pointer;
+  }
 
 /* ------error message------ */
 .add-ingredients-success,
