@@ -59,7 +59,6 @@ class User {
       const foundIngredient = this.pantry.find((pantryIngredient) => {
         return pantryIngredient.id === recipeIngredient.id
       });
-      console.log(foundIngredient)
       foundIngredient.amount -= recipeIngredient.amount
     })
   }

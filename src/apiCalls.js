@@ -1,7 +1,7 @@
 const fetchData = (url) => {
   return fetch(url)
     .then((response) => {
-      if (response.status !== 200) {
+      if (!response.ok) {
         throw new Error(
           `status ${response.status} at endpoint ${response.url}`
         );
