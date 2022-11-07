@@ -118,6 +118,7 @@ function addAllIngredients(recipeID, user) {
 
 function removeIngredientsFromPantry(recipeID, user) {
   const currentRecipe = store.recipeRepo.findRecipeById(recipeID);
+  console.log("RECIPE", currentRecipe)
   const requests = createPostRequests(user, currentRecipe.ingredients, -1);
   postAll(requests)
     .then((data) => {
@@ -129,6 +130,8 @@ function removeIngredientsFromPantry(recipeID, user) {
     .catch((err) => {
       console.error('CATCH ERROR', err);
       popupError.style.display = 'block';
+      updateRecipeDisplay(currentRecipeDisplay);
+      console.log("NEEDED", user.getMissingIngredientsForRecipe(currentRecipe))
     });
 }
 
@@ -300,6 +303,7 @@ function updateRecipeCardButtons(recipe, recipeCard, abilityToCook) {
 
 function displayCookRecipePopUp(event, recipe) {
   if (event.target.innerText === 'Cook this recipe!') {
+    console.log("HOW MANY INGREDIENTS?", store.user.getMissingIngredientsForRecipe(recipe))
     removeIngredientsFromPantry(recipe.id, store.user);
   } else if (event.target.innerText === 'Missing Ingredients!') {
     createMissingIngredientsModal(recipe.id);
@@ -335,6 +339,7 @@ function addToPantry() {
 
 function removeFromPantry() {
   const recipeId = Number(addIngredientsBtn.dataset.recipeId);
+  console.log(recipeId)
   addIngredientSuccessPopup.style.display = 'none';
   removeIngredientsFromPantry(recipeId, store.user);
 }
