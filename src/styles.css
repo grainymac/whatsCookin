@@ -467,7 +467,6 @@ main {
 }
 
 .recipe-card-button {
-  outline:none;
   height: 40px;
   text-align: center;
   width: 130px;
@@ -652,7 +651,6 @@ main {
   padding: 8px 16px;
   background: #c9847487;
   border: none;
-  outline: none;
   border-radius: 40px;
   cursor: pointer;
 }
@@ -753,7 +751,6 @@ main {
     height: 50px;
     width: 150px;
     border: none;
-    outline: none;
     border-radius: 40px;
     font: bold 20px "Quicksand", san-serif;
     color: #000000;

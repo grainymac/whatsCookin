@@ -176,6 +176,12 @@ window.addEventListener('keyup', (event) => {
 
 pantryBtn.addEventListener('click', togglePantry);
 
+pantryBtn.addEventListener('keyup', (event) => {
+  if(event.key === 'Enter') {
+    togglePantry()
+  }
+})
+
 clearAllRecipeSearchButton.addEventListener('click', function () {
   resetCurrentRecipeRepo(store.recipeRepo.allRecipes);
   updateRecipeDisplay(store.recipeRepo.allRecipes);
@@ -222,9 +228,21 @@ const defineEventListeners = () => {
     resetTabs(event, store.recipeRepo.allRecipes);
   });
 
+  allRecipesTab.addEventListener('keyup', (event) => {
+    if(event.key === 'Enter') {
+      resetTabs(event, store.recipeRepo.allRecipes)
+    }
+  })
+
   cookbookTab.addEventListener('click', (event) => {
     resetTabs(event, store.user.favoriteRecipeRepo.allRecipes);
   });
+
+  cookbookTab.addEventListener('keyup', (event) => {
+    if(event.key === 'Enter') {
+      resetTabs(event, store.user.favoriteRecipeRepo.allRecipes)
+    }
+  })
   
 };
 
@@ -594,6 +612,7 @@ function getTag(event) {
 }
 
 function resetTabs(event, repo) {
+  console.log(event)
   if (event.target.id === 'tabCookbook') {
     cookbookFlag = true;
     cookbookTab.ariaChecked = true;

@@ -98,8 +98,10 @@
               id="tabAllRecipes"
               name="user-tabs"
               checked="checked"
+              tabindex="0"
+              class="tab-all-recipes"
             />
-            <label for="tabAllRecipes">All Recipes</label>
+            <label for="tabAllRecipes" class="tab-all-recipes">All Recipes</label>
             <div class="tab">
               <p class="tab-instructions">Find a recipe!</p>
               <input
@@ -121,8 +123,8 @@
                 Clear
               </button>
             </div>
-            <input type="radio" id="tabCookbook" name="user-tabs" />
-            <label for="tabCookbook">Cookbook</label>
+            <input type="radio" id="tabCookbook" name="user-tabs" tabindex="0"  class="tab-cookbook"/>
+            <label for="tabCookbook"  class="tab-cookbook">Cookbook</label>
             <div class="tab">
               <p class="tab-instructions">Search your favorite recipes!</p>
               <input
