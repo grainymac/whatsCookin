@@ -98,10 +98,16 @@
               id="tabAllRecipes"
               name="user-tabs"
               checked="checked"
-              tabindex=0
+              tabindex="0"
               class="tab-all-recipes"
             />
-            <label for="tabAllRecipes" class="tab-all-recipes" tabindex="0" id="allIngredientsLabel">All Recipes</label>
+            <label
+              for="tabAllRecipes"
+              class="tab-all-recipes"
+              tabindex="0"
+              id="allIngredientsLabel"
+              >All Recipes</label
+            >
             <div class="tab">
               <p class="tab-instructions">Find a recipe!</p>
               <input
@@ -123,8 +129,17 @@
                 Clear
               </button>
             </div>
-            <input type="radio" id="tabCookbook" name="user-tabs" tabindex="0"  class="tab-cookbook" tabindex=0/>
-            <label for="tabCookbook"  class="tab-cookbook" tabindex="0">Cookbook</label>
+            <input
+              type="radio"
+              id="tabCookbook"
+              name="user-tabs"
+              tabindex="0"
+              class="tab-cookbook"
+              tabindex="0"
+            />
+            <label for="tabCookbook" class="tab-cookbook" tabindex="0"
+              >Cookbook</label
+            >
             <div class="tab">
               <p class="tab-instructions">Search your favorite recipes!</p>
               <input
@@ -201,24 +216,28 @@
         </div>
       </section>
 
-      <div class="add-ingredients-success" id="addIngredientsSuccess">
-        <span class="add-ingredient-modal" id="addIngredientModal"
-          >&times;</span
-        >
-        <img
-          class="ingredients-success-icon"
-          src="grocery-bag.png"
-          alt="cute cartoon grocery bag with fruits and vegetables smiling with glee"
-        />
-        <p class="add-ingredients-message">
-          Yay! All ingredients have been added to your pantry!
-        </p>
-      </div>
-      <div class="pop-up-cooking" id="cooking-recipe">
-        <video class="cooking-animation" autoplay loop muted>
-          <source src="cooking.mp4" type="video/mp4" />
-        </video>
-      </div>
+      <section class="success-ingredient-modal">
+        <div class="add-ingredients-success" id="addIngredientsSuccess">
+          <span class="add-ingredient-modal" id="addIngredientModal"
+            >&times;</span
+          >
+          <img
+            class="ingredients-success-icon"
+            src="grocery-bag.png"
+            alt="cute cartoon grocery bag with fruits and vegetables smiling with glee"
+          />
+          <p class="add-ingredients-message">
+            Yay! All ingredients have been added to your pantry!
+          </p>
+        </div>
+      </section>
+      <section class="cooking-animation-modal">
+        <div class="pop-up-cooking" id="cooking-recipe">
+          <video class="cooking-animation" autoplay loop muted>
+            <source src="cooking.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </section>
 
       <div class="pop-up-error" id="cook-recipe-error">
         <img
@@ -233,15 +252,17 @@
         <div class="dismiss-button" id="dismissButton">Dismiss</div>
       </div>
 
-      <div class="pop-up-success" id="cook-recipe-success">
-        <img
-          class="alert-icon-success"
-          src="green-checkmark.png"
-          alt="green-checkmark-icon"
-        />
-        <p class="success-message">You've successfully cooked the recipe!</p>
-        <div class="dismiss-button" id="dismissButton">Dismiss</div>
-      </div>
+      <section class="success-recipe-modal">
+        <div class="pop-up-success" id="cook-recipe-success">
+          <img
+            class="alert-icon-success"
+            src="green-checkmark.png"
+            alt="green-checkmark-icon"
+          />
+          <p class="success-message">You've successfully cooked the recipe!</p>
+          <div class="dismiss-button" id="dismissButton">Dismiss</div>
+        </div>
+      </section>
     </main>
   </body>
   <footer class="footer">
