@@ -7,7 +7,7 @@ import User from './classes/User';
 
 // --------------------QUERY SELECTORS ------------------
 
-const loadCooking = document.querySelector('.pop-up-cooking')
+const loadCooking = document.querySelector('.pop-up-cooking');
 const popupError = document.querySelector('.pop-up-error');
 const addIngredientSuccessPopup = document.querySelector(
   '.add-ingredients-success'
@@ -42,9 +42,6 @@ const missingIngredientModal = document.querySelector(
 );
 const missingIngredientsList = document.querySelector(
   '.missing-ingredients-list'
-);
-const missingIngredientContent = document.querySelector(
-  '#missingIngredientModalContent'
 );
 const addIngredientsBtn = document.querySelector('#addIngredientsBtn');
 
