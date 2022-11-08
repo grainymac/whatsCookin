@@ -133,22 +133,20 @@ function removeIngredientsFromPantry(recipeID, user) {
   postAll(requests)
     .then((data) => {
       store.user.removePantryIngredients(currentRecipe);
-      cookingAnimationModal.style.display = 'block';
-      loadCooking.style.display = 'block';
+      display(cookingAnimationModal);
+      display(loadCooking);
       setTimeout(() => {
         populatePantryDisplay();
         updateRecipeDisplay(currentRecipeDisplay);
-        cookingAnimationModal.style.display = 'none'
-        loadCooking.style.display = 'none';
-        popupSuccess.style.display = 'block';
-        console.log('BYEYA');
+        removeDisplay(cookingAnimationModal);
+        removeDisplay(loadCooking);
+        display(popupSuccess);
       }, 2000);
     })
     .catch((err) => {
       console.error('CATCH ERROR', err);
-      popupError.style.display = 'block';
+      display(popupError);
       updateRecipeDisplay(currentRecipeDisplay);
-      console.log('NEEDED', user.getMissingIngredientsForRecipe(currentRecipe));
     });
 }
 
@@ -165,7 +163,7 @@ closeIngredientModal.onclick = () => {
 
 addIngredientModal.onclick = () => {
   addIngredientSuccessPopup.style.display = 'none';
-  successIngredientModal.style.display = 'none';
+  removeDisplay(successIngredientModal);
 };
 
 window.onclick = (event) => {
