@@ -444,10 +444,13 @@ main {
 }
 
 .recipe-favorite-icon:hover,
-.recipe-favorite-icon:focus,
-.recipe-favorite-icon:active {
+.recipe-favorite-icon:focus {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+
+.recipe-favorite-icon:active {
+  transform: scale(0.98);
 }
 
 .recipe-tags-container {
@@ -656,7 +659,6 @@ main {
   padding: 8px 16px;
   background: #c9847487;
   border: none;
-  outline: none;
   border-radius: 40px;
   cursor: pointer;
 }
@@ -761,7 +763,7 @@ main {
   position: fixed;
   top: 50%;
   left: 50%;
-  height: 35%;
+  height: 30%;
   width: 25%;
   max-width: 100%;
   max-height: 100%;
