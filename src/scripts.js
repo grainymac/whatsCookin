@@ -48,6 +48,8 @@ const missingIngredientContent = document.querySelector(
 );
 const addIngredientsBtn = document.querySelector('#addIngredientsBtn');
 const cookAfterAddingBtn = document.querySelector('.now-cook-recipe-buttton');
+const allRecipeLabel = document.querySelector('.tab-all-recipes')
+const cookbookLabel =  document.querySelector('.tab-cookbook')
 
 // ------------------- GLOBAL VARIABLES ------------------
 const store = {
@@ -228,7 +230,7 @@ const defineEventListeners = () => {
     resetTabs(event, store.recipeRepo.allRecipes);
   });
 
-  allRecipesTab.addEventListener('keyup', (event) => {
+  allRecipeLabel.addEventListener('keyup', (event) => {
     if(event.key === 'Enter') {
       resetTabs(event, store.recipeRepo.allRecipes)
     }
@@ -238,7 +240,7 @@ const defineEventListeners = () => {
     resetTabs(event, store.user.favoriteRecipeRepo.allRecipes);
   });
 
-  cookbookTab.addEventListener('keyup', (event) => {
+  cookbookLabel.addEventListener('keyup', (event) => {
     if(event.key === 'Enter') {
       resetTabs(event, store.user.favoriteRecipeRepo.allRecipes)
     }
@@ -527,6 +529,7 @@ function updateModalCost(recipe) {
 
 function buildModal(recipe) {
   modal.style.display = 'block';
+  modal.ariaModal = true
   buildModalQuerySelectors(recipe);
   updateModalIngredients(recipe);
   updateModalInstructions(recipe);
@@ -569,13 +572,17 @@ function tagsToggleFilter(event) {
 }
 
 function addTag(event) {
+  event.target.ariaSelected='true'
   clearSearchBar();
   const filterSelectedTags = store.tagList.filter((tag) =>
     tag.classList.contains('recipe-tag-selected')
   );
 
-  filterSelectedTags.forEach((tag) =>
+  filterSelectedTags.forEach((tag) => {
+    console.log(tag)
     tag.classList.remove('recipe-tag-selected')
+    tag.ariaSelected = 'false'
+    }
   );
 
   let userTag = getTag(event);

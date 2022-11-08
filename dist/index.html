@@ -98,10 +98,10 @@
               id="tabAllRecipes"
               name="user-tabs"
               checked="checked"
-              tabindex="0"
+              tabindex=0
               class="tab-all-recipes"
             />
-            <label for="tabAllRecipes" class="tab-all-recipes">All Recipes</label>
+            <label for="tabAllRecipes" class="tab-all-recipes" tabindex="0" id="allIngredientsLabel">All Recipes</label>
             <div class="tab">
               <p class="tab-instructions">Find a recipe!</p>
               <input
@@ -123,8 +123,8 @@
                 Clear
               </button>
             </div>
-            <input type="radio" id="tabCookbook" name="user-tabs" tabindex="0"  class="tab-cookbook"/>
-            <label for="tabCookbook"  class="tab-cookbook">Cookbook</label>
+            <input type="radio" id="tabCookbook" name="user-tabs" tabindex="0"  class="tab-cookbook" tabindex=0/>
+            <label for="tabCookbook"  class="tab-cookbook" tabindex="0">Cookbook</label>
             <div class="tab">
               <p class="tab-instructions">Search your favorite recipes!</p>
               <input
@@ -149,7 +149,7 @@
         <section id="recipeSection" class="recipes-section"></section>
       </div>
       <!-- Hidden Elements -->
-      <section class="modal-box">
+      <section class="modal-box" role="dialog">
         <div class="modal" id="modal">
           <div class="modal-content">
             <span class="close" id="close">&times;</span>
