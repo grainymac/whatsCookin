@@ -92,4 +92,41 @@ describe("User", () => {
 
     expect(checkRecipe3).to.deep.equal([ { id: 11215, name: 'whole garlic clove', amount: 2 } ])
   })
-});
+
+  it("Should be able to add ingredients to user pantry equal to the missing ingredients needed to make a recipe", () => {
+    user.pantry[3].amount = 0
+    user.pantry[4].amount = 0
+
+    user.addPantryIngredients(recipe3, ingredientSampleData)
+
+    expect(user.pantry[3].amount).to.deep.equal(7)
+    expect(user.pantry[4].amount).to.deep.equal(.5)
+
+    user.pantry[3].amount = 2
+    user.pantry[4].amount = 0
+
+    user.addPantryIngredients(recipe3, ingredientSampleData)
+
+    expect(user.pantry[3].amount).to.deep.equal(7)
+    expect(user.pantry[4].amount).to.deep.equal(.5)
+
+  })
+
+  it("Should be able to remove ingredients from user pantry equal to the amount of ingredients needed to cook a recipe", () => {
+    user.pantry[3].amount = 7
+    user.pantry[4].amount = 0.5
+
+    user.removePantryIngredients(recipe3)
+
+    expect(user.pantry[3].amount).to.deep.equal(0)
+    expect(user.pantry[4].amount).to.deep.equal(0)
+
+    user.pantry[3].amount = 8
+    user.pantry[4].amount = 3
+
+    user.removePantryIngredients(recipe3)
+
+    expect(user.pantry[3].amount).to.deep.equal(1)
+    expect(user.pantry[4].amount).to.deep.equal(2.5)
+  })
+})
