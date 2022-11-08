@@ -20,7 +20,6 @@ const cookbookSearchBar = document.querySelector('#cookbookSearch');
 const cookbookTab = document.getElementById('tabCookbook');
 const cookingAnimationModal = document.querySelector('.cooking-animation-modal');
 const dropdownArrow = document.querySelector('.dropdown__arrow');
-const errorMessageModal = DocumentTimeline.querySelector('.error-message-modal');
 const loadCooking = document.querySelector('.pop-up-cooking');
 const missingIngredientModal = document.querySelector('#missingIngredientModal');
 const missingIngredientsList = document.querySelector('.missing-ingredients-list');
@@ -34,6 +33,7 @@ const recipeSection = document.querySelector('#recipeSection');
 const searchAllRecipesButton = document.querySelector('#searchAllRecipesButton');
 const searchCookbookButton = document.querySelector('#searchCookbookButton');
 const successIngredientModal = document.querySelector('.success-ingredient-modal');
+const successRecipeModal = document.querySelector('.success-recipe-modal')
 const tagsContainer = document.querySelector('#tagsContainer');
 
 
@@ -112,7 +112,6 @@ function addAllIngredients(recipeID, user) {
     .catch((err) => {
 
       console.error('CATCH ERROR', err);
-      display(errorMessageModal);
       display(popupError);
     });
 }
@@ -130,12 +129,12 @@ function removeIngredientsFromPantry(recipeID, user) {
         updateRecipeDisplay(currentRecipeDisplay);
         removeDisplay(cookingAnimationModal);
         removeDisplay(loadCooking);
+        display(successRecipeModal)
         display(popupSuccess);
       }, 2000);
     })
     .catch((err) => {
       console.error('CATCH ERROR', err);
-      display(errorMessageModal);
       display(popupError);
       updateRecipeDisplay(currentRecipeDisplay);
     });
@@ -226,6 +225,8 @@ window.addEventListener('keyup', (event) => {
     removeDisplay(popupSuccess);
     removeDisplay(popupError);
     removeDisplay(addIngredientSuccessPopup);
+    removeDisplay(successRecipeModal)
+    removeDisplay(successIngredientModal)
     removeDisplay(addIngredientModal);
     removeDisplay(missingIngredientModal);
     removeDisplay(errorMessageModal);
@@ -451,6 +452,7 @@ function createMissingListElements(ingredientList) {
 function closePopUp(event) {
   if (event.target.id === 'dismissButton') {
     removeDisplay(popupSuccess)
+    removeDisplay(successRecipeModal)
     removeDisplay(popupError)
   }
 }
@@ -590,7 +592,6 @@ function addTag(event) {
   );
 
   filterSelectedTags.forEach((tag) => {
-    console.log(tag);
     tag.classList.remove('recipe-tag-selected');
     tag.ariaSelected = 'false';
   });
