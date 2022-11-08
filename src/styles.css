@@ -782,7 +782,8 @@ main {
 }
 .success-recipe-modal,
 .cooking-animation-modal,
-.success-ingredient-modal {
+.success-ingredient-modal,
+.error-message-modal {
   display: none;
   position: fixed;
   z-index: 1;

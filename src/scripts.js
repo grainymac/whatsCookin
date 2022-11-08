@@ -40,6 +40,9 @@ const tagsContainer = document.querySelector('#tagsContainer');
 const successIngredientModal = document.querySelector(
   '.success-ingredient-modal'
 );
+const errorMessageModal = DocumentTimeline.querySelector(
+  '.error-message-modal'
+);
 const cookingAnimationModal = document.querySelector(
   '.cooking-animation-modal'
 );
@@ -122,8 +125,9 @@ function addAllIngredients(recipeID, user) {
       }, 1900);
     })
     .catch((err) => {
-      console.error(err);
-      popupError.style.display = 'block';
+      console.error('CATCH ERROR', err);
+      display(errorMessageModal);
+      display(popupError);
     });
 }
 
@@ -145,6 +149,7 @@ function removeIngredientsFromPantry(recipeID, user) {
     })
     .catch((err) => {
       console.error('CATCH ERROR', err);
+      display(errorMessageModal);
       display(popupError);
       updateRecipeDisplay(currentRecipeDisplay);
     });
@@ -178,6 +183,7 @@ window.addEventListener('keyup', (event) => {
   if (event.key === 'Escape') {
     modal.style.display = 'none';
     popupSuccess.style.display = 'none';
+    errorMessageModal.style.display = 'none';
     popupError.style.display = 'none';
     addIngredientSuccessPopup.style.display = 'none';
     addIngredientModal.style.display = 'none';
