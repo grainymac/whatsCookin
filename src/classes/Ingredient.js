@@ -17,20 +17,19 @@ class Ingredient {
     allIngredientData.id = fromIngredients.id;
     allIngredientData.name = fromIngredients.name;
     allIngredientData.cost = fromIngredients.estimatedCostInCents;
-    allIngredientData.amount = getAmount(ingredientSource);
+
+    if (typeof ingredientSource.amount === 'number') {
+      allIngredientData.amount = ingredientSource.amount
+    } else {
+      allIngredientData.amount = ingredientSource.quantity?.amount
+    }
+
     if (ingredientSource.quantity) {
       allIngredientData.unit = ingredientSource.quantity.unit;
     }
 
     return new Ingredient(allIngredientData);
   }
-}
-
-function getAmount(ingredient) {
-  if (typeof ingredient.amount === 'number') {
-    return ingredient.amount;
-  }
-  return ingredient.quantity?.amount;
 }
 
 export default Ingredient;

@@ -7,17 +7,17 @@
     <link rel="stylesheet" href="styles/glide.theme.min.css" />
   </head>
   <body>
-    <section class="banner">
+    <header class="banner">
       <p class="user-greeting">Hello, user!</p>
       <img class="logo" src="whatsCookin.png" alt="logo image" />
       <button class="pantry__btn">
         Your Pantry
         <div class="dropdown__arrow"></div>
       </button>
-      <div class="pantry">
+      <div class="pantry" aria-expanded="false">
         <div class="dropdown__header"></div>
       </div>
-    </section>
+    </header>
     <div class="glide">
       <div data-glide-el="track" class="glide__track">
         <ul class="glide__slides">
@@ -98,8 +98,10 @@
               id="tabAllRecipes"
               name="user-tabs"
               checked="checked"
+              tabindex=0
+              class="tab-all-recipes"
             />
-            <label for="tabAllRecipes">All Recipes</label>
+            <label for="tabAllRecipes" class="tab-all-recipes" tabindex="0" id="allIngredientsLabel">All Recipes</label>
             <div class="tab">
               <p class="tab-instructions">Find a recipe!</p>
               <input
@@ -121,8 +123,8 @@
                 Clear
               </button>
             </div>
-            <input type="radio" id="tabCookbook" name="user-tabs" />
-            <label for="tabCookbook">Cookbook</label>
+            <input type="radio" id="tabCookbook" name="user-tabs" tabindex="0"  class="tab-cookbook" tabindex=0/>
+            <label for="tabCookbook"  class="tab-cookbook" tabindex="0">Cookbook</label>
             <div class="tab">
               <p class="tab-instructions">Search your favorite recipes!</p>
               <input
@@ -147,7 +149,7 @@
         <section id="recipeSection" class="recipes-section"></section>
       </div>
       <!-- Hidden Elements -->
-      <section class="modal-box">
+      <section class="modal-box" role="dialog">
         <div class="modal" id="modal">
           <div class="modal-content">
             <span class="close" id="close">&times;</span>
