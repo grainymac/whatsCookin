@@ -146,11 +146,6 @@ window.addEventListener('load', initializeApp);
 close.onclick = () => {
   modal.style.display = 'none';
 };
-close.addEventListener('keyup', (event) => {
-  if(event.key === "Enter") {
-    modal.style.display = none
-  }
-})
 
 closeIngredientModal.onclick = () => {
   missingIngredientModal.style.display = 'none';
@@ -167,6 +162,17 @@ window.onclick = (event) => {
     missingIngredientModal.style.display = 'none';
   }
 };
+
+window.addEventListener('keyup', (event) => {
+  if(event.key === 'Escape') {
+    modal.style.display = 'none';
+    popupSuccess.style.display = 'none';
+    popupError.style.display = 'none';
+    addIngredientSuccessPopup.style.display = 'none';
+    addIngredientModal.style.display = 'none';
+    missingIngredientModal.style.display = 'none';
+  }
+})
 
 pantryBtn.addEventListener('click', togglePantry);
 
@@ -326,6 +332,7 @@ function updateRecipeCardButtons(recipe, recipeCard, abilityToCook) {
   const abilityToCookBtn = document.createElement('button');
   abilityToCookBtn.classList.add('recipe-card-button');
   abilityToCookBtn.setAttribute('id', 'recipeCardButton');
+  abilityToCookBtn.setAttribute('tabindex', 0)
   abilityToCookBtn.innerText = `${abilityToCook}`;
   abilityToCookBtn.dataset.recipeId = `${recipe.id}`;
   abilityToCookBtn.addEventListener('click', function (event) {
@@ -506,6 +513,7 @@ function buildModal(recipe) {
   updateModalIngredients(recipe);
   updateModalInstructions(recipe);
   updateModalCost(recipe);
+
 }
 
 // ----- Tags -----
@@ -521,8 +529,14 @@ function displayAllTags() {
   allTags.forEach((tag) => {
     const tagElement = document.createElement('p');
     tagElement.classList.add('recipe-tag');
+    tagElement.setAttribute('tabindex', 0)
     tagElement.innerText = tag;
     tagElement.onclick = tagsToggleFilter;
+    tagElement.addEventListener('keyup', (event) => {
+      if(event.key === "Enter") {
+        tagsToggleFilter(event)
+      }
+    })
     tagsContainer.appendChild(tagElement);
     store.tagList.push(tagElement);
   });
