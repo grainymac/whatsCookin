@@ -664,11 +664,11 @@ main {
 }
 
 .add-all-ingredients-btn:hover {
-  background: #f7a39087;
+  filter: brightness(1.3);
 }
 
 .add-all-ingredients-btn:active {
-  background: #a7d2cb;
+  transform: scale(0.98);
 }
 
 .btn-txt {
@@ -676,11 +676,9 @@ main {
   justify-content: center;
   font: bold 20px 'Quicksand', san-serif;
   color: #000000;
-  transition: all 0.2s;
 }
 
 .btn-loading .btn-txt {
-  background: #0e471b;
   visibility: hidden;
   opacity: 0;
 }
@@ -756,7 +754,8 @@ main {
 /* ------popup message------ */
 .add-ingredients-success,
 .pop-up-error,
-.pop-up-success {
+.pop-up-success,
+.pop-up-cooking {
   width: 400px;
   background-color: #fff;
   text-align: center;
@@ -779,26 +778,32 @@ main {
 .add-ingredients-message,
 .success-message,
 .error-message {
-  margin-top: 20px;
+  margin-top: 10px;
   padding-left: 10px;
   padding-right: 10px;
 }
 
 .ingredients-success-icon {
-  height: 75px;
-  margin-top: 60px;
+  height: 100px;
+  margin-top: 50px;
   margin-bottom: 15px;
   margin-left: 15px;
 }
 
 .alert-icon-error {
-  margin-top: 60px;
+  margin-top: 50px;
   height: 75px;
 }
 
 .alert-icon-success {
   margin-top: 60px;
   height: 60px;
+}
+
+.cooking-animation {
+  height: 206px;
+  /* margin-bottom: 15px;
+  margin-left: 15px; */
 }
 
 .dismiss-button {

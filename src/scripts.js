@@ -7,12 +7,12 @@ import User from './classes/User';
 
 // --------------------QUERY SELECTORS ------------------
 
+const loadCooking = document.querySelector('.pop-up-cooking')
 const popupError = document.querySelector('.pop-up-error');
 const addIngredientSuccessPopup = document.querySelector(
   '.add-ingredients-success'
 );
 const popupSuccess = document.querySelector('.pop-up-success');
-// const logo = document.querySelector('.logo');
 const pantryBtn = document.querySelector('.pantry__btn');
 const pantry = document.querySelector('.pantry');
 const pantryContainer = document.querySelector('.dropdown__header');
@@ -115,7 +115,7 @@ function addAllIngredients(recipeID, user) {
         addIngredientSuccessPopup.style.display = 'block';
         updateRecipeDisplay(currentRecipeDisplay);
         console.log('HEYYA');
-      }, 2000);
+      }, 1900);
     })
     .catch((err) => {
       console.error(err);
@@ -129,10 +129,11 @@ function removeIngredientsFromPantry(recipeID, user) {
   postAll(requests)
     .then((data) => {
       store.user.removePantryIngredients(currentRecipe);
-      popupError.style.display = 'block'; //placeholder till I make loading animation modal
+      loadCooking.style.display = 'block';
       setTimeout(() => {
         populatePantryDisplay();
         updateRecipeDisplay(currentRecipeDisplay);
+        loadCooking.style.display = 'none';
         popupSuccess.style.display = 'block';
         console.log('BYEYA');
       }, 2000);
