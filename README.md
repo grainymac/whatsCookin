@@ -26,7 +26,7 @@
 
 <img width="1374" alt="Screenshot 2022-11-07 at 9 29 45 PM" src="https://user-images.githubusercontent.com/106535343/200469340-047a345c-b480-451b-a4ef-80f87c9d7dcf.png">
 
-<img width="478" alt="Screenshot 2022-11-07 at 9 31 31 PM" src="https://user-images.githubusercontent.com/106535343/200469429-636afbd2-857b-44b0-87ba-709ec5d04d2f.png">
+<img width="478" alt="Screenshot 2022-11-07 at 9 31 31 PM" src="https://user-images.githubusercontent.com/106535343/200469429-636afbd2-857b-44b0-87ba-709ec5d04d2f.png"> 
 
 
 
