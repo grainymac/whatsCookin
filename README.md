@@ -32,7 +32,7 @@
 
 ## Project Specs
   - Part 1 of the project spec & rubric can be found [here](https://frontend.turing.edu/projects/whats-cookin-part-one.html)
-  - Part 2 of the project spec & rubric can be found [here] https://frontend.turing.edu/projects/whats-cookin-part-two.html
+  - Part 2 of the project spec & rubric can be found [here](https://frontend.turing.edu/projects/whats-cookin-part-two.html)
 
 
 ## Technologies
