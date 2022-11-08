@@ -349,7 +349,7 @@ main {
 
 .user-tabs label {
   padding: 10px;
-  background: #bfe4dbea;
+  background: #c9dfdaea;
   cursor: pointer;
   border-radius: 10px 10px 0px 0px;
 }
@@ -368,7 +368,7 @@ main {
 }
 
 .user-tabs [type='radio']:checked + label {
-  background: #97d2c9;
+  background: #a7d2cb;
 }
 
 .search-bar {
