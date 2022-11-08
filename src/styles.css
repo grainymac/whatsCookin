@@ -467,27 +467,31 @@ main {
 }
 
 .recipe-card-button {
-  outline:none;
+  position: relative;
+  all: unset;
   height: 40px;
   text-align: center;
-  width: 130px;
+  width: 185px;
+  padding: 10px;
   border-radius: 40px;
-  background: #fff;
-  border: 2px solid #7f9f9a;
-  color: #000000;
+  color: #fff;
+  background: #9d0208;
+  font-family: JosefinSans-Regular;
+  font-size: 18px;
   cursor: pointer;
-  transition: all 0.25s ease;
+}
+
+.cook-button {
+  background: #40916c;
 }
 
 .recipe-card-button:hover {
-    color: #000000;
-    background: #A7D2CB;
-  }
+  filter: brightness(1.35);
+}
 
-  .recipe-card-button:active {
-    letter-spacing: 2px;
-    letter-spacing: 2px ;
-  }
+.recipe-card-button:active {
+  transform: scale(0.98);
+}
 
 .recipe-section-tag {
   background-color: #874c62;
@@ -637,7 +641,7 @@ main {
 }
 
 .missing-ingredients-list {
-  line-height: 2.0;
+  line-height: 2;
   margin-bottom: 10px;
   font-family: JosefinSans-Regular;
   font-size: 18px;
@@ -700,7 +704,6 @@ main {
     transform: rotate(0turn);
   }
 
-
   to {
     transform: rotate(1turn);
   }
@@ -708,45 +711,45 @@ main {
 
 /* ============================================================ ADDED INGREDIENT POP-UP */
 
-  .close-ingredient-modal {
-    color: #aaaaaa;
-    float: right;
-    font-size: 32px;
-    font-weight: bold;
-  }
-  
-  .close-ingredient-modal:hover,
-  .close-ingredient-modal:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-  }
+.close-ingredient-modal {
+  color: #aaaaaa;
+  float: right;
+  font-size: 32px;
+  font-weight: bold;
+}
 
-  .add-ingredients-success {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 10px;
-    border: #F2D388 10px outset;
-    height: 40%;
-    width: 10%;
-  }
-  
-  .add-ingredient-modal {
-    display: flex;
-    margin-right: 10px;
-    color: #aaaaaa;
-    float: right;
-    font-size: 32px;
-    font-weight: bold;
-  }
-  
-  .add-ingredient-modal:hover,
-  .add-ingredient-modal:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-  }
+.close-ingredient-modal:hover,
+.close-ingredient-modal:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.add-ingredients-success {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border-radius: 10px;
+  border: #f2d388 10px outset;
+  height: 40%;
+  width: 10%;
+}
+
+.add-ingredient-modal {
+  display: flex;
+  margin-right: 10px;
+  color: #aaaaaa;
+  float: right;
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.add-ingredient-modal:hover,
+.add-ingredient-modal:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
 
 /* ------popup message------ */
 .add-ingredients-success,
@@ -774,28 +777,27 @@ main {
 .add-ingredients-message,
 .success-message,
 .error-message {
+  margin-top: 20px;
   padding-left: 10px;
   padding-right: 10px;
 }
 
-
 .ingredients-success-icon {
   height: 75px;
-  margin-top: 40px;
+  margin-top: 60px;
   margin-bottom: 15px;
   margin-left: 15px;
 }
 
 .alert-icon-error {
-  margin-top: 40px;
+  margin-top: 60px;
   height: 75px;
 }
 
 .alert-icon-success {
-  margin-top: 40px;
+  margin-top: 60px;
   height: 60px;
 }
-
 
 .dismiss-button {
   background-color: rgb(135, 76, 98, 0.5);
