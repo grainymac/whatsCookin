@@ -18,6 +18,7 @@
 ## Introduction
   On the landing page, a randomized user will see all available recipes displayed after scrolling through some testimonials for displayed recipes. The user may click on any single recipe that shows a modal with details such as instructions, ingredients and cost of ingredients. The user can search a keyword and when the "search" button is clicked, any recipe with the keyword included in its name will appear. The user can also select one or multiple filter tags. 
   If a user clicks the "star" icon on a recipe card, that recipe will be added to the "cookbook" tab. When the user goes to the "cookbook" tab, they can search and filter their favorite recipes, and remove a recipe from favorites by deselecting the "star" icon.
+  At the top of the page, the user will see their welcome message, as well as their pantry drop down in the top righthand corner. Here they can see what recipes exist in their pantry. After they 'star' some of their favrite recipes, they can check their cookbook to see if they are able to cook the recipe, or need to add ingredients. If they need to add ingredients, they can click "Add ingredients" and the needed ingredients will be added to their recipe. If they are able to cook the recipe, they can click "Cook Recipe!" and the recipe's ingredients will be removed from their pantry.
   
  <img width="1425" alt="Screen Shot 2022-10-24 at 9 26 03 PM" src="https://user-images.githubusercontent.com/110298370/197661092-a8b2ed25-5cbf-45ad-b36c-09955c5856e7.png">
  
@@ -30,7 +31,8 @@
 
 
 ## Project Specs
-  - The project spec & rubric can be found [here](https://frontend.turing.edu/projects/whats-cookin-part-one.html)
+  - Part 1 of the project spec & rubric can be found [here](https://frontend.turing.edu/projects/whats-cookin-part-one.html)
+  - Part 2 of the project spec & rubric can be found [here] https://frontend.turing.edu/projects/whats-cookin-part-two.html
 
 
 ## Technologies
@@ -85,5 +87,5 @@ This was our team's first time working with the following technology and concept
 - External data sets
 - Using API Fetch calls to pull in the data
 - Writing our own tests in order to follow TDD - we have previously followed pre-existing tests when building projects
-- This is the first iteration of our project and was completed in one week
+- This project was in two parts, each completed over the span of one week for a total of two weeks.
  
