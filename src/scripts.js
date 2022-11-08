@@ -7,43 +7,31 @@ import User from './classes/User';
 
 // --------------------QUERY SELECTORS ------------------
 
-const loadCooking = document.querySelector('.pop-up-cooking');
-const popupError = document.querySelector('.pop-up-error');
-const addIngredientSuccessPopup = document.querySelector(
-  '.add-ingredients-success'
-);
-const popupSuccess = document.querySelector('.pop-up-success');
-const pantryBtn = document.querySelector('.pantry__btn');
-const pantry = document.querySelector('.pantry');
-const pantryContainer = document.querySelector('.dropdown__header');
-const dropdownArrow = document.querySelector('.dropdown__arrow');
+const addIngredientsBtn = document.querySelector('#addIngredientsBtn');
+const addIngredientModal = document.querySelector('#addIngredientModal');
+const addIngredientSuccessPopup = document.querySelector('.add-ingredients-success');
 const allRecipesSearchBar = document.querySelector('#allRecipeSearch');
 const allRecipesTab = document.getElementById('tabAllRecipes');
-const clearAllRecipeSearchButton = document.querySelector(
-  '#clearAllRecipesButton'
-);
-const clearCookbookSearchButton = document.querySelector(
-  '#clearCookbookButton'
-);
+const clearAllRecipeSearchButton = document.querySelector('#clearAllRecipesButton');
+const clearCookbookSearchButton = document.querySelector('#clearCookbookButton');
 const close = document.querySelector('#close');
 const closeIngredientModal = document.querySelector('#closeIngredientModal');
-const addIngredientModal = document.querySelector('#addIngredientModal');
 const cookbookSearchBar = document.querySelector('#cookbookSearch');
 const cookbookTab = document.getElementById('tabCookbook');
+const dropdownArrow = document.querySelector('.dropdown__arrow');
+const loadCooking = document.querySelector('.pop-up-cooking');
+const missingIngredientModal = document.querySelector('#missingIngredientModal');
+const missingIngredientsList = document.querySelector('.missing-ingredients-list');
 const modal = document.querySelector('#modal');
+const pantry = document.querySelector('.pantry');
+const pantryBtn = document.querySelector('.pantry__btn');
+const pantryContainer = document.querySelector('.dropdown__header');
+const popupError = document.querySelector('.pop-up-error');
+const popupSuccess = document.querySelector('.pop-up-success');
 const recipeSection = document.querySelector('#recipeSection');
-const searchAllRecipesButton = document.querySelector(
-  '#searchAllRecipesButton'
-);
+const searchAllRecipesButton = document.querySelector('#searchAllRecipesButton');
 const searchCookbookButton = document.querySelector('#searchCookbookButton');
 const tagsContainer = document.querySelector('#tagsContainer');
-const missingIngredientModal = document.querySelector(
-  '#missingIngredientModal'
-);
-const missingIngredientsList = document.querySelector(
-  '.missing-ingredients-list'
-);
-const addIngredientsBtn = document.querySelector('#addIngredientsBtn');
 
 
 // ------------------- GLOBAL VARIABLES ------------------
