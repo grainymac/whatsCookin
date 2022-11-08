@@ -20,11 +20,14 @@
   If a user clicks the "star" icon on a recipe card, that recipe will be added to the "cookbook" tab. When the user goes to the "cookbook" tab, they can search and filter their favorite recipes, and remove a recipe from favorites by deselecting the "star" icon.
   At the top of the page, the user will see their welcome message, as well as their pantry drop down in the top righthand corner. Here they can see what recipes exist in their pantry. After they 'star' some of their favrite recipes, they can check their cookbook to see if they are able to cook the recipe, or need to add ingredients. If they need to add ingredients, they can click "Add ingredients" and the needed ingredients will be added to their recipe. If they are able to cook the recipe, they can click "Cook Recipe!" and the recipe's ingredients will be removed from their pantry.
   
- <img width="1425" alt="Screen Shot 2022-10-24 at 9 26 03 PM" src="https://user-images.githubusercontent.com/110298370/197661092-a8b2ed25-5cbf-45ad-b36c-09955c5856e7.png">
+<img width="1375" alt="Screenshot 2022-11-07 at 9 28 28 PM" src="https://user-images.githubusercontent.com/106535343/200469143-08938abd-f256-4379-86ad-22e71f82a625.png">
  
-<img width="1425" alt="Screen Shot 2022-10-24 at 9 26 25 PM" src="https://user-images.githubusercontent.com/110298370/197661174-8b90b24e-5ac2-4dd3-8a0b-8260f3739dea.png">
+<img width="1375" alt="Screenshot 2022-11-07 at 9 28 54 PM" src="https://user-images.githubusercontent.com/106535343/200469270-7a7f6369-d176-46d7-850a-0dc880577763.png">
 
-<img width="1425" alt="Screen Shot 2022-10-24 at 9 26 50 PM" src="https://user-images.githubusercontent.com/110298370/197661212-4a679242-053c-40c0-b54f-d8206a01eda0.png">
+<img width="1374" alt="Screenshot 2022-11-07 at 9 29 45 PM" src="https://user-images.githubusercontent.com/106535343/200469340-047a345c-b480-451b-a4ef-80f87c9d7dcf.png">
+
+<img width="478" alt="Screenshot 2022-11-07 at 9 31 31 PM" src="https://user-images.githubusercontent.com/106535343/200469429-636afbd2-857b-44b0-87ba-709ec5d04d2f.png">
+
 
 
   
@@ -88,4 +91,3 @@ This was our team's first time working with the following technology and concept
 - Using API Fetch calls to pull in the data
 - Writing our own tests in order to follow TDD - we have previously followed pre-existing tests when building projects
 - This project was in two parts, each completed over the span of one week for a total of two weeks.
- 
