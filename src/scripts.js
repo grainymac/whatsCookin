@@ -232,21 +232,9 @@ const defineEventListeners = () => {
     resetTabs(event, store.recipeRepo.allRecipes);
   });
 
-  allRecipeLabel.addEventListener('keyup', (event) => {
-    if(event.key === 'Enter') {
-      resetTabs(event, store.recipeRepo.allRecipes)
-    }
-  })
-
   cookbookTab.addEventListener('click', (event) => {
     resetTabs(event, store.user.favoriteRecipeRepo.allRecipes);
   });
-
-  cookbookLabel.addEventListener('keyup', (event) => {
-    if(event.key === 'Enter') {
-      resetTabs(event, store.user.favoriteRecipeRepo.allRecipes)
-    }
-  })
   
 };
 
