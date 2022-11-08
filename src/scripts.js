@@ -146,6 +146,11 @@ window.addEventListener('load', initializeApp);
 close.onclick = () => {
   modal.style.display = 'none';
 };
+close.addEventListener('keyup', (event) => {
+  if(event.key === "Enter") {
+    modal.style.display = none
+  }
+})
 
 closeIngredientModal.onclick = () => {
   missingIngredientModal.style.display = 'none';
@@ -183,9 +188,18 @@ clearCookbookSearchButton.addEventListener('click', function () {
   clearSearchBar(cookbookSearchBar);
 });
 
-recipeSection.addEventListener('click', recipeCardActionFilter);
+
 
 const defineEventListeners = () => {
+
+  recipeSection.addEventListener('click', recipeCardActionFilter);
+  
+  recipeSection.addEventListener('keyup', (event) => {
+    if(event.key === "Enter") {
+      recipeCardActionFilter(event)
+    }
+  })
+
   searchAllRecipesButton.addEventListener('click', function () {
     searchRecipesByName(allRecipesSearchBar.value);
   });
@@ -205,6 +219,7 @@ const defineEventListeners = () => {
   cookbookTab.addEventListener('click', (event) => {
     resetTabs(event, store.user.favoriteRecipeRepo.allRecipes);
   });
+  
 };
 
 addIngredientsBtn.addEventListener('click', addToPantry);
@@ -285,6 +300,7 @@ function flagFavoritedRecipes(recipe) {
 
 function buildRecipeCard(recipe, recipeCard, abilityToCook) {
   recipeCard.classList.add('recipe-card');
+  recipeCard.setAttribute('tabIndex', 0)
   recipeCard.dataset.recipeId = `${recipe.id}`;
   recipeCard.innerHTML = `
     <figure class="recipe-figure">
@@ -294,7 +310,7 @@ function buildRecipeCard(recipe, recipeCard, abilityToCook) {
     </figure>
     <section class="recipe-details-container">
       <h1 class="recipe-title">${recipe.name}</h1>
-      <img class="recipe-favorite-icon" id="${
+      <img class="recipe-favorite-icon" tabindex=0 id="${
         recipe.id
       }" src="${flagFavoritedRecipes(recipe)}" alt="star icon"/>
     </section>
@@ -566,8 +582,12 @@ function getTag(event) {
 function resetTabs(event, repo) {
   if (event.target.id === 'tabCookbook') {
     cookbookFlag = true;
+    cookbookTab.ariaChecked = true;
+    allRecipesTab.ariaChecked = false;
   } else if (event.target.id === 'tabAllRecipes') {
     cookbookFlag = false;
+    allRecipesTab.ariaChecked = true;
+    cookbookTab.ariaChecked = false;
   }
   resetCurrentRecipeRepo(repo);
   updateRecipeDisplay(repo);
