@@ -110,9 +110,12 @@ function addAllIngredients(recipeID, user) {
   postAll(requests)
     .then((data) => {
       store.user.addPantryIngredients(currentRecipe, store.ingredientsData);
-      populatePantryDisplay();
-      addIngredientSuccessPopup.style.display = 'block';
-      updateRecipeDisplay(currentRecipeDisplay);
+      setTimeout(() => {
+        populatePantryDisplay();
+        addIngredientSuccessPopup.style.display = 'block';
+        updateRecipeDisplay(currentRecipeDisplay);
+        console.log('HEYYA');
+      }, 2000);
     })
     .catch((err) => {
       console.error(err);
@@ -122,14 +125,17 @@ function addAllIngredients(recipeID, user) {
 
 function removeIngredientsFromPantry(recipeID, user) {
   const currentRecipe = store.recipeRepo.findRecipeById(recipeID);
-  console.log('RECIPE', currentRecipe);
   const requests = createPostRequests(user, currentRecipe.ingredients, -1);
   postAll(requests)
     .then((data) => {
       store.user.removePantryIngredients(currentRecipe);
-      populatePantryDisplay();
-      updateRecipeDisplay(currentRecipeDisplay);
-      popupSuccess.style.display = 'block';
+      popupError.style.display = 'block'; //placeholder till I make loading animation modal
+      setTimeout(() => {
+        populatePantryDisplay();
+        updateRecipeDisplay(currentRecipeDisplay);
+        popupSuccess.style.display = 'block';
+        console.log('BYEYA');
+      }, 2000);
     })
     .catch((err) => {
       console.error('CATCH ERROR', err);
@@ -320,10 +326,6 @@ function updateRecipeCardButtons(recipe, recipeCard, abilityToCook) {
 
 function displayCookRecipePopUp(event, recipe) {
   if (event.target.innerText === 'Cook this recipe!') {
-    console.log(
-      'HOW MANY INGREDIENTS?',
-      store.user.getMissingIngredientsForRecipe(recipe)
-    );
     removeIngredientsFromPantry(recipe.id, store.user);
   } else if (event.target.innerText === 'Missing Ingredients!') {
     createMissingIngredientsModal(recipe.id);
